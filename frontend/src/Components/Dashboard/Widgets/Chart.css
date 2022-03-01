@@ -1,0 +1,24 @@
+.chart {
+  margin-left: 0;
+  margin-top: 20px;
+}
+
+.filter {
+  filter: drop-shadow(0 0 0.05rem black);
+}
+
+.graph {
+  width: 96%;
+  height: 250px;
+  margin: 0 auto;
+  background-color: #46466e;
+  border-radius: 30px;
+  filter: drop-shadow(0 0 0.1rem black);
+}
+
+.graph p {
+  color: white;
+  font-size: 20px;
+  margin-left: 40px;
+  margin-top: 10px;
+}

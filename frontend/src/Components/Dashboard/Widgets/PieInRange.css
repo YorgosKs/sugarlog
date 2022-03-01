@@ -1,0 +1,23 @@
+.chart {
+  margin-left: 0;
+  margin-top: 20px;
+}
+
+.filter {
+  filter: drop-shadow(0 0 0.05rem black);
+}
+
+.range {
+  width: 100%;
+  height: 250px;
+  margin: 0 auto;
+  background-color: #46466e;
+  border-radius: 30px;
+  filter: drop-shadow(0 0 0.1rem black);
+}
+
+.range-circle {
+  width: 200px;
+  height: 200px;
+  margin: 25px 0;
+}
