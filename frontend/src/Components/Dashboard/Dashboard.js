@@ -1,10 +1,11 @@
 import Nav from '../Nav';
-import './Dashboard.css';
+import style from './Dashboard.css';
 
 import Chart from './Widgets/Chart';
 import PieInRange from './Widgets/PieInRange';
 import PieHourRange from './Widgets/PieHourRange';
 import ServiceButtons from './ServiceButtons';
+import SugarForm from '../ServicesForm/SugarForm';
 
 const Dashboard = () => {
   const today = new Date();
@@ -20,7 +21,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className='container'>
+    <div className='dashboard-container'>
       <Nav />
       <div className='wrapper'>
         <h2 className='msg'>{msg}</h2>
@@ -35,6 +36,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <div className='form-wrapper'>{/* <SugarForm /> */}</div>
     </div>
   );
 };

@@ -1,9 +1,11 @@
 import './SugarForm.css';
 import arrow from '../../assets/arrow.png';
+import Nav from '../Nav';
 
 const SugarForm = () => {
   return (
-    <div className='container'>
+    <div className='form-container'>
+      <Nav />
       <div className='back'>
         <img src={arrow} alt='arrow' />
         <span>Sugar</span>

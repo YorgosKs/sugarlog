@@ -1,0 +1,74 @@
+.settings-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-wrapper {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.col-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.title-col {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  color: black;
+  min-width: 15%;
+  margin: 0 20px;
+}
+
+.prop-col {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  color: black;
+  min-width: 15%;
+  margin: 0 20px;
+}
+
+.btn-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 15%;
+  margin: 0 20px;
+}
+
+.btn-col button {
+  margin: auto 0;
+  background-color: #fff;
+  color: black;
+  font-size: 16px;
+  padding: 10px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid #dd105e;
+}
+.btn-col button:hover,
+.btn-item button:hover {
+  background-color: #dd105e;
+  color: white;
+  transition-duration: 0.2s;
+}
+
+.btn-item button {
+  margin: auto 0;
+  background-color: #fff;
+  color: black;
+  font-size: 16px;
+  padding: 10px 40px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid #dd105e;
+}
