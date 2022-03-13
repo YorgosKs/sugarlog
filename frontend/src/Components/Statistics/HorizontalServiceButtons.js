@@ -6,9 +6,10 @@ import activity from '../../assets/activity.png';
 import weigth from '../../assets/weight.png';
 import pressure from '../../assets/pressure.png';
 
-// import Slider from 'react-slick';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
+// import { Carousel } from 'react-responsive-carousel';
+// import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+// import Flickity from 'react-flickity-component';
 
 const HorizontalServiceButtons = () => {
   return (

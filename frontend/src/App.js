@@ -15,6 +15,7 @@ import Settings from './Components/Settings/Settings';
 function App() {
   return (
     <div className='main'>
+      {/* <Nav /> */}
       {/* <Dashboard /> */}
       {/* <Statistics /> */}
       {/* <HorizontalServiceButtons /> */}

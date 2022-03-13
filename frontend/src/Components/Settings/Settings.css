@@ -1,12 +1,17 @@
 .settings-container {
+  width: 90%;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+}
+
+.filler {
+  width: 200px;
 }
 
 .settings-wrapper {
-  width: 80%;
+  width: 90%;
+  margin: 2.5vh auto;
   display: flex;
   flex-direction: column;
 }
@@ -15,32 +20,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin: 0 auto;
-}
-
-.title-col {
-  display: flex;
-  flex-direction: column;
-  font-size: 18px;
-  color: black;
-  min-width: 15%;
-  margin: 0 20px;
-}
-
-.prop-col {
-  display: flex;
-  flex-direction: column;
-  font-size: 18px;
-  color: black;
-  min-width: 15%;
-  margin: 0 20px;
-}
-
-.btn-col {
-  display: flex;
-  flex-direction: column;
-  min-width: 15%;
-  margin: 0 20px;
+  margin: 20px auto;
 }
 
 .btn-col button {
@@ -54,7 +34,6 @@
   text-align: center;
   border: 2px solid #dd105e;
 }
-.btn-col button:hover,
 .btn-item button:hover {
   background-color: #dd105e;
   color: white;
@@ -71,4 +50,76 @@
   cursor: pointer;
   text-align: center;
   border: 2px solid #dd105e;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 85%;
+  border-radius: 10px;
+  background-color: #ccc;
+  margin: 5px auto;
+}
+
+.settings-item input {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  width: 90%;
+  height: 25px;
+  margin: 0 auto 10px auto;
+  padding: 5px 3px;
+  border: none;
+  border-bottom: 3px solid white;
+  background-color: transparent;
+  transition: all 0.4s ease;
+}
+
+.settings-item label {
+  width: 90%;
+  font-weight: 500;
+  color: #303841;
+  margin: 10px auto 5px auto;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 3px solid #dd105e;
+  color: black;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 1007px) {
+  .filler {
+    width: 100px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .settings-wrapper {
+    width: 100%;
+  }
+
+  .filler {
+    display: none;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .btm-filler {
+    height: 80px;
+  }
+
+  .settings-item label,
+  .settings-item input {
+    width: 85%;
+  }
 }

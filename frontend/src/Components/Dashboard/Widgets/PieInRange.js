@@ -18,12 +18,27 @@ const PieInRange = () => {
         strokeWidth='15'
         counterClockwise='true'
         styles={buildStyles({
-          pathColor: `rgba(167,196,188, 1`,
-          textColor: `rgba(167,196,188, 1)`,
+          pathColor: `#DD105E`,
+          textColor: `#DD105E`,
           textSize: '10px',
           trailColor: 'none',
+          width: '150px',
         })}
       />
+      {/* <CircularProgressbarWithChildren
+        value={percentage}
+        text={`${percentage}%\nin range`}
+        className='range-circle'
+        strokeWidth='15'
+        counterClockwise='true'
+        styles={buildStyles({
+          pathColor: `#DD105E`,
+          textColor: `#DD105E`,
+          textSize: '10px',
+          trailColor: 'none',
+          width: '150px',
+        })}
+      /> */}
     </div>
   );
 };

@@ -9,15 +9,32 @@
 
 .range {
   width: 100%;
-  height: 250px;
-  margin: 0 auto;
-  background-color: #46466e;
+  margin: 10px auto;
+  background-color: #fff;
   border-radius: 30px;
-  filter: drop-shadow(0 0 0.1rem black);
+  box-shadow: 2px 0 10px -3px #888;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
 }
 
 .range-circle {
-  width: 200px;
-  height: 200px;
-  margin: 25px 0;
+  width: 150px;
+  height: 150px;
+  margin: 50px auto;
+}
+
+@media only screen and (max-width: 1007px) {
+  .range {
+    width: 100%;
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 2px 0 10px -3px #888;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-self: center;
+  }
 }

@@ -29,6 +29,589 @@ const WeightPage = () => {
           <img src={delete_btn} alt='delete' />
         </p>
       </div>
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>{' '}
+      <div className='title-row'>
+        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
+        <p>Weight</p>
+        <p>Date</p>
+        <p>Time</p>
+        <p>Note</p>
+        <p>
+          <img src={edit_btn} alt='edit' />
+          <img src={delete_btn} alt='delete' />
+        </p>
+      </div>
     </div>
   );
 };

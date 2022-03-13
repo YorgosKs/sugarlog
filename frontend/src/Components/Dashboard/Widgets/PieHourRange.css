@@ -3,8 +3,8 @@
   height: 90%;
   margin: 10px 0;
   border-radius: 30px;
-  background-color: #46466e;
-  filter: drop-shadow(0 0 0.1rem black);
+  background-color: #fff;
+  box-shadow: 2px 0 10px -3px #888;
 }
 
 .chart {

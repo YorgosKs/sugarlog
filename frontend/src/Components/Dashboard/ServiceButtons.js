@@ -38,6 +38,7 @@ const ServiceButtons = () => {
           <p>Pressure</p>
         </div>
       </div>
+      <div className='footer'></div>
     </div>
   );
 };

@@ -12,9 +12,12 @@ const Statistics = () => {
   return (
     <div className='stats-container'>
       <Nav />
+      <div className='filler'></div>
       <div className='stats-wrapper'>
         <HorizontalServiceButtons />
-        <WeightPage />
+        {/* <WeightPage /> */}
+        <ActivityPage />
+        <div className='btm-filler'></div>
       </div>
     </div>
   );

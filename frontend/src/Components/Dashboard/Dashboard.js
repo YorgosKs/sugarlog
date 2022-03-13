@@ -5,7 +5,6 @@ import Chart from './Widgets/Chart';
 import PieInRange from './Widgets/PieInRange';
 import PieHourRange from './Widgets/PieHourRange';
 import ServiceButtons from './ServiceButtons';
-import SugarForm from '../ServicesForm/SugarForm';
 
 const Dashboard = () => {
   const today = new Date();
@@ -20,6 +19,10 @@ const Dashboard = () => {
     msg = 'Good evening!';
   }
 
+  window.onresize = function (event) {
+    console.log('x: ' + window.innerWidth + '      y: ' + window.innerHeight);
+  };
+
   return (
     <div className='dashboard-container'>
       <Nav />
@@ -28,15 +31,16 @@ const Dashboard = () => {
         <div className='dashboard-wrapper'>
           <div className='left-col'>
             <Chart />
+            <div className='horizontal-pie'>
+              <PieInRange />
+            </div>
             <ServiceButtons />
           </div>
           <div className='right-col'>
             <PieInRange />
-            <PieHourRange />
           </div>
         </div>
       </div>
-      <div className='form-wrapper'>{/* <SugarForm /> */}</div>
     </div>
   );
 };

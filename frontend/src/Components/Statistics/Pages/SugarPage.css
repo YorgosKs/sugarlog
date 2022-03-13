@@ -1,43 +1,63 @@
 .page-container {
-  width: 100%;
-  margin: 0 10px;
+  width: 90%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* border: 2px solid black;    */
+  align-items: center;
+  /* border: 2px solid black; */
 }
 
-.title-row {
+.items-row {
   width: 100%;
   margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
-.title-row p {
+/* .title-row p {
   width: 80px;
   margin: 0 auto;
   color: black;
   font-size: 18px;
   text-align: left;
-}
+} */
 
-.title-row img {
+/* .title-row img {
   width: 20px;
   margin: 0 5px;
   cursor: pointer;
+} */
+
+/* .col-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-hr {
+.col-data {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.col-data p {
+  margin: 0 auto;
+  font-size: 18px;
+} */
+
+hr {
+  width: 95%;
 }
 
 .export-btn {
-  width: 100%;
-  margin: 0 auto 5vh auto;
+  width: 92%;
+  margin: 0 auto 2.5vh auto;
+  /* border: 2px solid black; */
 }
 
 .export-btn button {
@@ -58,3 +78,53 @@ hr {
   color: white;
   transition-duration: 0.2s;
 }
+/* 
+@media only screen and (max-width: 1007px) {
+  .title-row p {
+    font-size: 16px;
+  }
+
+  .export-btn button {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .hidden {
+    display: none;
+  }
+
+  hr {
+    width: 100%;
+  }
+
+  .title-row {
+    width: 90%;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 2px 0 5px -1px #888;
+  }
+
+  .col-title {
+    display: inherit;
+    width: 45%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col-data {
+    width: 45%;
+    margin: 0 auto;
+    flex-direction: column;
+  }
+
+  .title-col p,
+  .data-col p {
+    font-size: 16px;
+  }
+
+  p img {
+    display: none;
+  }
+} */

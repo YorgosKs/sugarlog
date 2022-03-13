@@ -12,6 +12,10 @@ const data = [
   { name: 'Today', average: 130 },
 ];
 
+window.onresize = function (event) {
+  console.log('x: ' + window.innerWidth + '      y: ' + window.innerHeight);
+};
+
 const Chart = () => {
   return (
     <div className='graph'>
@@ -21,18 +25,19 @@ const Chart = () => {
             dataKey='name'
             height={20}
             className='xaxis'
-            stroke='#fff'
+            stroke='#000'
             padding={{ left: 20, right: 10 }}
             axisLine={false}
             tickSize={0}
             tickMargin={10}
+            fontSize={16}
           />
           <Bar
             dataKey='average'
-            fill='#A7C4BC'
-            barSize={45}
-            radius={15}
-            label={{ fill: 'white', fontSize: 16 }}
+            fill='#DD105E'
+            maxBarSize={45}
+            radius={10}
+            label={{ fill: 'white', fontSize: 14 }}
             className='filter'
           />
         </BarChart>
