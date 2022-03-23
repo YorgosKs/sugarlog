@@ -21,8 +21,8 @@ router.post('/add/:userid', verifyJWT, async (req, res) => {
   }
 });
 
-router.get('/:userid', verifyJWT, async (req, res) => {
-  Insulin.find({ user: req.params.userid })
+router.get('/', verifyJWT, async (req, res) => {
+  Insulin.find({ user: req.user.id })
     .then((insulin) => res.json(insulin))
     .catch((err) => res.status(400).send('Error: ' + err));
 });

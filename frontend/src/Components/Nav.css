@@ -13,6 +13,10 @@
   left: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 .logo-nav {
   width: 50%;
   margin: 20px auto;
@@ -47,6 +51,7 @@
   text-align: center;
   color: #c4c4c4;
   margin-left: 10px;
+  transition: color 0.2s ease;
 }
 
 .nav-browse p:hover {

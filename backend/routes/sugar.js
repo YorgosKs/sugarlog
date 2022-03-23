@@ -2,10 +2,11 @@ const router = require('express').Router();
 const Sugar = require('../models/sugar.model');
 
 const verifyJWT = require('../middleware/auth');
+const { json } = require('body-parser');
 
-router.post('/add/:userid', verifyJWT, async (req, res) => {
+router.post('/add/', verifyJWT, async (req, res) => {
   const sugar = new Sugar({
-    user: req.params.userid,
+    user: req.user.id,
     level: req.body.level,
     date: req.body.date,
     time: req.body.time,
@@ -20,13 +21,14 @@ router.post('/add/:userid', verifyJWT, async (req, res) => {
     res.send('Done!');
   } catch (err) {
     res.status(400).send(err);
+    console.log(err);
   }
 });
 
-router.get('/:userid', verifyJWT, async (req, res) => {
-  Sugar.find({ user: req.params.userid })
+router.get('/', verifyJWT, async (req, res) => {
+  Sugar.find({ user: req.user.id })
     .then((sugar) => res.json(sugar))
-    .catch((err) => res.status(400).send('Error: ' + err));
+    .catch((err) => res.status(400).send(err));
 });
 
 router.post('/update/:id', verifyJWT, async (req, res) => {
@@ -45,10 +47,11 @@ router.post('/update/:id', verifyJWT, async (req, res) => {
   });
 });
 
-router.delete('/:id', verifyJWT, async (req, res) => {
+router.delete('/delete/:id', verifyJWT, async (req, res) => {
+  console.log(req.params.id);
   Sugar.findByIdAndDelete(req.params.id)
     .then(() => res.json('Entry deleted.'))
-    .catch((err) => res.status(400).json('Error: ' + err));
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

@@ -20,8 +20,8 @@ router.post('/add/:userid', verifyJWT, async (req, res) => {
   }
 });
 
-router.get('/:userid', verifyJWT, async (req, res) => {
-  Weight.find({ user: req.params.userid })
+router.get('/', verifyJWT, async (req, res) => {
+  Weight.find({ user: req.user.id })
     .then((weight) => res.json(weight))
     .catch((err) => res.status(400).send('Error: ' + err));
 });

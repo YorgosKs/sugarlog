@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 require('dotenv').config();
+const cors = require('cors');
+const verifyJWT = require('./middleware/auth');
 
 // ROUTES
 const userRoute = require('./routes/user');
@@ -12,6 +14,8 @@ const weightRoute = require('./routes/weight');
 const mealRoute = require('./routes/meal');
 const activityRoute = require('./routes/activity');
 const pressureRoute = require('./routes/pressure');
+const { verify } = require('crypto');
+const cookieParser = require('cookie-parser');
 
 // PORT CONNECTION
 const port = process.env.PORT || 5000;
@@ -32,6 +36,14 @@ connection.once('open', () => {
 
 // MIDDLEWARE
 app.use(express.json());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: ['http://localhost:3000'],
+    methods: ['GET', 'POST', 'DELETE'],
+    credentials: true,
+  })
+);
 
 // ROUTES MIDDLEWARE
 

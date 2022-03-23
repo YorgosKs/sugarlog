@@ -79,6 +79,7 @@
   border-bottom: 3px solid white;
   background-color: transparent;
   transition: all 0.4s ease;
+  border-radius: 0px;
 }
 
 .settings-item label {

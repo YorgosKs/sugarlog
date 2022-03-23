@@ -65,10 +65,10 @@ router.post(
       return res.status(422).json(errors.array());
     } else {
       const user = await User.findOne({ email: req.body.email });
-      if (!user) return res.status(400).send('Email is wrong');
+      if (!user) return res.json(401);
 
       const validPass = await bcrypt.compare(req.body.password, user.password);
-      if (!validPass) return res.status(400).send('Password is wrong');
+      if (!validPass) return res.json(403);
 
       const payload = { _id: user._id };
 
@@ -79,11 +79,28 @@ router.post(
           { expiresIn: 86400 },
           (err, token) => {
             if (err) return res.json({ message: err });
-            return res.json({
-              message: 'Success',
-              token: 'Bearer ' + token,
-              id: user._id,
-            });
+            // return res.json({
+            //   message: 'Success',
+            //   token: 'Bearer ' + token,
+            //   id: user._id,
+            // });
+            return res
+              .cookie('token', token, {
+                path: '*/',
+                httpOnly: true,
+                sameSite: 'none',
+                secure: true,
+                maxAge: 24 * 60 * 60 * 1000,
+              })
+              .status(200)
+              .json({ message: 'Login success!' });
+
+            // .cookie("access_token", token, {
+            //   httpOnly: true,
+            //   secure: process.env.NODE_ENV === "production",
+            // })
+            // .status(200)
+            // .json({ message: "Logged in successfully 😊 👌" });
           }
         );
       } else {
@@ -95,10 +112,24 @@ router.post(
   }
 );
 
-router.get('/:userId', verifyJWT, (req, res) => {
-  User.findOne({ _id: req.params.userId })
+router.get('/', verifyJWT, (req, res) => {
+  User.findOne({ _id: req.user.id })
     .then((user) => res.json(user))
     .catch((err) => res.status(400).send('Error: ' + err));
+});
+
+router.post('/check', async (req, res) => {
+  const emailCheck = await User.findOne({ email: req.body.email });
+  if (emailCheck) return res.json(400);
+  else return res.json(200);
+});
+
+router.get('/logout', verifyJWT, (req, res) => {
+  return res
+    .clearCookie('token')
+    .status(200)
+    .json({ message: 'Logout success' })
+    .end();
 });
 
 module.exports = router;

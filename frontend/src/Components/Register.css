@@ -68,6 +68,7 @@ input:focus {
   border-bottom: 3px solid #dd105e;
   transition: all 0.2s linear;
   transform: scale(1.1);
+  color: white !important;
 }
 
 .message-container {
@@ -151,4 +152,73 @@ hr {
   margin: 20px auto;
   font-size: 50px;
   /* line-height: 150%; */
+}
+
+.msg_container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+.done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.done-svg {
+  width: 120px;
+}
+
+/* AXIOS */
+
+.offscreen {
+  display: none;
+}
+
+.errmsg {
+  /* display: inherit; */
+  display: inline-block;
+  background-color: #fff89a;
+  color: black;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-left: 10px solid #ffb72b;
+  border-radius: 3px;
+}
+
+.hide {
+  display: none;
+}
+
+.valid {
+  color: white;
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #000;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+.show {
+  display: inherit;
+  color: white;
+  font-size: 16px;
+}
+
+.hidden {
+  position: absolute;
+  left: -9999px;
 }

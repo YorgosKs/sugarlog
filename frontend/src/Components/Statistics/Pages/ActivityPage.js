@@ -1,79 +1,62 @@
 import './SugarPage.css';
 import edit_btn from '../../../assets/edit.png';
 import delete_btn from '../../../assets/delete.png';
-import React, { useState } from 'react';
-import NewActivityItem from './Items/NewActivityItem';
+import nodata from '../../../assets/data.png';
+import React, { useState, useEffect } from 'react';
+import ActivityItem from './Items/ActivityItem';
 
+import axios from '../../../axios/axios';
+
+const ACTIVITY_URL = '/activity/';
 const ActivityPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState([]);
 
-  // window.onresize = function (event) {
-  //   console.log('x: ' + window.innerWidth + '      y: ' + window.innerHeight);
-  // };
-  const value = 120;
+  useEffect(() => {
+    handleSubmit();
+  }, []);
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.get(ACTIVITY_URL, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      });
+      console.log(JSON.stringify(response?.data));
+      // const resData = response?.data;
+      setData(response?.data);
+    } catch (err) {}
+  };
+
+  // handleSubmit();
+
   return (
     <div className='page-container'>
       <div className='export-btn'>
         <button>Export to PDF</button>
         <button>Export to CSV</button>
       </div>
-      {/* <div className='title-row hidden'>
-        <input type='checkbox' id='vehicle1' name='vehicle1' value='Bike' />
-        <p>Duration</p>
-        <p>Date</p>
-        <p>Time</p>
-        <p>Type</p>
-        <p>Distance</p>
-        <p>Calories</p>
-        <p>Note</p>
-        <p>Actions</p>
-      </div> */}
       <hr />
       <div className='items-row'>
-        <NewActivityItem />
-        <NewActivityItem />
-        <NewActivityItem />
+        {data.length === 0 ? (
+          <div className='no-data-container'>
+            <img src={nodata} className='data-img' alt='no-data' />
+            <p className='data-p'>Nothing to display</p>
+          </div>
+        ) : (
+          data.map((activity) => (
+            <div className='items-row' key={activity._id}>
+              <ActivityItem
+                date={activity.date}
+                time={activity.time}
+                type={activity.type}
+                distance={activity.distance}
+                calories={activity.calories}
+                notes={activity.note}
+              />
+            </div>
+          ))
+        )}
       </div>
-
-      {/* <div className='title-row' onClick={() => setIsOpen(!isOpen)}>
-        <div className='col-title'>
-          <p>Duration</p>
-          {isOpen && (
-            <div>
-              <p>Date</p>
-              <p>Time</p>
-              <p>Type</p>
-              <p>Distance</p>
-              <p>Calories</p>
-              <p>Note</p>
-            </div>
-          )}
-        </div>
-        <div className='col-data'>
-          <input
-            type='checkbox'
-            id='vehicle1'
-            name='vehicle1'
-            value='Bike'
-            className='hidden'
-          />
-          <p>Duration</p>
-          {isOpen && (
-            <div>
-              <p>Date</p>
-              <p>Time</p>
-              <p>Type</p>
-              <p>Distance</p>
-              <p>Calories</p>
-              <p>Note</p>
-            </div>
-          )}
-          <p>
-            <img src={edit_btn} alt='edit' className='hidden' />
-            <img src={delete_btn} alt='delete' className='hidden' />
-          </p>
-        </div>
-      </div> */}
     </div>
   );
 };

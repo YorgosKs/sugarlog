@@ -5,6 +5,7 @@ import Chart from './Widgets/Chart';
 import PieInRange from './Widgets/PieInRange';
 import PieHourRange from './Widgets/PieHourRange';
 import ServiceButtons from './ServiceButtons';
+import jwt_decode from 'jwt-decode';
 
 const Dashboard = () => {
   const today = new Date();
@@ -19,9 +20,9 @@ const Dashboard = () => {
     msg = 'Good evening!';
   }
 
-  window.onresize = function (event) {
-    console.log('x: ' + window.innerWidth + '      y: ' + window.innerHeight);
-  };
+  // window.onresize = function (event) {
+  //   console.log('x: ' + window.innerWidth + '      y: ' + window.innerHeight);
+  // };
 
   return (
     <div className='dashboard-container'>

@@ -12,10 +12,6 @@ const data = [
   { name: 'Today', average: 130 },
 ];
 
-window.onresize = function (event) {
-  console.log('x: ' + window.innerWidth + '      y: ' + window.innerHeight);
-};
-
 const Chart = () => {
   return (
     <div className='graph'>
