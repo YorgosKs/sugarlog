@@ -2,22 +2,47 @@ import { useState, useEffect } from 'react';
 import nodata from '../../../assets/data.png';
 import axios from '../../../axios/axios';
 import SugarForm from '../../ServicesForm/SugarForm';
-
+import EditSugarForm from '../../EditForms/EditSugarForm';
 import './SugarPage.css';
-import edit_btn from '../../../assets/edit.png';
-import delete_btn from '../../../assets/delete.png';
 import SugarItem from './Items/SugarItem';
 
 const ACTIVITY_URL = '/sugar/';
 const DELETE_URL = '/sugar/delete/';
+const SUGAR_URL = '/sugar/add/';
+const GETEDIT_URL = '/sugar/';
+const UPDATE_URL = '/sugar/update';
 
 const SugarPage = (props) => {
   const [data, setData] = useState([]);
+  const [editData, setEditData] = useState([]);
+
   const [date1, setDate] = useState();
+  const [key, setKey] = useState('');
 
   useEffect(() => {
     handleSubmit();
   }, []);
+
+  const handleNewSugar = async (enteredSugarData) => {
+    const sugarData = {
+      ...enteredSugarData,
+    };
+    try {
+      const response = await axios.post(SUGAR_URL, JSON.stringify(sugarData), {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      });
+      console.log(response?.data);
+      if (response?.data === 400) {
+        console.log('err');
+      }
+    } catch (err) {
+      if (!err) {
+        console.log('no response');
+      } else console.log(err);
+    }
+    handleSubmit();
+  };
 
   const handleSubmit = async () => {
     try {
@@ -25,14 +50,13 @@ const SugarPage = (props) => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      // console.log(JSON.stringify(response?.data));
       setData(response?.data);
-      const date = new Date(response?.data.date);
-      setDate(date);
+      // const date = new Date(response?.data.date);
+      // setDate(date);
     } catch (err) {}
   };
 
-  const keyEdit = (key) => {
+  const keyDelete = (key) => {
     handleDelete(key);
   };
 
@@ -47,9 +71,53 @@ const SugarPage = (props) => {
     } catch (err) {
       console.log(err);
     }
-
     handleSubmit();
   };
+
+  const keyEdit = (key) => {
+    getEdit(key);
+    setKey(key);
+  };
+
+  const getEdit = async (key) => {
+    try {
+      const response = await axios.get(GETEDIT_URL + key, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      });
+      console.log(response?.data);
+      setEditData(response?.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleEditSugar = async (data) => {
+    const sugarData = {
+      ...data,
+    };
+    try {
+      const response = await axios.post(
+        UPDATE_URL + key,
+        JSON.stringify(sugarData),
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        }
+      );
+      setKey('');
+      console.log(response);
+      if (response?.data === 400) {
+        console.log('err');
+      }
+    } catch (err) {
+      if (!err) {
+        console.log('no response');
+      } else console.log(err);
+    }
+    handleSubmit();
+  };
+
   return (
     <div className='page-container'>
       <div className='export-btn'>
@@ -58,8 +126,9 @@ const SugarPage = (props) => {
       </div>
       <hr />
       <div className='items-row'>
-        <SugarForm />
-
+        <EditSugarForm editData={editData} getData={handleEditSugar} />
+        {/* <SugarForm onAddSugar={handleNewSugar} /> */}
+        {/* onEditSugar={handleEditSugar} */}
         <div className='title-row hide'>
           <p>Level</p>
           <p>Date</p>
@@ -85,8 +154,10 @@ const SugarPage = (props) => {
               period={sugar.period}
               activity={sugar.activity}
               medication={sugar.medication}
-              mes={sugar._id}
-              handle={keyEdit}
+              note={sugar.note}
+              sugarId={sugar._id}
+              handleDel={keyDelete}
+              handleEd={keyEdit}
             />
           ))
         )}

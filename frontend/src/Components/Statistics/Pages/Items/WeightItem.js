@@ -9,7 +9,7 @@ const WeightItem = (props) => {
   // if (heightRef.current) console.log(heightRef.current.scrollHeight);
   return (
     <div className='item-container' onClick={() => setIsOpen(!isOpen)}>
-      <div className='item-header' key={props.key}>
+      <div className='item-header'>
         <p>60 mins</p>
         <p>11 Mar</p>
       </div>

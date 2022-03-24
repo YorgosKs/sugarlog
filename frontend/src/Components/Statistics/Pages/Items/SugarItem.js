@@ -23,28 +23,16 @@ const WeightItem = (props) => {
   });
   const year = date.getFullYear();
 
-  const handleEdit = (key) => {
+  const handleDelete = (key) => {
     console.log('edit');
-    props.handle(key);
+    props.handleDel(key);
   };
 
-  const handleDelete = async (key) => {
-    console.log('key ' + key);
-    try {
-      const response = await axios.delete('/sugar/delete/' + key, {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      });
-      console.log(response?.data);
-      console.log(id);
-    } catch (err) {
-      console.log(err);
-    }
+  const handleEdit = (key) => {
+    console.log(key);
+    props.handleEd(key);
   };
 
-  // const handleDelete = () => {
-  //   console.log('del');
-  // };
   return (
     <div className='item-wrapper'>
       <div className='desktop-row hide-desk'>
@@ -56,20 +44,19 @@ const WeightItem = (props) => {
           <p>{props.activity}</p>
           <p>{props.medication}</p>
           <p>{props.note}</p>
-
+          {/* <input type={'text'} value={props.note} onChange={handleEdit} /> */}
           <p className='actions'>
             <img
               src={edit_btn}
               alt='edit'
-              onClick={() => handleEdit(props.mes)}
+              onClick={() => handleEdit(props.sugarId)}
             />
             <img
               src={delete_btn}
               alt='delete'
-              // onClick={handleDelete(props._id)}
+              onClick={() => handleDelete(props.sugarId)}
             />
           </p>
-          {/* <p className='actions'></p> */}
         </div>
       </div>
 

@@ -1,37 +1,59 @@
-import './SugarForm.css';
+import '../ServicesForm/SugarForm.css';
 // import arrow from '../../assets/arrow.png';
 import { useState } from 'react';
 import axios from '../../axios/axios';
 
-const SugarForm = (props) => {
+const EditSugarForm = (props) => {
+  //   const data = props.editData;
+
   const [level, setLevel] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
+  const [date, setDate] = useState();
+  const [time, setTime] = useState();
   const [period, setPeriod] = useState('');
   const [activity, setActivtiy] = useState('');
   const [medication, setMedication] = useState('');
   const [note, setNote] = useState('');
+  const [datae, setData] = useState('');
+
+  //   const [sugarEdit, setSugarEdit] = useState({
+  //     level: props.editData.level,
+  //     date: '',
+  //     time: '',
+  //     period: '',
+  //     activity: '',
+  //     medication: '',
+  //     note: '',
+  //   });
+
+  //   addValues();
+
+  //   const handleChangeEdit = ({ target }) => {
+  //     // setSugarEdit(...props.editData);
+  //     const { name, value } = target;
+  //     setSugarEdit({ ...props.editData, [name]: value });
+  //     console.log(sugarEdit);
+  //   };
 
   const handleData = (e) => {
-    // e.preventDefault();
-    // const sugarData = {
-    //   level: level,
-    //   date: date,
-    //   time: time,
-    //   period: period,
-    //   activity: activity,
-    //   medication: medication,
-    //   note: note,
-    // };
-    // console.log(sugarData);
-    // props.onAddSugar(sugarData);
-    // setLevel('');
-    // setDate('');
-    // setTime('');
-    // setPeriod('');
-    // setActivtiy('');
-    // setMedication('');
-    // setNote('');
+    e.preventDefault();
+    const sugarData = {
+      level: level,
+      //   date: date,
+      time: time,
+      //   period: period,
+      //   activity: activity,
+      //   medication: medication,
+      //   note: note,
+    };
+    console.log(sugarData);
+    props.getData(sugarData);
+    setLevel('');
+    setDate('');
+    setTime('');
+    setPeriod('');
+    setActivtiy('');
+    setMedication('');
+    setNote('');
   };
 
   return (
@@ -45,8 +67,8 @@ const SugarForm = (props) => {
           <input
             type='text'
             placeholder='Sugar'
-            onChange={(e) => setLevel(e.target.value)}
             value={level}
+            onChange={(e) => setLevel(e.target.value)}
           />
           <label>mg/dL</label>
         </div>
@@ -54,24 +76,25 @@ const SugarForm = (props) => {
           <label>Date</label>
           <input
             type='Date'
-            onChange={(e) => setDate(e.target.value)}
             value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
         </div>
         <div className='form-input'>
           <label>Time</label>
           <input
             type='Time'
-            onChange={(e) => setTime(e.target.value)}
             value={time}
+            onChange={(e) => setTime(e.target.value)}
           />
         </div>
-        <div className='form-input'>
+        {/* <div className='form-input'>
           <label>Period</label>
           <input
             type='text'
             onChange={(e) => setPeriod(e.target.value)}
-            value={period}
+            // value={props.editData.period || ''}
+            value={sugarEdit.period}
           />
         </div>
         <div className='form-input'>
@@ -79,7 +102,8 @@ const SugarForm = (props) => {
           <input
             type='text'
             onChange={(e) => setActivtiy(e.target.value)}
-            value={activity}
+            // value={props.editData.activity || ''}
+            value={sugarEdit.activity}
           />
         </div>
         <div className='form-input'>
@@ -87,7 +111,8 @@ const SugarForm = (props) => {
           <input
             type='text'
             onChange={(e) => setMedication(e.target.value)}
-            value={medication}
+            // value={props.editData.medication || ''}
+            value={sugarEdit.medication}
           />
         </div>
         <div className='form-input'>
@@ -95,11 +120,12 @@ const SugarForm = (props) => {
           <input
             type='text'
             onChange={(e) => setNote(e.target.value)}
-            value={note}
+            // value={props.editData.note || ''}
+            value={sugarEdit.note}
           />
-        </div>
+        </div> */}
         <button className='button' type='submit'>
-          Add
+          Update
         </button>
       </form>
       <div></div>
@@ -107,4 +133,4 @@ const SugarForm = (props) => {
   );
 };
 
-export default SugarForm;
+export default EditSugarForm;

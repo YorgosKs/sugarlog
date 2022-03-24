@@ -31,6 +31,12 @@ router.get('/', verifyJWT, async (req, res) => {
     .catch((err) => res.status(400).send(err));
 });
 
+router.get('/:id', verifyJWT, async (req, res) => {
+  Sugar.findById(req.params.id)
+    .then((sugar) => res.json(sugar))
+    .catch((err) => res.status(400).send(err));
+});
+
 router.post('/update/:id', verifyJWT, async (req, res) => {
   Sugar.findById(req.params.id).then((sugar) => {
     (sugar.level = req.body.level),

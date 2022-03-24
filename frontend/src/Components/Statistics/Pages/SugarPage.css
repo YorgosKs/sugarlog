@@ -76,12 +76,13 @@ hr {
   height: 50px;
   background-color: #eeeeee;
   margin: 0 auto;
-  border-bottom: 2px solid gray;
-  border-radius: 5px 5px 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  /* border-radius: 5px 5px 0 0; */
 }
 
 .title-row p {
   font-size: 16px;
+  font-weight: 500;
   color: rgba(0, 0, 0, 0.7);
   width: 100%;
   margin: 0 20px;
