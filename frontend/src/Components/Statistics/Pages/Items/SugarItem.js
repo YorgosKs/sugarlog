@@ -49,6 +49,7 @@ const WeightItem = (props) => {
             <img
               src={edit_btn}
               alt='edit'
+              // onClick={() => handleEdit(props.sugarId)}
               onClick={() => handleEdit(props.sugarId)}
             />
             <img

@@ -150,7 +150,7 @@ const SugarPage = (props) => {
       </div>
       <hr />
       <div className='items-row'>
-        <EditSugarForm editData={editData} getData={handleEditSugar} />
+        <EditSugarForm editData={sugarData} getData={handleEditSugar} />
         <SugarForm onAddSugar={handleNewSugar} />
         {/* onEditSugar={handleEditSugar} */}
         <div className='title-row hide'>
@@ -171,7 +171,7 @@ const SugarPage = (props) => {
         ) : (
           sugarData.map((sugar) => (
             <SugarItem
-              key={sugar._id}
+              key={sugar.id}
               level={sugar.level}
               date={sugar.date}
               time={sugar.time}
@@ -179,7 +179,7 @@ const SugarPage = (props) => {
               activity={sugar.activity}
               medication={sugar.medication}
               note={sugar.note}
-              sugarId={sugar._id}
+              sugarId={sugar.id}
               handleDel={keyDelete}
               handleEd={keyEdit}
             />
