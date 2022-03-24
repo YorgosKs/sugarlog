@@ -38,12 +38,12 @@ const EditSugarForm = (props) => {
     e.preventDefault();
     const sugarData = {
       level: level,
-      //   date: date,
+      date: date,
       time: time,
-      //   period: period,
-      //   activity: activity,
-      //   medication: medication,
-      //   note: note,
+      period: period,
+      activity: activity,
+      medication: medication,
+      note: note,
     };
     console.log(sugarData);
     props.getData(sugarData);
@@ -88,13 +88,13 @@ const EditSugarForm = (props) => {
             onChange={(e) => setTime(e.target.value)}
           />
         </div>
-        {/* <div className='form-input'>
+        <div className='form-input'>
           <label>Period</label>
           <input
             type='text'
             onChange={(e) => setPeriod(e.target.value)}
             // value={props.editData.period || ''}
-            value={sugarEdit.period}
+            value={period}
           />
         </div>
         <div className='form-input'>
@@ -103,7 +103,7 @@ const EditSugarForm = (props) => {
             type='text'
             onChange={(e) => setActivtiy(e.target.value)}
             // value={props.editData.activity || ''}
-            value={sugarEdit.activity}
+            value={activity}
           />
         </div>
         <div className='form-input'>
@@ -112,7 +112,7 @@ const EditSugarForm = (props) => {
             type='text'
             onChange={(e) => setMedication(e.target.value)}
             // value={props.editData.medication || ''}
-            value={sugarEdit.medication}
+            value={medication}
           />
         </div>
         <div className='form-input'>
@@ -121,9 +121,9 @@ const EditSugarForm = (props) => {
             type='text'
             onChange={(e) => setNote(e.target.value)}
             // value={props.editData.note || ''}
-            value={sugarEdit.note}
+            value={note}
           />
-        </div> */}
+        </div>
         <button className='button' type='submit'>
           Update
         </button>

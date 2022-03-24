@@ -13,25 +13,25 @@ const SugarForm = (props) => {
   const [note, setNote] = useState('');
 
   const handleData = (e) => {
-    // e.preventDefault();
-    // const sugarData = {
-    //   level: level,
-    //   date: date,
-    //   time: time,
-    //   period: period,
-    //   activity: activity,
-    //   medication: medication,
-    //   note: note,
-    // };
-    // console.log(sugarData);
-    // props.onAddSugar(sugarData);
-    // setLevel('');
-    // setDate('');
-    // setTime('');
-    // setPeriod('');
-    // setActivtiy('');
-    // setMedication('');
-    // setNote('');
+    e.preventDefault();
+    const sugarData = {
+      level: level,
+      date: date,
+      time: time,
+      period: period,
+      activity: activity,
+      medication: medication,
+      note: note,
+    };
+    console.log(sugarData);
+    props.onAddSugar(sugarData);
+    setLevel('');
+    setDate('');
+    setTime('');
+    setPeriod('');
+    setActivtiy('');
+    setMedication('');
+    setNote('');
   };
 
   return (

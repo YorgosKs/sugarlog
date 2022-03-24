@@ -17,7 +17,30 @@ const SugarPage = (props) => {
   const [editData, setEditData] = useState([]);
 
   const [date1, setDate] = useState();
-  const [key, setKey] = useState('');
+  const [keyId, setKeyId] = useState('');
+
+  const sugarData = [
+    {
+      id: 1,
+      level: '200',
+      date: '2022-03-24T00:00:00.000Z',
+      time: '03:40',
+      period: 'test',
+      activity: 'test',
+      medication: 'test',
+      note: 'test',
+    },
+    {
+      id: 2,
+      level: '200',
+      date: '2022-03-24T00:00:00.000Z',
+      time: '03:40',
+      period: 'test',
+      activity: 'test',
+      medication: 'test',
+      note: 'test',
+    },
+  ];
 
   useEffect(() => {
     handleSubmit();
@@ -76,7 +99,7 @@ const SugarPage = (props) => {
 
   const keyEdit = (key) => {
     getEdit(key);
-    setKey(key);
+    setKeyId(key);
   };
 
   const getEdit = async (key) => {
@@ -98,14 +121,15 @@ const SugarPage = (props) => {
     };
     try {
       const response = await axios.post(
-        UPDATE_URL + key,
+        UPDATE_URL + keyId,
         JSON.stringify(sugarData),
         {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
       );
-      setKey('');
+      console.log(keyId);
+      setKeyId('');
       console.log(response);
       if (response?.data === 400) {
         console.log('err');
@@ -127,7 +151,7 @@ const SugarPage = (props) => {
       <hr />
       <div className='items-row'>
         <EditSugarForm editData={editData} getData={handleEditSugar} />
-        {/* <SugarForm onAddSugar={handleNewSugar} /> */}
+        <SugarForm onAddSugar={handleNewSugar} />
         {/* onEditSugar={handleEditSugar} */}
         <div className='title-row hide'>
           <p>Level</p>
@@ -145,7 +169,7 @@ const SugarPage = (props) => {
             <p className='data-p'>Nothing to display</p>
           </div>
         ) : (
-          data.map((sugar) => (
+          sugarData.map((sugar) => (
             <SugarItem
               key={sugar._id}
               level={sugar.level}
