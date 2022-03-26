@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const sugarSchema = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    // ref: 'User',
     required: true,
   },
   level: {
@@ -18,20 +18,19 @@ const sugarSchema = new Schema({
   },
   time: {
     type: String,
-    // default: Date.now(),
-    required: true,
+    required: false,
   },
-  period: {
-    type: String,
-    required: true,
-  },
+  // period: {
+  //   type: String,
+  //   required: true,
+  // },
   activity: {
     type: String,
-    required: true,
+    required: false,
   },
   medication: {
     type: String,
-    required: true,
+    required: false,
   },
   note: {
     type: String,

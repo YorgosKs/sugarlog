@@ -1,20 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import edit_btn from '../../../../assets/edit.png';
 import delete_btn from '../../../../assets/delete.png';
+import EditSugarForm from '../../../EditForms/EditSugarForm';
+
 import './NewItem.css';
-import axios from '../../../../axios/axios';
 
-const WeightItem = (props) => {
+const SugarItem = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [id, setId] = useState('');
-
-  const DELETE_URL = '/sugar/delete/';
-
+  const [open, setOpen] = useState(false);
   const heightRef = useRef();
-  // if (heightRef.current) console.log(heightRef.current.scrollHeight);
 
   const date = new Date(props.date);
-
   const month = date.toLocaleString('en-us', { month: 'long' });
   const day = date.toLocaleString('en-us', { day: '2-digit' });
   const time = date.toLocaleTimeString([], {
@@ -31,25 +27,49 @@ const WeightItem = (props) => {
   const handleEdit = (key) => {
     console.log(key);
     props.handleEd(key);
+    setOpen(true);
+  };
+
+  const openDrop = () => {
+    setIsOpen(true);
+    setOpen(false);
+  };
+
+  const openDrop1 = () => {
+    setIsOpen(true);
+    setOpen(true);
+  };
+
+  const handleEditSugar = (data) => {
+    const dataSugar = { ...data };
+    props.getData(dataSugar);
   };
 
   return (
     <div className='item-wrapper'>
+      <div
+        className='modal'
+        style={open ? { opacity: 1, left: '50%', top: '50%' } : { opacity: 0 }}
+      >
+        <EditSugarForm
+          editData={props.editData}
+          setModal={openDrop}
+          setModal1={openDrop1}
+          getData={handleEditSugar}
+        />
+      </div>
       <div className='desktop-row hide-desk'>
         <div className='data-row'>
           <p>{props.level}</p>
           <p>{day + ' ' + month}</p>
           <p>{props.time}</p>
-          <p>{props.period}</p>
           <p>{props.activity}</p>
           <p>{props.medication}</p>
           <p>{props.note}</p>
-          {/* <input type={'text'} value={props.note} onChange={handleEdit} /> */}
           <p className='actions'>
             <img
               src={edit_btn}
               alt='edit'
-              // onClick={() => handleEdit(props.sugarId)}
               onClick={() => handleEdit(props.sugarId)}
             />
             <img
@@ -66,10 +86,11 @@ const WeightItem = (props) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className='item-header'>
-          <p>60 mins</p>
+          <p>{props.level} mg/dL</p>
           <div>
-            <p>{day}</p>
-            <p>{month}</p>
+            <p>
+              {day} {month}
+            </p>
           </div>
         </div>
 
@@ -82,15 +103,55 @@ const WeightItem = (props) => {
               : { height: '0px' }
           }
         >
-          <p>{props.level}</p>
-          <p>{time}</p>
-          <p>{props.period}</p>
-          <p>{props.activity}</p>
-          <p>{props.notes}</p>
+          <p>
+            <span className='span'>Time : </span>
+            {time}
+          </p>
+          <p>
+            <span className='span'>Medication : </span>
+            {props.medication}
+          </p>
+          <p>
+            <span className='span'>Activity : </span>
+            {props.activity}
+          </p>
+          <p>
+            <span className='span'>Notes : </span>
+            {props.note}
+          </p>
+          <div className='btn-group1'>
+            <button
+              className='dropdown-btn'
+              style={{
+                backgroundImage: 'url(' + edit_btn + ')',
+                backgroundPosition: 'left',
+                backgroundPositionX: 10,
+                backgroundSize: '20px',
+                backgroundRepeat: 'no-repeat',
+              }}
+              onClick={() => handleEdit(props.sugarId)}
+            >
+              Edit
+            </button>
+            <button
+              className='dropdown-btn'
+              style={{
+                backgroundImage: 'url(' + delete_btn + ')',
+                backgroundPosition: 'left',
+                backgroundPositionX: 10,
+                backgroundSize: '20px',
+                backgroundRepeat: 'no-repeat',
+                width: '95px',
+              }}
+              onClick={() => handleDelete(props.sugarId)}
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default WeightItem;
+export default SugarItem;

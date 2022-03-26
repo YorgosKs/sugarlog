@@ -3,9 +3,9 @@ const Activity = require('../models/activity.model');
 
 const verifyJWT = require('../middleware/auth');
 
-router.post('/add/:userid', verifyJWT, async (req, res) => {
+router.post('/add/', verifyJWT, async (req, res) => {
   const activity = new Activity({
-    user: req.params.userid,
+    user: req.user.id,
     date: req.body.date,
     type: req.body.type,
     distance: req.body.distance,
@@ -27,6 +27,12 @@ router.get('/', verifyJWT, async (req, res) => {
     .catch((err) => res.status(400).send('Error: ' + err));
 });
 
+router.get('/:id', verifyJWT, async (req, res) => {
+  Activity.findById(req.params.id)
+    .then((sugar) => res.json(sugar))
+    .catch((err) => res.status(400).send(err));
+});
+
 router.post('/update/:id', verifyJWT, async (req, res) => {
   Activity.findById(req.params.id).then((activity) => {
     (activity.date = req.body.date),
@@ -41,7 +47,7 @@ router.post('/update/:id', verifyJWT, async (req, res) => {
   });
 });
 
-router.delete('/:id', verifyJWT, async (req, res) => {
+router.delete('/delete/:id', verifyJWT, async (req, res) => {
   Activity.findByIdAndDelete(req.params.id)
     .then(() => res.json('Entry deleted.'))
     .catch((err) => res.status(400).json('Error: ' + err));

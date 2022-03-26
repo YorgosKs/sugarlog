@@ -13,9 +13,8 @@ const insulinSchema = new Schema({
     default: Date.now(),
   },
   time: {
-    type: Date,
-    required: true,
-    default: Date.now(),
+    type: String,
+    required: false,
   },
   units: {
     type: String,
@@ -23,7 +22,7 @@ const insulinSchema = new Schema({
   },
   type: {
     type: String,
-    required: true,
+    required: false,
   },
   note: {
     type: String,

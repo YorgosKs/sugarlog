@@ -12,22 +12,17 @@ const activitySchema = new Schema({
     required: true,
     default: Date.now(),
   },
-  time: {
-    type: Date,
-    required: true,
-    default: Date.now(),
-  },
   type: {
     type: String,
     required: true,
   },
   distance: {
     type: String,
-    required: true,
+    required: false,
   },
   calories: {
     type: String,
-    required: true,
+    required: false,
   },
   note: {
     type: String,

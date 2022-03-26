@@ -6,6 +6,7 @@ import PieInRange from './Widgets/PieInRange';
 import PieHourRange from './Widgets/PieHourRange';
 import ServiceButtons from './ServiceButtons';
 import jwt_decode from 'jwt-decode';
+import SugarForm from '../ServicesForm/SugarForm';
 
 const Dashboard = () => {
   const today = new Date();

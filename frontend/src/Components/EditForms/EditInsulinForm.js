@@ -4,22 +4,21 @@ import './EditForm.css';
 const NUM_REGEX = /^[0-9]*$/;
 const DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
-const EditSugarForm = (props) => {
-  const [level, setLevel] = useState();
+const EditInsulinForm = (props) => {
+  const [units, setUnits] = useState();
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
-  const [activity, setActivtiy] = useState('');
-  const [medication, setMedication] = useState('');
+  const [type, setType] = useState('');
   const [note, setNote] = useState('');
 
   const errRef = useRef();
-  const [levelMsg, setLevelMsg] = useState('');
+  const [unitsMsg, setUnitsMsg] = useState('');
   const [dateMsg, setDateMsg] = useState('');
   const [timeMsg, setTimeMsg] = useState('');
 
   useEffect(() => {
-    setLevel(props.editData.level);
-  }, [props.editData.level]);
+    setUnits(props.editData.units);
+  }, [props.editData.units]);
 
   useEffect(() => {
     setDate(props.editData.date);
@@ -30,12 +29,8 @@ const EditSugarForm = (props) => {
   }, [props.editData.time]);
 
   useEffect(() => {
-    setActivtiy(props.editData.activity);
-  }, [props.editData.activity]);
-
-  useEffect(() => {
-    setMedication(props.editData.medication);
-  }, [props.editData.medication]);
+    setType(props.editData.type);
+  }, [props.editData.type]);
 
   useEffect(() => {
     setNote(props.editData.note);
@@ -43,9 +38,9 @@ const EditSugarForm = (props) => {
 
   const handleData = (e) => {
     e.preventDefault();
-    const levelCheck = NUM_REGEX.test(level);
-    if (!levelCheck) {
-      setLevelMsg('Sugar level should be a valid number.');
+    const unitsCheck = NUM_REGEX.test(units);
+    if (!unitsCheck) {
+      setUnitsMsg('Sugar level should be a valid number.');
       return;
     }
     const dateCheck = DATE_REGEX.test(date);
@@ -59,25 +54,23 @@ const EditSugarForm = (props) => {
       return;
     }
 
-    const sugarData = {
-      level: level.trim(),
+    const insulinData = {
+      units: units.trim(),
       date: date,
       time: time,
-      activity: activity.trim(),
-      medication: medication.trim(),
+      type: type.trim(),
       note: note.trim(),
     };
-    console.log(sugarData);
-    props.getData(sugarData);
+    console.log(insulinData);
+    props.getData(insulinData);
     props.setModal();
 
-    setLevel('');
+    setUnits('');
     setDate('');
     setTime('');
-    setActivtiy('');
-    setMedication('');
+    setType('');
     setNote('');
-    setLevelMsg('');
+    setUnitsMsg('');
     setDateMsg('');
     setTimeMsg('');
   };
@@ -92,20 +85,19 @@ const EditSugarForm = (props) => {
         <div className='main-value'>
           <input
             type='number'
-            // pattern='[0-9]+'
-            placeholder='Sugar'
-            onChange={(e) => setLevel(e.target.value)}
-            value={level || ''}
+            placeholder='Units'
+            onChange={(e) => setUnits(e.target.value)}
+            value={units || ''}
             required
           />
-          <label>mg/dL</label>
+          <label></label>
         </div>
         <p
           ref={errRef}
           id='emailcheckmsg'
-          className={levelMsg ? 'errmsg' : 'offscreen'}
+          className={unitsMsg ? 'errmsg' : 'offscreen'}
         >
-          {levelMsg}
+          {unitsMsg}
         </p>
         <div className='form-input'>
           <label>Date</label>
@@ -129,7 +121,6 @@ const EditSugarForm = (props) => {
             type='Time'
             value={time || ''}
             onChange={(e) => setTime(e.target.value)}
-            // required
           />
         </div>
         <p
@@ -140,19 +131,11 @@ const EditSugarForm = (props) => {
           {timeMsg}
         </p>
         <div className='form-input'>
-          <label>Activity</label>
+          <label>Type</label>
           <input
             type='text'
-            onChange={(e) => setActivtiy(e.target.value)}
-            value={activity || ''}
-          />
-        </div>
-        <div className='form-input'>
-          <label>Medication</label>
-          <input
-            type='text'
-            onChange={(e) => setMedication(e.target.value)}
-            value={medication || ''}
+            onChange={(e) => setType(e.target.value)}
+            value={type || ''}
           />
         </div>
         <div className='form-input'>
@@ -177,4 +160,4 @@ const EditSugarForm = (props) => {
   );
 };
 
-export default EditSugarForm;
+export default EditInsulinForm;

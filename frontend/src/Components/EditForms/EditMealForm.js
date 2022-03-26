@@ -4,22 +4,25 @@ import './EditForm.css';
 const NUM_REGEX = /^[0-9]*$/;
 const DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
-const EditSugarForm = (props) => {
-  const [level, setLevel] = useState();
+const EditMealForm = (props) => {
+  const [carbs, setCarbs] = useState();
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
-  const [activity, setActivtiy] = useState('');
-  const [medication, setMedication] = useState('');
+  const [protein, setProtein] = useState('');
+  const [fats, setFats] = useState('');
   const [note, setNote] = useState('');
 
   const errRef = useRef();
-  const [levelMsg, setLevelMsg] = useState('');
+  const [carbsMsg, setCarbsMsg] = useState('');
+  const [proteinMsg, setProteinMsg] = useState('');
+  const [fatsMsg, setFatsMsg] = useState('');
+
   const [dateMsg, setDateMsg] = useState('');
   const [timeMsg, setTimeMsg] = useState('');
 
   useEffect(() => {
-    setLevel(props.editData.level);
-  }, [props.editData.level]);
+    setCarbs(props.editData.carbs);
+  }, [props.editData.carbs]);
 
   useEffect(() => {
     setDate(props.editData.date);
@@ -30,12 +33,12 @@ const EditSugarForm = (props) => {
   }, [props.editData.time]);
 
   useEffect(() => {
-    setActivtiy(props.editData.activity);
-  }, [props.editData.activity]);
+    setProtein(props.editData.protein);
+  }, [props.editData.protein]);
 
   useEffect(() => {
-    setMedication(props.editData.medication);
-  }, [props.editData.medication]);
+    setFats(props.editData.fats);
+  }, [props.editData.fats]);
 
   useEffect(() => {
     setNote(props.editData.note);
@@ -43,9 +46,20 @@ const EditSugarForm = (props) => {
 
   const handleData = (e) => {
     e.preventDefault();
-    const levelCheck = NUM_REGEX.test(level);
-    if (!levelCheck) {
-      setLevelMsg('Sugar level should be a valid number.');
+    const carbsCheck = NUM_REGEX.test(carbs);
+    if (!carbsCheck) {
+      setCarbsMsg('Carbs should be a valid number.');
+      return;
+    }
+
+    const proteinCheck = NUM_REGEX.test(protein);
+    if (!proteinCheck) {
+      setProteinMsg('Protein should be a valid number.');
+      return;
+    }
+    const fatsCheck = NUM_REGEX.test(fats);
+    if (!fatsCheck) {
+      setFatsMsg('Fats should be a valid number.');
       return;
     }
     const dateCheck = DATE_REGEX.test(date);
@@ -59,25 +73,27 @@ const EditSugarForm = (props) => {
       return;
     }
 
-    const sugarData = {
-      level: level.trim(),
+    const mealData = {
+      carbs: carbs.trim(),
       date: date,
       time: time,
-      activity: activity.trim(),
-      medication: medication.trim(),
+      protein: protein.trim(),
+      fats: fats.trim(),
       note: note.trim(),
     };
-    console.log(sugarData);
-    props.getData(sugarData);
+    console.log(mealData);
+    props.getData(mealData);
     props.setModal();
 
-    setLevel('');
+    setCarbs('');
     setDate('');
     setTime('');
-    setActivtiy('');
-    setMedication('');
+    setProtein('');
+    setFats('');
     setNote('');
-    setLevelMsg('');
+    setFatsMsg('');
+    setProteinMsg('');
+    setFatsMsg('');
     setDateMsg('');
     setTimeMsg('');
   };
@@ -93,19 +109,19 @@ const EditSugarForm = (props) => {
           <input
             type='number'
             // pattern='[0-9]+'
-            placeholder='Sugar'
-            onChange={(e) => setLevel(e.target.value)}
-            value={level || ''}
+            placeholder='Carbs'
+            onChange={(e) => setCarbs(e.target.value)}
+            value={carbs || ''}
             required
           />
-          <label>mg/dL</label>
+          <label>g</label>
         </div>
         <p
           ref={errRef}
           id='emailcheckmsg'
-          className={levelMsg ? 'errmsg' : 'offscreen'}
+          className={carbsMsg ? 'errmsg' : 'offscreen'}
         >
-          {levelMsg}
+          {carbsMsg}
         </p>
         <div className='form-input'>
           <label>Date</label>
@@ -140,21 +156,35 @@ const EditSugarForm = (props) => {
           {timeMsg}
         </p>
         <div className='form-input'>
-          <label>Activity</label>
+          <label>Protein</label>
           <input
-            type='text'
-            onChange={(e) => setActivtiy(e.target.value)}
-            value={activity || ''}
+            type='number'
+            onChange={(e) => setProtein(e.target.value)}
+            value={protein || ''}
           />
         </div>
+        <p
+          ref={errRef}
+          id='emailcheckmsg'
+          className={proteinMsg ? 'errmsg' : 'offscreen'}
+        >
+          {proteinMsg}
+        </p>
         <div className='form-input'>
-          <label>Medication</label>
+          <label>Fats</label>
           <input
-            type='text'
-            onChange={(e) => setMedication(e.target.value)}
-            value={medication || ''}
+            type='number'
+            onChange={(e) => setFats(e.target.value)}
+            value={fats || ''}
           />
         </div>
+        <p
+          ref={errRef}
+          id='emailcheckmsg'
+          className={fatsMsg ? 'errmsg' : 'offscreen'}
+        >
+          {fatsMsg}
+        </p>
         <div className='form-input'>
           <label>Notes</label>
           <input
@@ -177,4 +207,4 @@ const EditSugarForm = (props) => {
   );
 };
 
-export default EditSugarForm;
+export default EditMealForm;

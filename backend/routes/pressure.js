@@ -3,9 +3,9 @@ const Pressure = require('../models/pressure.model');
 
 const verifyJWT = require('../middleware/auth');
 
-router.post('/add/:userid', verifyJWT, async (req, res) => {
+router.post('/add/', verifyJWT, async (req, res) => {
   const pressure = new Pressure({
-    user: req.params.userid,
+    user: req.user.id,
     date: req.body.date,
     systolic: req.body.systolic,
     diastolic: req.body.diastolic,
@@ -27,6 +27,12 @@ router.get('/', verifyJWT, async (req, res) => {
     .catch((err) => res.status(400).send('Error: ' + err));
 });
 
+router.get('/:id', verifyJWT, async (req, res) => {
+  Pressure.findById(req.params.id)
+    .then((sugar) => res.json(sugar))
+    .catch((err) => res.status(400).send(err));
+});
+
 router.post('/update/:id', verifyJWT, async (req, res) => {
   Pressure.findById(req.params.id).then((pressure) => {
     (pressure.date = req.body.date),
@@ -41,7 +47,7 @@ router.post('/update/:id', verifyJWT, async (req, res) => {
   });
 });
 
-router.delete('/:id', verifyJWT, async (req, res) => {
+router.delete('/delete/:id', verifyJWT, async (req, res) => {
   Pressure.findByIdAndDelete(req.params.id)
     .then(() => res.json('Entry deleted.'))
     .catch((err) => res.status(400).json('Error: ' + err));

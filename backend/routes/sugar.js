@@ -10,7 +10,7 @@ router.post('/add/', verifyJWT, async (req, res) => {
     level: req.body.level,
     date: req.body.date,
     time: req.body.time,
-    period: req.body.period,
+    // period: req.body.period,
     activity: req.body.activity,
     medication: req.body.medication,
     note: req.body.note,
@@ -42,14 +42,14 @@ router.post('/update/:id', verifyJWT, async (req, res) => {
     (sugar.level = req.body.level),
       (sugar.date = req.body.date),
       (sugar.time = req.body.time),
-      (sugar.period = req.body.period),
+      // (sugar.period = req.body.period),
       (sugar.activity = req.body.activity),
       (sugar.medication = req.body.medication),
       (sugar.note = req.body.note),
       sugar
         .save()
         .then(() => res.json('Sugar level updated!'))
-        .catch((err) => res.status(400).json('Error: ' + err));
+        .catch((err) => console.log(err));
   });
 });
 

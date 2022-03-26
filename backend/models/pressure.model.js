@@ -13,17 +13,16 @@ const pressureSchema = new Schema({
     default: Date.now(),
   },
   time: {
-    type: Date,
-    required: true,
-    default: Date.now(),
+    type: String,
+    required: false,
   },
   systolic: {
     type: String,
-    required: true,
+    required: false,
   },
   diastolic: {
     type: String,
-    required: true,
+    required: false,
   },
   pulse: {
     type: String,

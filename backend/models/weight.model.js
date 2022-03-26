@@ -13,9 +13,8 @@ const weightSchema = new Schema({
     default: Date.now(),
   },
   time: {
-    type: Date,
-    required: true,
-    default: Date.now(),
+    type: String,
+    required: false,
   },
   weightNum: {
     type: String,

@@ -1,82 +1,59 @@
 import { useState, useEffect } from 'react';
 import nodata from '../../../assets/data.png';
 import axios from '../../../axios/axios';
-import SugarForm from '../../ServicesForm/SugarForm';
-import EditSugarForm from '../../EditForms/EditSugarForm';
 import './SugarPage.css';
 import SugarItem from './Items/SugarItem';
 
-const ACTIVITY_URL = '/sugar/';
+const GETSUGAR_URL = '/sugar/';
 const DELETE_URL = '/sugar/delete/';
 const SUGAR_URL = '/sugar/add/';
 const GETEDIT_URL = '/sugar/';
-const UPDATE_URL = '/sugar/update';
+const UPDATE_URL = '/sugar/update/';
 
 const SugarPage = (props) => {
   const [data, setData] = useState([]);
   const [editData, setEditData] = useState([]);
-
-  const [date1, setDate] = useState();
   const [keyId, setKeyId] = useState('');
-
-  const sugarData = [
-    {
-      id: 1,
-      level: '200',
-      date: '2022-03-24T00:00:00.000Z',
-      time: '03:40',
-      period: 'test',
-      activity: 'test',
-      medication: 'test',
-      note: 'test',
-    },
-    {
-      id: 2,
-      level: '200',
-      date: '2022-03-24T00:00:00.000Z',
-      time: '03:40',
-      period: 'test',
-      activity: 'test',
-      medication: 'test',
-      note: 'test',
-    },
-  ];
+  const [success, setSuccess] = useState(false);
+  const [editMsg, setEditMsg] = useState('');
+  const [editErrMsg, setEditErrMsg] = useState('');
+  const [errMsg, setErrMsg] = useState('');
 
   useEffect(() => {
     handleSubmit();
   }, []);
 
-  const handleNewSugar = async (enteredSugarData) => {
-    const sugarData = {
-      ...enteredSugarData,
-    };
-    try {
-      const response = await axios.post(SUGAR_URL, JSON.stringify(sugarData), {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      });
-      console.log(response?.data);
-      if (response?.data === 400) {
-        console.log('err');
-      }
-    } catch (err) {
-      if (!err) {
-        console.log('no response');
-      } else console.log(err);
-    }
-    handleSubmit();
-  };
+  // const handleNewSugar = async (enteredSugarData) => {
+  //   const sugarData = {
+  //     ...enteredSugarData,
+  //   };
+  //   try {
+  //     const response = await axios.post(SUGAR_URL, JSON.stringify(sugarData), {
+  //       headers: { 'Content-Type': 'application/json' },
+  //       withCredentials: true,
+  //     });
+  //     console.log(response?.data);
+  //     if (response?.data === 400) {
+  //       console.log('err');
+  //     }
+  //   } catch (err) {
+  //     if (!err) {
+  //       console.log('no response');
+  //     } else console.log(err);
+  //   }
+  //   handleSubmit();
+  // };
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.get(ACTIVITY_URL, {
+      const response = await axios.get(GETSUGAR_URL, {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
       setData(response?.data);
-      // const date = new Date(response?.data.date);
-      // setDate(date);
-    } catch (err) {}
+    } catch (err) {
+      if (err) setErrMsg('No response');
+    }
   };
 
   const keyDelete = (key) => {
@@ -130,34 +107,101 @@ const SugarPage = (props) => {
       );
       console.log(keyId);
       setKeyId('');
+      setEditData([]);
+      setSuccess(!success);
+      setEditMsg('Sugar entry has been updated.');
+
       console.log(response);
       if (response?.data === 400) {
         console.log('err');
       }
     } catch (err) {
-      if (!err) {
+      if (err) {
         console.log('no response');
+        setEditErrMsg('Something went wrong.');
       } else console.log(err);
     }
+
     handleSubmit();
+    setTimeout(clearMsg, 3500);
+  };
+
+  const clearMsg = () => {
+    setEditMsg('');
+    setErrMsg('');
   };
 
   return (
     <div className='page-container'>
-      <div className='export-btn'>
+      {/* <div className='export-btn'>
         <button>Export to PDF</button>
         <button>Export to CSV</button>
-      </div>
-      <hr />
+      </div> */}
       <div className='items-row'>
-        <EditSugarForm editData={sugarData} getData={handleEditSugar} />
-        <SugarForm onAddSugar={handleNewSugar} />
-        {/* onEditSugar={handleEditSugar} */}
+        <div
+          className='sucContainer'
+          style={editMsg ? { height: 'auto' } : { height: 0 }}
+        >
+          <p
+            className='sucmsg'
+            style={
+              editMsg
+                ? {
+                    opacity: 1,
+                    height: 'auto',
+                    top: '0%',
+                    left: '50%',
+                  }
+                : { opacity: 0 }
+            }
+          >
+            {editMsg}
+          </p>
+        </div>
+        <div
+          className='sucContainer'
+          style={editErrMsg ? { height: 'auto' } : { height: 0 }}
+        >
+          <p
+            className='errorMsg'
+            style={
+              editErrMsg
+                ? {
+                    opacity: 1,
+                    height: 'auto',
+                    top: '0%',
+                    left: '50%',
+                  }
+                : { opacity: 0 }
+            }
+          >
+            {editErrMsg}
+          </p>
+        </div>
+        <div
+          className='sucContainer'
+          style={errMsg ? { height: 'auto' } : { height: 0 }}
+        >
+          <p
+            className='errorMsg'
+            style={
+              errMsg
+                ? {
+                    opacity: 1,
+                    height: 'auto',
+                    top: '0%',
+                    left: '50%',
+                  }
+                : { opacity: 0, height: 0 }
+            }
+          >
+            {errMsg}
+          </p>
+        </div>
         <div className='title-row hide'>
           <p>Level</p>
           <p>Date</p>
           <p>Time</p>
-          <p>Period</p>
           <p>Activity</p>
           <p>Medication</p>
           <p>Notes</p>
@@ -169,19 +213,21 @@ const SugarPage = (props) => {
             <p className='data-p'>Nothing to display</p>
           </div>
         ) : (
-          sugarData.map((sugar) => (
+          data.map((sugar) => (
             <SugarItem
-              key={sugar.id}
+              key={sugar._id}
               level={sugar.level}
               date={sugar.date}
               time={sugar.time}
-              period={sugar.period}
               activity={sugar.activity}
               medication={sugar.medication}
               note={sugar.note}
-              sugarId={sugar.id}
+              sugarId={sugar._id}
               handleDel={keyDelete}
               handleEd={keyEdit}
+              // EDIT FORM PROPS
+              editData={editData}
+              getData={handleEditSugar}
             />
           ))
         )}

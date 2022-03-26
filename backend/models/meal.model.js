@@ -13,21 +13,21 @@ const mealSchema = new Schema({
     default: Date.now(),
   },
   time: {
-    type: Date,
-    required: true,
-    default: Date.now(),
+    type: String,
+    required: false,
+    // default: Date.now(),
   },
   carbs: {
     type: String,
-    required: true,
+    required: false,
   },
   protein: {
     type: String,
-    required: true,
+    required: false,
   },
   fats: {
     type: String,
-    required: true,
+    required: false,
   },
   note: {
     type: String,

@@ -1,25 +1,29 @@
 import { useState, useEffect, useRef } from 'react';
 import './EditForm.css';
+// import arrow from '../../assets/arrow.png';
 
 const NUM_REGEX = /^[0-9]*$/;
 const DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
-const EditSugarForm = (props) => {
-  const [level, setLevel] = useState();
+const EditPressureForm = (props) => {
+  const [pulse, setPulse] = useState();
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
-  const [activity, setActivtiy] = useState('');
-  const [medication, setMedication] = useState('');
+  const [systolic, setSystolic] = useState('');
+  const [diastolic, setDiastolic] = useState('');
   const [note, setNote] = useState('');
 
   const errRef = useRef();
-  const [levelMsg, setLevelMsg] = useState('');
+  const [pulseMsg, setPulseMsg] = useState('');
+  const [systolicMsg, setSystolicMsg] = useState('');
+  const [diastolicMsg, setDiastolicMsg] = useState('');
+
   const [dateMsg, setDateMsg] = useState('');
   const [timeMsg, setTimeMsg] = useState('');
 
   useEffect(() => {
-    setLevel(props.editData.level);
-  }, [props.editData.level]);
+    setPulse(props.editData.pulse);
+  }, [props.editData.pulse]);
 
   useEffect(() => {
     setDate(props.editData.date);
@@ -30,12 +34,12 @@ const EditSugarForm = (props) => {
   }, [props.editData.time]);
 
   useEffect(() => {
-    setActivtiy(props.editData.activity);
-  }, [props.editData.activity]);
+    setSystolic(props.editData.systolic);
+  }, [props.editData.systolic]);
 
   useEffect(() => {
-    setMedication(props.editData.medication);
-  }, [props.editData.medication]);
+    setDiastolic(props.editData.diastolic);
+  }, [props.editData.diastolic]);
 
   useEffect(() => {
     setNote(props.editData.note);
@@ -43,9 +47,20 @@ const EditSugarForm = (props) => {
 
   const handleData = (e) => {
     e.preventDefault();
-    const levelCheck = NUM_REGEX.test(level);
-    if (!levelCheck) {
-      setLevelMsg('Sugar level should be a valid number.');
+    const pulseCheck = NUM_REGEX.test(pulse);
+    if (!pulseCheck) {
+      setPulseMsg('Pulse should be a valid number.');
+      return;
+    }
+
+    const systolicCheck = NUM_REGEX.test(systolic);
+    if (!systolicCheck) {
+      setSystolicMsg('Systolic should be a valid number.');
+      return;
+    }
+    const diastolicCheck = NUM_REGEX.test(diastolic);
+    if (!diastolicCheck) {
+      setDiastolicMsg('Diastolic should be a valid number.');
       return;
     }
     const dateCheck = DATE_REGEX.test(date);
@@ -59,25 +74,27 @@ const EditSugarForm = (props) => {
       return;
     }
 
-    const sugarData = {
-      level: level.trim(),
+    const pressureData = {
+      pulse: pulse.trim(),
       date: date,
       time: time,
-      activity: activity.trim(),
-      medication: medication.trim(),
+      systolic: systolic.trim(),
+      diastolic: diastolic.trim(),
       note: note.trim(),
     };
-    console.log(sugarData);
-    props.getData(sugarData);
+    console.log(pressureData);
+    props.getData(pressureData);
     props.setModal();
 
-    setLevel('');
+    setPulse('');
     setDate('');
     setTime('');
-    setActivtiy('');
-    setMedication('');
+    setSystolic('');
+    setDiastolic('');
     setNote('');
-    setLevelMsg('');
+    setPulseMsg('');
+    setSystolicMsg('');
+    setDiastolicMsg('');
     setDateMsg('');
     setTimeMsg('');
   };
@@ -93,19 +110,19 @@ const EditSugarForm = (props) => {
           <input
             type='number'
             // pattern='[0-9]+'
-            placeholder='Sugar'
-            onChange={(e) => setLevel(e.target.value)}
-            value={level || ''}
+            placeholder='Pulse'
+            onChange={(e) => setPulse(e.target.value)}
+            value={pulse || ''}
             required
           />
-          <label>mg/dL</label>
+          <label>bpm</label>
         </div>
         <p
           ref={errRef}
           id='emailcheckmsg'
-          className={levelMsg ? 'errmsg' : 'offscreen'}
+          className={pulseMsg ? 'errmsg' : 'offscreen'}
         >
-          {levelMsg}
+          {pulseMsg}
         </p>
         <div className='form-input'>
           <label>Date</label>
@@ -140,21 +157,35 @@ const EditSugarForm = (props) => {
           {timeMsg}
         </p>
         <div className='form-input'>
-          <label>Activity</label>
+          <label>Systolic</label>
           <input
-            type='text'
-            onChange={(e) => setActivtiy(e.target.value)}
-            value={activity || ''}
+            type='number'
+            onChange={(e) => setSystolic(e.target.value)}
+            value={systolic || ''}
           />
         </div>
+        <p
+          ref={errRef}
+          id='emailcheckmsg'
+          className={systolicMsg ? 'errmsg' : 'offscreen'}
+        >
+          {systolicMsg}
+        </p>
         <div className='form-input'>
-          <label>Medication</label>
+          <label>Diastolic</label>
           <input
-            type='text'
-            onChange={(e) => setMedication(e.target.value)}
-            value={medication || ''}
+            type='number'
+            onChange={(e) => setDiastolic(e.target.value)}
+            value={diastolic || ''}
           />
         </div>
+        <p
+          ref={errRef}
+          id='emailcheckmsg'
+          className={diastolicMsg ? 'errmsg' : 'offscreen'}
+        >
+          {diastolicMsg}
+        </p>
         <div className='form-input'>
           <label>Notes</label>
           <input
@@ -177,4 +208,4 @@ const EditSugarForm = (props) => {
   );
 };
 
-export default EditSugarForm;
+export default EditPressureForm;

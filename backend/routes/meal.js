@@ -3,9 +3,9 @@ const Meal = require('../models/meal.model');
 
 const verifyJWT = require('../middleware/auth');
 
-router.post('/add/:userid', verifyJWT, async (req, res) => {
+router.post('/add/', verifyJWT, async (req, res) => {
   const meal = new Meal({
-    user: req.params.userid,
+    user: req.user.id,
     date: req.body.date,
     carbs: req.body.carbs,
     protein: req.body.protein,
@@ -27,6 +27,12 @@ router.get('/', verifyJWT, async (req, res) => {
     .catch((err) => res.status(400).send('Error: ' + err));
 });
 
+router.get('/:id', verifyJWT, async (req, res) => {
+  Meal.findById(req.params.id)
+    .then((sugar) => res.json(sugar))
+    .catch((err) => res.status(400).send(err));
+});
+
 router.post('/update/:id', verifyJWT, async (req, res) => {
   Meal.findById(req.params.id).then((meal) => {
     (meal.date = req.body.date),
@@ -41,7 +47,7 @@ router.post('/update/:id', verifyJWT, async (req, res) => {
   });
 });
 
-router.delete('/:id', verifyJWT, async (req, res) => {
+router.delete('/delete/:id', verifyJWT, async (req, res) => {
   Meal.findByIdAndDelete(req.params.id)
     .then(() => res.json('Entry deleted.'))
     .catch((err) => res.status(400).json('Error: ' + err));
