@@ -71,7 +71,7 @@
   margin: 0 auto;
   border: none;
   background-color: #eee;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .data-row p {
@@ -86,7 +86,7 @@
   margin: 0 auto;
 }
 
-.desktop-row :hover {
+.data-row:hover {
   background-color: #ccc;
 }
 

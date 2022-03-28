@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import './EditForm.css';
-// import arrow from '../../assets/arrow.png';
 
 const NUM_REGEX = /^[0-9]*$/;
 const DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
@@ -44,28 +43,34 @@ const EditMealForm = (props) => {
     if (!distanceCheck) {
       setDistanceMsg('Distance should be a valid number.');
       return;
+    } else {
+      setDistanceMsg('');
     }
 
     const caloriesCheck = NUM_REGEX.test(calories);
     if (!caloriesCheck) {
       setCaloriesMsg('Calories should be a valid number.');
       return;
+    } else {
+      setCaloriesMsg('');
     }
     const dateCheck = DATE_REGEX.test(date);
     if (!dateCheck) {
       setDateMsg('This should be a valid date.');
       return;
+    } else {
+      setDateMsg('');
     }
 
-    const sugarData = {
+    const activityData = {
       type: type.trim(),
       date: date,
       distance: distance.trim(),
       calories: calories.trim(),
       note: note.trim(),
     };
-    console.log(sugarData);
-    props.getData(sugarData);
+    console.log(activityData);
+    props.getData(activityData);
     props.setModal();
 
     setType('');
@@ -88,8 +93,7 @@ const EditMealForm = (props) => {
         <div className='main-value'>
           <input
             type='text'
-            // pattern='[0-9]+'
-            placeholder='Carbs'
+            placeholder='Type'
             onChange={(e) => setType(e.target.value)}
             value={type || ''}
             required

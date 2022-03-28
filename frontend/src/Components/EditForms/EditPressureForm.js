@@ -57,21 +57,29 @@ const EditPressureForm = (props) => {
     if (!systolicCheck) {
       setSystolicMsg('Systolic should be a valid number.');
       return;
+    } else {
+      setDiastolicMsg('');
     }
     const diastolicCheck = NUM_REGEX.test(diastolic);
     if (!diastolicCheck) {
       setDiastolicMsg('Diastolic should be a valid number.');
       return;
+    } else {
+      setDiastolicMsg('');
     }
     const dateCheck = DATE_REGEX.test(date);
     if (!dateCheck) {
       setDateMsg('This should be a valid date.');
       return;
+    } else {
+      setDateMsg('');
     }
 
     if (time === '') {
       setTimeMsg('Please fill time.');
       return;
+    } else {
+      setTimeMsg('');
     }
 
     const pressureData = {

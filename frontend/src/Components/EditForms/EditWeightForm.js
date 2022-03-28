@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import './EditForm.css';
 // import arrow from '../../assets/arrow.png';
 
-const NUM_REGEX = /^[0-9]*$/;
+const NUM_REGEX = /^([0-9]|[1-9][0-9]|[1-9][0-9][0-9])$/;
 const DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
 const EditMealForm = (props) => {
@@ -39,27 +39,33 @@ const EditMealForm = (props) => {
     if (!numCheck) {
       setWeightMsg('Weight should be a valid number.');
       return;
+    } else {
+      setWeightMsg('');
     }
 
     const dateCheck = DATE_REGEX.test(date);
     if (!dateCheck) {
       setDateMsg('This should be a valid date.');
       return;
+    } else {
+      setDateMsg('');
     }
 
     if (time === '') {
       setTimeMsg('Please fill time.');
       return;
+    } else {
+      setTimeMsg('');
     }
 
-    const sugarData = {
+    const weightData = {
       weightNum: weightNum.trim(),
       date: date,
       time: time,
       note: note.trim(),
     };
-    console.log(sugarData);
-    props.getData(sugarData);
+    console.log(weightData);
+    props.getData(weightData);
     props.setModal();
 
     setWeightNum('');

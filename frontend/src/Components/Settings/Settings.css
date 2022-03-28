@@ -23,16 +23,12 @@
   margin: 20px auto;
 }
 
-.btn-col button {
-  margin: auto 0;
-  background-color: #fff;
-  color: black;
-  font-size: 16px;
-  padding: 10px 8px;
-  border-radius: 12px;
-  cursor: pointer;
-  text-align: center;
-  border: 2px solid #dd105e;
+.btn-item {
+  width: 85%;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 10px auto;
 }
 .btn-item button:hover {
   background-color: #dd105e;
@@ -55,6 +51,7 @@
 .settings-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .settings-item {
@@ -89,10 +86,28 @@
   margin: 10px auto 5px auto;
 }
 
+.settings-item select {
+  width: 90%;
+  border: none;
+  height: 40px;
+  margin: 0 auto 10px auto;
+
+  border-bottom: 3px solid white;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+.settings-group {
+  display: inline-flex;
+  flex-direction: row;
+  width: 90%;
+  margin: 5px auto;
+}
+
 input:focus {
   outline: none;
   border-bottom: 3px solid #dd105e;
-  color: black;
+  color: black !important;
   font-size: 16px;
 }
 

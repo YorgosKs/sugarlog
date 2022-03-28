@@ -17,6 +17,10 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  infoComplete: {
+    type: Boolean,
+    default: false,
+  },
 });
 const User = mongoose.model('User', userSchema);
 module.exports = User;

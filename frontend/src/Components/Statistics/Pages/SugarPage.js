@@ -6,7 +6,6 @@ import SugarItem from './Items/SugarItem';
 
 const GETSUGAR_URL = '/sugar/';
 const DELETE_URL = '/sugar/delete/';
-const SUGAR_URL = '/sugar/add/';
 const GETEDIT_URL = '/sugar/';
 const UPDATE_URL = '/sugar/update/';
 
@@ -51,6 +50,7 @@ const SugarPage = (props) => {
         withCredentials: true,
       });
       setData(response?.data);
+      console.log(response?.data);
     } catch (err) {
       if (err) setErrMsg('No response');
     }

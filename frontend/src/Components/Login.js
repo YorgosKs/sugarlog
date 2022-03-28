@@ -14,7 +14,6 @@ const Login = (props) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const [errMsg, setErrMsg] = useState('');
   const [emailErrMsg, setEmailErrMsg] = useState('');
   const [pwdErrMsg, setPwdErrMsg] = useState('');

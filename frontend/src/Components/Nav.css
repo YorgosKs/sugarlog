@@ -7,7 +7,7 @@
   color: black;
   font-size: 18px;
   background-color: #ffffff;
-  box-shadow: 2px 0 10px 1px #888;
+  box-shadow: 2px 0 10px 1px lightgray;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -43,7 +43,9 @@ a {
   align-items: center;
   justify-content: flex-start;
   width: 120px;
-  margin: 0 auto;
+  /* width: calc(100%-10px); */
+  height: 40px;
+  margin: 10px auto;
 }
 
 .nav-browse p {
@@ -59,7 +61,6 @@ a {
 }
 
 /* .active {
-  margin: auto 0;
   border-left: 10px solid #dd105e;
 } */
 
@@ -122,7 +123,6 @@ img:hover {
     align-items: center;
     justify-content: flex-start;
     width: 80px;
-    margin: 0 auto;
   }
 
   .nav-img {
@@ -145,10 +145,14 @@ img:hover {
     bottom: 0;
     width: 100vw;
     height: 60px;
+    align-items: center;
+    justify-content: center;
   }
 
   .nav-browse {
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 
   .logo-nav {
@@ -160,7 +164,6 @@ img:hover {
 
   .nav-img {
     width: 24px;
-    margin: 0 auto;
   }
 
   .logout-img {

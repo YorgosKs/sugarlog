@@ -18,10 +18,6 @@ const infoSchema = new Schema({
     type: String,
     required: true,
   },
-  weightUnit: {
-    type: String,
-    required: true,
-  },
   minRange: {
     type: String,
     required: true,

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './EditForm.css';
 
-const NUM_REGEX = /^[0-9]*$/;
+const NUM_REGEX = /^([0-9]|[1-9][0-9]|[1-9][0-9][0-9])$/;
 const DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
 const EditInsulinForm = (props) => {
@@ -42,16 +42,22 @@ const EditInsulinForm = (props) => {
     if (!unitsCheck) {
       setUnitsMsg('Sugar level should be a valid number.');
       return;
+    } else {
+      setUnitsMsg('');
     }
     const dateCheck = DATE_REGEX.test(date);
     if (!dateCheck) {
       setDateMsg('This should be a valid date.');
       return;
+    } else {
+      setDateMsg('');
     }
 
     if (time === '') {
       setTimeMsg('Please fill time.');
       return;
+    } else {
+      setTimeMsg('');
     }
 
     const insulinData = {

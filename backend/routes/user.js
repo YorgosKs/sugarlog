@@ -22,13 +22,6 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(422).json(errors.array());
     } else {
-      // res.send({});
-
-      // Check data in DB
-
-      // const emailExist = await User.findOne({ email: req.body.email });
-      // if (emailExist) return res.status(400).send('Email already exists');
-
       const emailExist = await User.findOne({ email: req.body.email });
       if (emailExist) return res.status(400).send('Email already exists');
 
@@ -40,6 +33,7 @@ router.post(
       const user = new User({
         email: req.body.email,
         password: hashedPassword,
+        infoComplete: false,
       });
 
       try {
@@ -118,10 +112,37 @@ router.get('/', verifyJWT, (req, res) => {
     .catch((err) => res.status(400).send('Error: ' + err));
 });
 
+// Check if email exists
+
 router.post('/check', async (req, res) => {
   const emailCheck = await User.findOne({ email: req.body.email });
   if (emailCheck) return res.json(400);
   else return res.json(200);
+});
+
+// Turn off info modal
+
+router.post('/info-modal', verifyJWT, async (req, res) => {
+  User.findById(req.user.id).then((user) => {
+    (user.infoComplete = req.body.infoComplete),
+      user
+        .save()
+        .then(() => res.json('User updated!'))
+        .catch((err) => console.log(err));
+  });
+});
+
+// Update email
+router.post('/update-email', verifyJWT, async (req, res) => {
+  User.findByIdAndUpdate(req.user.id).then((user) => {
+    const salt = bcrypt.genSalt(10);
+    const hashedPassword = bcrypt.hash(req.body.password, salt);
+    (user.email = req.body.email), (user.password = hashedPassword);
+    user
+      .save()
+      .then(() => res.json('Email updated!'))
+      .catch((err) => console.log(err));
+  });
 });
 
 router.get('/logout', verifyJWT, (req, res) => {
