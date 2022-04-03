@@ -22,8 +22,8 @@ const EditMealForm = (props) => {
   }, [props.editData.type]);
 
   useEffect(() => {
-    setDate(props.editData.date);
-  }, [props.editData.date]);
+    setDate(props.formattedDate);
+  }, [props.formattedDate]);
 
   useEffect(() => {
     setDistance(props.editData.distance);

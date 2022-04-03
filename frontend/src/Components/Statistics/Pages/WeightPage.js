@@ -182,7 +182,6 @@ const WeightPage = () => {
         <div className='title-row hide'>
           <p>Weight</p>
           <p>Date</p>
-          <p>Time</p>
           <p>Notes</p>
           <p>Actions</p>
         </div>
@@ -197,7 +196,6 @@ const WeightPage = () => {
               key={weight._id}
               weightNum={weight.weightNum}
               date={weight.date}
-              time={weight.time}
               note={weight.note}
               weightId={weight._id}
               handleDel={keyDelete}

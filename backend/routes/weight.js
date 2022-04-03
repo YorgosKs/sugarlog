@@ -7,7 +7,6 @@ router.post('/add/', verifyJWT, async (req, res) => {
   const weight = new Weight({
     user: req.user.id,
     date: req.body.date,
-    time: req.body.time,
     weightNum: req.body.weightNum,
     note: req.body.note,
   });
@@ -35,7 +34,6 @@ router.get('/:id', verifyJWT, async (req, res) => {
 router.post('/update/:id', verifyJWT, async (req, res) => {
   Weight.findById(req.params.id).then((weight) => {
     (weight.date = req.body.date),
-      (weight.time = req.body.time),
       (weight.weightNum = req.body.weightNum),
       (weight.note = req.body.note),
       weight

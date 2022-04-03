@@ -14,6 +14,7 @@ const ActivityItem = (props) => {
   const month = date.toLocaleString('en-us', { month: 'long' });
   const day = date.toLocaleString('en-us', { day: '2-digit' });
   const year = date.getFullYear();
+  const formattedDate = date.toISOString().split('T')[0];
 
   const handleDelete = (key) => {
     console.log('edit');
@@ -51,6 +52,7 @@ const ActivityItem = (props) => {
           setModal={openDrop}
           setModal1={openDrop1}
           getData={handleEditActivity}
+          formattedDate={formattedDate}
         />
       </div>
       <div className='desktop-row hide-desk'>

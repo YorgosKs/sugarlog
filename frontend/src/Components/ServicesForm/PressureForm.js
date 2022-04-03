@@ -89,6 +89,18 @@ const PressureForm = (props) => {
         console.log('no response');
       } else console.log(err);
     }
+
+    setPulse('');
+    setDate('');
+    setTime('');
+    setSystolic('');
+    setDiastolic('');
+    setNote('');
+    setPulseMsg('');
+    setSystolicMsg('');
+    setDiastolicMsg('');
+    setDateMsg('');
+    setTimeMsg('');
   };
 
   return (

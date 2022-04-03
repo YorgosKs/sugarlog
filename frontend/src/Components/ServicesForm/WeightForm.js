@@ -11,14 +11,12 @@ const WEIGHT_URL = '/weight/add/';
 const EditMealForm = (props) => {
   const [weightNum, setWeightNum] = useState();
   const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
   const [note, setNote] = useState('');
 
   const errRef = useRef();
   const [weightMsg, setWeightMsg] = useState('');
 
   const [dateMsg, setDateMsg] = useState('');
-  const [timeMsg, setTimeMsg] = useState('');
 
   const handleData = async (e) => {
     e.preventDefault();
@@ -38,17 +36,9 @@ const EditMealForm = (props) => {
       setDateMsg('');
     }
 
-    if (time === '') {
-      setTimeMsg('Please fill time.');
-      return;
-    } else {
-      setTimeMsg('');
-    }
-
     const weightData = {
       weightNum: weightNum.trim(),
       date: date,
-      time: time,
       note: note.trim(),
     };
 
@@ -71,6 +61,11 @@ const EditMealForm = (props) => {
         console.log('no response');
       } else console.log(err);
     }
+    setWeightNum('');
+    setDate('');
+    setNote('');
+    setWeightMsg('');
+    setDateMsg('');
   };
 
   return (
@@ -109,22 +104,6 @@ const EditMealForm = (props) => {
           className={dateMsg ? 'errmsg' : 'offscreen'}
         >
           {dateMsg}
-        </p>
-        <div className='form-input'>
-          <label>Time</label>
-          <input
-            type='Time'
-            value={time || ''}
-            onChange={(e) => setTime(e.target.value)}
-            // required
-          />
-        </div>
-        <p
-          ref={errRef}
-          id='emailcheckmsg'
-          className={timeMsg ? 'errmsg' : 'offscreen'}
-        >
-          {timeMsg}
         </p>
         <div className='form-input'>
           <label>Notes</label>

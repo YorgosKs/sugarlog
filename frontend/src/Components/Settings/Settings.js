@@ -5,17 +5,32 @@ import axios from '../../axios/axios';
 
 const GETINFO_URL = '/info/';
 const GETUSER_URL = '/';
-const UPDATEINFO_URL = '/update-info';
+const UPDATEINFO_URL = '/info/update-info/';
 const UPDATEEMAIL_URL = '/update-email';
+const UPDATEPWD_URL = '/update-password';
+const CHECK_URL = '/check';
+
+const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const PWD_REGEX =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 const Settings = () => {
   const [email, setEmail] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+
   const [password, setPassword] = useState('');
-  // const [data, setData] = useState('');
-  const [type, setType] = useState('');
+  const [type, setType] = useState();
   const [sugarUnit, setSugarUnit] = useState('');
   const [minRange, setMinRange] = useState('');
   const [maxRange, setMaxRange] = useState('');
+
+  const [emailErrMsg, setEmailErrMsg] = useState('');
+  const [pwdErrMsg, setPwdErrMsg] = useState('');
+  const [updateMsg, setUpdateMsg] = useState('');
+  const [updateErrMsg, setUpdateErrMsg] = useState('');
+
+  const [validPwd, setValidPwd] = useState(false);
+  const [pwdFocus, setPwdFocus] = useState(false);
 
   useEffect(() => {
     handleGetUser();
@@ -51,21 +66,121 @@ const Settings = () => {
     }
   };
 
+  const emailCheck = async (e) => {
+    e.preventDefault();
+
+    const emailCheck = EMAIL_REGEX.test(email);
+    if (!emailCheck) {
+      setEmailErrMsg('Please enter a valid email address.');
+      return;
+    }
+
+    if (emailCheck === email) {
+      setEmailErrMsg('');
+    }
+    try {
+      const response = await axios.post(CHECK_URL, JSON.stringify({ email }), {
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (response?.data === 400) {
+        setEmailErrMsg('This email address is already in use.');
+      } else {
+        setEmailErrMsg('');
+      }
+    } catch (err) {
+      setEmailErrMsg('No Server Response');
+    }
+  };
+
+  const checkPassword = () => {
+    const pwdCheck = PWD_REGEX.test(password);
+    if (!pwdCheck) {
+      setPwdErrMsg('Password is not valid.');
+      setPwdFocus(false);
+      return;
+    } else {
+      setPwdErrMsg('');
+      setPwdFocus(false);
+    }
+  };
+
   const handleUpdateInfo = async (e) => {
     e.preventDefault();
     console.log(email);
 
-    const data = email.trim();
+    if (sugarUnit || type || minRange || maxRange) {
+      const data = {
+        type: type,
+        sugarUnit: sugarUnit,
+        minRange: minRange.trim(),
+        maxRange: maxRange.trim(),
+      };
 
-    try {
-      const response = await axios.post(UPDATEEMAIL_URL, data, {
-        // headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      });
-      console.log(response?.data);
-    } catch (err) {
-      console.log(err);
+      try {
+        const response = await axios.post(UPDATEINFO_URL, data, {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        });
+        console.log(response?.data);
+        setUpdateMsg('Your info has been updated.');
+      } catch (err) {
+        console.log(err);
+        setUpdateErrMsg('Something went wrong.');
+      }
     }
+
+    if (email) {
+      // const emailCheck = EMAIL_REGEX.test(email);
+      // if (!emailCheck) {
+      //   setEmailErrMsg('Email is not valid.');
+      //   return;
+      // }
+      const data = { email: email };
+      try {
+        const response = await axios.post(UPDATEEMAIL_URL, data, {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        });
+        console.log(response?.data);
+        setUpdateMsg('Your info has been updated.');
+
+        // setEmailErrMsg(false);
+      } catch (err) {
+        console.log(err);
+        setUpdateErrMsg('Something went wrong.');
+      }
+    }
+
+    if (password !== '') {
+      // const pwdCheck = PWD_REGEX.test(password);
+      // if (!pwdCheck) {
+      //   setPwdErrMsg('Password is not valid.');
+      //   return;
+      // }
+      // const data = { password: JSON.stringify(password) };
+      const data = { password: password };
+
+      try {
+        const response = await axios.post(UPDATEPWD_URL, data, {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        });
+        console.log(response?.data);
+        setUpdateMsg('Your info has been updated.');
+
+        // setEmailErrMsg(false);
+      } catch (err) {
+        console.log(err);
+        setUpdateErrMsg('Something went wrong.');
+      }
+    }
+    setTimeout(clearMsg, 3500);
+  };
+
+  const clearMsg = () => {
+    setUpdateMsg('');
+    setUpdateErrMsg('');
   };
 
   return (
@@ -75,37 +190,115 @@ const Settings = () => {
       <div className='settings-wrapper'>
         <h2>Settings</h2>
         <div className='col-wrapper'>
+          <div
+            className='sucContainer'
+            style={updateMsg ? { height: 'auto' } : { height: 0 }}
+          >
+            <p
+              className='sucmsg'
+              style={
+                updateMsg
+                  ? {
+                      opacity: 1,
+                      height: 'auto',
+                      top: '0%',
+                      left: '50%',
+                    }
+                  : { opacity: 0 }
+              }
+            >
+              {updateMsg}
+            </p>
+          </div>
+          <div
+            className='sucContainer'
+            style={updateErrMsg ? { height: 'auto' } : { height: 0 }}
+          >
+            <p
+              className='errorMsg'
+              style={
+                updateErrMsg
+                  ? {
+                      opacity: 1,
+                      height: 'auto',
+                      top: '0%',
+                      left: '50%',
+                    }
+                  : { opacity: 0 }
+              }
+            >
+              {updateErrMsg}
+            </p>
+          </div>
           <form className='settings-form' onSubmit={handleUpdateInfo}>
             <div className='settings-item'>
               <label>Email</label>
               <input
-                type='text'
+                type='email'
                 value={email || ''}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
+                onBlur={emailCheck}
               />
+              <p
+                className={emailErrMsg ? 'errmsg' : 'offscreen'}
+                style={{
+                  margin: '0 auto 10px auto',
+                  width: 'calc(100% - 100px)',
+                }}
+              >
+                {emailErrMsg}
+              </p>
             </div>
             <div className='settings-item'>
               <label>Password</label>
               <input
+                placeholder='New password'
                 type='password'
-                value={'password'}
+                value={password || ''}
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
+                onFocus={() => setPwdFocus(true)}
+                onBlur={checkPassword}
+                autocomplete='new-password'
               />
+              <p
+                id='pwdnote'
+                className={pwdFocus && !validPwd ? 'errmsg' : 'offscreen'}
+                style={{
+                  margin: '0 auto 10px auto',
+                  width: 'calc(100% - 100px)',
+                }}
+              >
+                8 to 24 characters.
+                <br />
+                Must include uppercase and lowercase letters, a number and a
+                special character.
+              </p>
+              <p
+                id='emailcheckmsg'
+                className={pwdErrMsg ? 'errmsg' : 'offscreen'}
+                style={{
+                  margin: '0 auto 10px auto',
+                  width: 'calc(100% - 100px)',
+                }}
+              >
+                {pwdErrMsg}
+              </p>
             </div>
             <div className='settings-item'>
               <label>Diabetes type</label>
               <select
                 required
                 onChange={(e) => setType(e.target.value)}
-                defaultValue={type}
+                // defaultValue={type}
+                value={type}
               >
                 <option value={'Type 1'}>Type 1</option>
                 <option value={'Type 2'}>Type 2</option>
-                <option value={'Gestational'}>Gestational Diabetes</option>
+                <option value={`Gestational`}>Gestational Diabetes</option>
               </select>
             </div>
             <div className='settings-item'>
@@ -113,7 +306,7 @@ const Settings = () => {
               <select
                 required
                 onChange={(e) => setSugarUnit(e.target.value)}
-                defaultValue={sugarUnit}
+                value={sugarUnit}
               >
                 <option value={'mg/dl'}>mg/dL</option>
                 <option value={'mmol/L'}>mmol/L</option>

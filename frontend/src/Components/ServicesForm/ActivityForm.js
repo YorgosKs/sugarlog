@@ -70,6 +70,15 @@ const MealForm = (props) => {
         console.log('no response');
       } else console.log(err);
     }
+
+    setType('');
+    setDate('');
+    setDistance('');
+    setCalories('');
+    setNote('');
+    setDistanceMsg('');
+    setCaloriesMsg('');
+    setDateMsg('');
   };
 
   return (

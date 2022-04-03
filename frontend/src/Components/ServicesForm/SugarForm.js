@@ -68,6 +68,16 @@ const SugarForm = (props) => {
         console.log('no response');
       } else console.log(err);
     }
+
+    setLevel('');
+    setDate('');
+    setTime('');
+    setActivtiy('');
+    setMedication('');
+    setNote('');
+    setLevelMsg('');
+    setDateMsg('');
+    setTimeMsg('');
   };
 
   return (
@@ -135,7 +145,7 @@ const SugarForm = (props) => {
           />
         </div>
         <div className='btn-group'>
-          <button className='button' type='submit'>
+          <button className='button' type='submit' onClick={props.handleSumbit}>
             Add
           </button>
           <button

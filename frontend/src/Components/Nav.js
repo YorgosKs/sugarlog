@@ -1,17 +1,17 @@
 import './Nav.css';
 import logo from '../logo-top.svg';
 import logoDrop from '../logo-drop.svg';
-import logout from '../logout.svg';
-import dashFocus from '../assets/dashboard.svg';
-import dash from '../assets/dash.svg';
+import logout from '../logout.png';
+import dashFocus from '../assets/dashboard.png';
+import dash from '../assets/dash.png';
 
-import stats from '../assets/stats.svg';
-import statsFocus from '../assets/stats_focus.svg';
+import stats from '../assets/stats.png';
+import statsFocus from '../assets/stats_focus.png';
 import settings from '../assets/settings.svg';
 import settingsFocus from '../assets/settings_focus.svg';
 
 import { Link, Navigate, useNavigate, NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react/';
+import { useState, useEffect } from 'react';
 import axios from '../axios/axios';
 
 const LOGOUT_URL = '/logout';

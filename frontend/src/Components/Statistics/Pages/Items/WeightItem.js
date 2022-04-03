@@ -18,6 +18,7 @@ const WeightItem = (props) => {
     minute: '2-digit',
   });
   const year = date.getFullYear();
+  const formattedDate = date.toISOString().split('T')[0];
 
   const handleDelete = (key) => {
     console.log('edit');
@@ -55,13 +56,13 @@ const WeightItem = (props) => {
           setModal={openDrop}
           setModal1={openDrop1}
           getData={handleEditWeight}
+          formattedDate={formattedDate}
         />
       </div>
       <div className='desktop-row hide-desk'>
         <div className='data-row'>
           <p>{props.weightNum} kg</p>
           <p>{day + ' ' + month}</p>
-          <p>{props.time}</p>
           <p>{props.note}</p>
           <p className='actions'>
             <img
@@ -101,10 +102,6 @@ const WeightItem = (props) => {
               : { height: '0px' }
           }
         >
-          <p>
-            <span className='span'>Time : </span>
-            {time}
-          </p>
           <p>
             <span className='span'>Notes : </span>
             {props.note}

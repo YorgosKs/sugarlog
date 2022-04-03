@@ -131,7 +131,7 @@ const Login = () => {
                 <div className='register-form_control'>
                   <label>Email</label>
                   <input
-                    type='text'
+                    type='email'
                     id='email'
                     // ref={userRef}
                     autoComplete='off'

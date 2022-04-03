@@ -73,11 +73,6 @@ router.post(
           { expiresIn: 86400 },
           (err, token) => {
             if (err) return res.json({ message: err });
-            // return res.json({
-            //   message: 'Success',
-            //   token: 'Bearer ' + token,
-            //   id: user._id,
-            // });
             return res
               .cookie('token', token, {
                 path: '*/',
@@ -88,13 +83,6 @@ router.post(
               })
               .status(200)
               .json({ message: 'Login success!' });
-
-            // .cookie("access_token", token, {
-            //   httpOnly: true,
-            //   secure: process.env.NODE_ENV === "production",
-            // })
-            // .status(200)
-            // .json({ message: "Logged in successfully 😊 👌" });
           }
         );
       } else {
@@ -113,7 +101,6 @@ router.get('/', verifyJWT, (req, res) => {
 });
 
 // Check if email exists
-
 router.post('/check', async (req, res) => {
   const emailCheck = await User.findOne({ email: req.body.email });
   if (emailCheck) return res.json(400);
@@ -121,7 +108,6 @@ router.post('/check', async (req, res) => {
 });
 
 // Turn off info modal
-
 router.post('/info-modal', verifyJWT, async (req, res) => {
   User.findById(req.user.id).then((user) => {
     (user.infoComplete = req.body.infoComplete),
@@ -132,15 +118,26 @@ router.post('/info-modal', verifyJWT, async (req, res) => {
   });
 });
 
-// Update email
 router.post('/update-email', verifyJWT, async (req, res) => {
   User.findByIdAndUpdate(req.user.id).then((user) => {
-    const salt = bcrypt.genSalt(10);
-    const hashedPassword = bcrypt.hash(req.body.password, salt);
-    (user.email = req.body.email), (user.password = hashedPassword);
+    user.email = req.body.email;
     user
       .save()
       .then(() => res.json('Email updated!'))
+      .catch((err) => console.log(err));
+  });
+});
+
+router.post('/update-password', verifyJWT, async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  console.log(salt);
+  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+  console.log(hashedPassword);
+  User.findByIdAndUpdate(req.user.id).then((user) => {
+    user.password = hashedPassword;
+    user
+      .save()
+      .then(() => res.json('Password updated!'))
       .catch((err) => console.log(err));
   });
 });

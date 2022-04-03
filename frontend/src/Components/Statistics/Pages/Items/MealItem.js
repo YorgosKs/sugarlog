@@ -12,11 +12,9 @@ const MealItem = (props) => {
   const date = new Date(props.date);
   const month = date.toLocaleString('en-us', { month: 'long' });
   const day = date.toLocaleString('en-us', { day: '2-digit' });
-  const time = date.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
   const year = date.getFullYear();
+
+  const formattedDate = date.toISOString().split('T')[0];
 
   const handleDelete = (key) => {
     console.log('edit');
@@ -52,6 +50,7 @@ const MealItem = (props) => {
       >
         <EditMealForm
           editData={props.editData}
+          formattedDate={formattedDate}
           setModal={openDrop}
           setModal1={openDrop1}
           getData={handleEditMeal}
@@ -85,7 +84,7 @@ const MealItem = (props) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className='item-header'>
-          <p>{props.carbs} g</p>
+          <p>Carbs : {props.carbs} g</p>
           <div>
             <p>
               {day} {month}
@@ -104,7 +103,7 @@ const MealItem = (props) => {
         >
           <p>
             <span className='span'>Time : </span>
-            {time}
+            {props.time}
           </p>
           <p>
             <span className='span'>Protein : </span>

@@ -19,6 +19,8 @@ const SugarItem = (props) => {
   });
   const year = date.getFullYear();
 
+  const formattedDate = date.toISOString().split('T')[0];
+
   const handleDelete = (key) => {
     console.log('edit');
     props.handleDel(key);
@@ -53,6 +55,7 @@ const SugarItem = (props) => {
       >
         <EditSugarForm
           editData={props.editData}
+          formattedDate={formattedDate}
           setModal={openDrop}
           setModal1={openDrop1}
           getData={handleEditSugar}
@@ -62,6 +65,7 @@ const SugarItem = (props) => {
         <div className='data-row'>
           <p>{props.level}</p>
           <p>{day + ' ' + month}</p>
+
           <p>{props.time}</p>
           <p>{props.activity}</p>
           <p>{props.medication}</p>
@@ -105,7 +109,7 @@ const SugarItem = (props) => {
         >
           <p>
             <span className='span'>Time : </span>
-            {time}
+            {props.time}
           </p>
           <p>
             <span className='span'>Medication : </span>

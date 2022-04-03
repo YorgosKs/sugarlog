@@ -22,8 +22,8 @@ const EditSugarForm = (props) => {
   }, [props.editData.level]);
 
   useEffect(() => {
-    setDate(props.editData.date);
-  }, [props.editData.date]);
+    setDate(props.formattedDate);
+  }, [props.formattedDate]);
 
   useEffect(() => {
     setTime(props.editData.time);

@@ -15,7 +15,7 @@ import PressureForm from '../ServicesForm/PressureForm';
 
 import { useState } from 'react';
 
-const ServiceButtons = () => {
+const ServiceButtons = (props) => {
   const [isOpenSugar, setIsOpenSugar] = useState(false);
   const [isOpenInsulin, setIsOpenInsulin] = useState(false);
   const [isOpenMeal, setIsOpenMeal] = useState(false);
@@ -25,6 +25,8 @@ const ServiceButtons = () => {
 
   const closeModalSugar = () => {
     setIsOpenSugar(false);
+    props.handleSubmit();
+    props.pieRange();
   };
 
   const closeModalInsulin = () => {

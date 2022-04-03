@@ -7,6 +7,7 @@ router.post('/add/', verifyJWT, async (req, res) => {
   const pressure = new Pressure({
     user: req.user.id,
     date: req.body.date,
+    time: req.body.time,
     systolic: req.body.systolic,
     diastolic: req.body.diastolic,
     pulse: req.body.pulse,
@@ -36,6 +37,7 @@ router.get('/:id', verifyJWT, async (req, res) => {
 router.post('/update/:id', verifyJWT, async (req, res) => {
   Pressure.findById(req.params.id).then((pressure) => {
     (pressure.date = req.body.date),
+      (pressure.time = req.body.time),
       (pressure.systolic = req.body.systolic),
       (pressure.diastolic = req.body.diastolic),
       (pressure.pulse = req.body.pulse),

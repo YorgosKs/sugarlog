@@ -7,6 +7,7 @@ router.post('/add/', verifyJWT, async (req, res) => {
   const meal = new Meal({
     user: req.user.id,
     date: req.body.date,
+    time: req.body.time,
     carbs: req.body.carbs,
     protein: req.body.protein,
     fats: req.body.fats,
@@ -36,6 +37,7 @@ router.get('/:id', verifyJWT, async (req, res) => {
 router.post('/update/:id', verifyJWT, async (req, res) => {
   Meal.findById(req.params.id).then((meal) => {
     (meal.date = req.body.date),
+      (meal.time = req.body.time),
       (meal.carbs = req.body.carbs),
       (meal.protein = req.body.protein),
       (meal.fats = req.body.fats),

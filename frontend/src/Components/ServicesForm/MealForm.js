@@ -20,7 +20,6 @@ const MealForm = (props) => {
   const [fatsMsg, setFatsMsg] = useState('');
 
   const [dateMsg, setDateMsg] = useState('');
-  const [timeMsg, setTimeMsg] = useState('');
 
   const handleData = async (e) => {
     e.preventDefault();
@@ -53,13 +52,6 @@ const MealForm = (props) => {
       setDateMsg('');
     }
 
-    if (time === '') {
-      setTimeMsg('Please fill time.');
-      return;
-    } else {
-      setTimeMsg('');
-    }
-
     const mealData = {
       carbs: carbs.trim(),
       date: date,
@@ -83,6 +75,17 @@ const MealForm = (props) => {
         console.log('no response');
       } else console.log(err);
     }
+
+    setCarbs('');
+    setDate('');
+    setTime('');
+    setProtein('');
+    setFats('');
+    setNote('');
+    setCarbsMsg('');
+    setProteinMsg('');
+    setFatsMsg('');
+    setDateMsg('');
   };
 
   return (
@@ -125,19 +128,12 @@ const MealForm = (props) => {
         <div className='form-input'>
           <label>Time</label>
           <input
-            type='Time'
+            type='time'
             value={time || ''}
             onChange={(e) => setTime(e.target.value)}
-            // required
           />
         </div>
-        <p
-          ref={errRef}
-          id='emailcheckmsg'
-          className={timeMsg ? 'errmsg' : 'offscreen'}
-        >
-          {timeMsg}
-        </p>
+
         <div className='form-input'>
           <label>Protein</label>
           <input

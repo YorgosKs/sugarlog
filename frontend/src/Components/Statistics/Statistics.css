@@ -18,6 +18,10 @@
   /* margin: 2.5vh auto 0 200px; */
 }
 
+.btm-filler {
+  height: 50px;
+}
+
 @media only screen and (max-width: 1007px) {
   .filler {
     width: 80px;

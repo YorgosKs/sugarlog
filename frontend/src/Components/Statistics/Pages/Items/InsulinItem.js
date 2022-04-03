@@ -18,6 +18,7 @@ const InsulinItem = (props) => {
     minute: '2-digit',
   });
   const year = date.getFullYear();
+  const formattedDate = date.toISOString().split('T')[0];
 
   const handleDelete = (key) => {
     console.log('edit');
@@ -54,6 +55,7 @@ const InsulinItem = (props) => {
       >
         <EditInsulinForm
           editData={props.editData}
+          formattedDate={formattedDate}
           setModal={openDrop}
           setModal1={openDrop1}
           // ALLAGH EDW
@@ -64,7 +66,7 @@ const InsulinItem = (props) => {
         <div className='data-row'>
           <p>{props.units}</p>
           <p>{day + ' ' + month}</p>
-          <p>{time}</p>
+          <p>{props.time}</p>
           <p>{props.type}</p>
           <p>{props.note}</p>
           <p className='actions'>
@@ -87,7 +89,7 @@ const InsulinItem = (props) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className='item-header'>
-          <p>{props.units}</p>
+          <p>{props.units} units</p>
           <div>
             <p>
               {day} {month}
@@ -107,7 +109,7 @@ const InsulinItem = (props) => {
         >
           <p>
             <span className='span'>Time : </span>
-            {time}
+            {props.time}
           </p>
           <p>
             <span className='span'>Type : </span>

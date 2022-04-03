@@ -26,8 +26,8 @@ const EditPressureForm = (props) => {
   }, [props.editData.pulse]);
 
   useEffect(() => {
-    setDate(props.editData.date);
-  }, [props.editData.date]);
+    setDate(props.formattedDate);
+  }, [props.formattedDate]);
 
   useEffect(() => {
     setTime(props.editData.time);

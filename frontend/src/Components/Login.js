@@ -1,6 +1,7 @@
 import './Login.css';
 // import './Register.css';
 import logo from '../logo.svg';
+
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 import axios from '../axios/axios';
 import { useState, useEffect, useRef } from 'react';
@@ -18,6 +19,7 @@ const Login = (props) => {
   const [emailErrMsg, setEmailErrMsg] = useState('');
   const [pwdErrMsg, setPwdErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setPwdErrMsg('');
@@ -85,7 +87,7 @@ const Login = (props) => {
                 <div className='login-form_control'>
                   <label>Email</label>
                   <input
-                    type='text'
+                    type='email'
                     id='email'
                     // ref={userRef}
                     autoComplete='off'
@@ -105,12 +107,13 @@ const Login = (props) => {
                 <div className='login-form_control'>
                   <label>Password</label>
                   <input
-                    type='password'
+                    type={open ? 'text' : 'password'}
                     id='password'
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                     required
                   />
+
                   <p
                     ref={errRef}
                     id='emailcheckmsg'

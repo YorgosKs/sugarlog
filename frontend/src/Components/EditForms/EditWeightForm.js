@@ -8,26 +8,21 @@ const DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 const EditMealForm = (props) => {
   const [weightNum, setWeightNum] = useState();
   const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
+
   const [note, setNote] = useState('');
 
   const errRef = useRef();
   const [weightMsg, setWeightMsg] = useState('');
 
   const [dateMsg, setDateMsg] = useState('');
-  const [timeMsg, setTimeMsg] = useState('');
 
   useEffect(() => {
     setWeightNum(props.editData.weightNum);
   }, [props.editData.weightNum]);
 
   useEffect(() => {
-    setDate(props.editData.date);
-  }, [props.editData.date]);
-
-  useEffect(() => {
-    setTime(props.editData.time);
-  }, [props.editData.time]);
+    setDate(props.formattedDate);
+  }, [props.formattedDate]);
 
   useEffect(() => {
     setNote(props.editData.note);
@@ -51,17 +46,10 @@ const EditMealForm = (props) => {
       setDateMsg('');
     }
 
-    if (time === '') {
-      setTimeMsg('Please fill time.');
-      return;
-    } else {
-      setTimeMsg('');
-    }
-
     const weightData = {
       weightNum: weightNum.trim(),
       date: date,
-      time: time,
+
       note: note.trim(),
     };
     console.log(weightData);
@@ -70,11 +58,9 @@ const EditMealForm = (props) => {
 
     setWeightNum('');
     setDate('');
-    setTime('');
     setNote('');
     setWeightMsg('');
     setDateMsg('');
-    setTimeMsg('');
   };
 
   const modal = () => {
@@ -117,22 +103,6 @@ const EditMealForm = (props) => {
           className={dateMsg ? 'errmsg' : 'offscreen'}
         >
           {dateMsg}
-        </p>
-        <div className='form-input'>
-          <label>Time</label>
-          <input
-            type='Time'
-            value={time || ''}
-            onChange={(e) => setTime(e.target.value)}
-            // required
-          />
-        </div>
-        <p
-          ref={errRef}
-          id='emailcheckmsg'
-          className={timeMsg ? 'errmsg' : 'offscreen'}
-        >
-          {timeMsg}
         </p>
         <div className='form-input'>
           <label>Notes</label>

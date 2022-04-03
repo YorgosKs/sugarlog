@@ -68,6 +68,14 @@ const InsulinForm = (props) => {
         console.log('no response');
       } else console.log(err);
     }
+    setUnits('');
+    setDate();
+    setTime('');
+    setType('');
+    setNote('');
+    setUnitsMsg('');
+    setDateMsg('');
+    setTimeMsg('');
   };
 
   return (

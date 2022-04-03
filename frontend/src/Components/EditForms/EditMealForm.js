@@ -8,6 +8,7 @@ const EditMealForm = (props) => {
   const [carbs, setCarbs] = useState();
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
+
   const [protein, setProtein] = useState('');
   const [fats, setFats] = useState('');
   const [note, setNote] = useState('');
@@ -16,7 +17,6 @@ const EditMealForm = (props) => {
   const [carbsMsg, setCarbsMsg] = useState('');
   const [proteinMsg, setProteinMsg] = useState('');
   const [fatsMsg, setFatsMsg] = useState('');
-
   const [dateMsg, setDateMsg] = useState('');
   const [timeMsg, setTimeMsg] = useState('');
 
@@ -25,8 +25,8 @@ const EditMealForm = (props) => {
   }, [props.editData.carbs]);
 
   useEffect(() => {
-    setDate(props.editData.date);
-  }, [props.editData.date]);
+    setDate(props.formattedDate);
+  }, [props.formattedDate]);
 
   useEffect(() => {
     setTime(props.editData.time);
@@ -73,13 +73,6 @@ const EditMealForm = (props) => {
       return;
     } else {
       setDateMsg('');
-    }
-
-    if (time === '') {
-      setTimeMsg('Please fill time.');
-      return;
-    } else {
-      setTimeMsg('');
     }
 
     const mealData = {
@@ -151,19 +144,12 @@ const EditMealForm = (props) => {
         <div className='form-input'>
           <label>Time</label>
           <input
-            type='Time'
+            type='time'
             value={time || ''}
             onChange={(e) => setTime(e.target.value)}
-            // required
+            required
           />
         </div>
-        <p
-          ref={errRef}
-          id='emailcheckmsg'
-          className={timeMsg ? 'errmsg' : 'offscreen'}
-        >
-          {timeMsg}
-        </p>
         <div className='form-input'>
           <label>Protein</label>
           <input

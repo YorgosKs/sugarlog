@@ -27,7 +27,7 @@ router.get('/', verifyJWT, async (req, res) => {
 });
 
 router.post('/update-info/', verifyJWT, async (req, res) => {
-  Info.findOne({ user: req.user.id }).then((info) => {
+  Info.findOneAndUpdate({ user: req.user.id }).then((info) => {
     (info.type = req.body.type),
       (info.sugarUnit = req.body.sugarUnit),
       (info.minRange = req.body.minRange),
