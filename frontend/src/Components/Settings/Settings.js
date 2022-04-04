@@ -109,25 +109,23 @@ const Settings = () => {
     e.preventDefault();
     console.log(email);
 
-    if (sugarUnit || type || minRange || maxRange) {
-      const data = {
-        type: type,
-        sugarUnit: sugarUnit,
-        minRange: minRange.trim(),
-        maxRange: maxRange.trim(),
-      };
+    const data = {
+      type: type,
+      sugarUnit: sugarUnit,
+      minRange: minRange.trim(),
+      maxRange: maxRange.trim(),
+    };
 
-      try {
-        const response = await axios.post(UPDATEINFO_URL, data, {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
-        });
-        console.log(response?.data);
-        setUpdateMsg('Your info has been updated.');
-      } catch (err) {
-        console.log(err);
-        setUpdateErrMsg('Something went wrong.');
-      }
+    try {
+      const response = await axios.post(UPDATEINFO_URL, data, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      });
+      console.log(response?.data);
+      setUpdateMsg('Your info has been updated.');
+    } catch (err) {
+      console.log(err);
+      setUpdateErrMsg('Something went wrong.');
     }
 
     if (email) {

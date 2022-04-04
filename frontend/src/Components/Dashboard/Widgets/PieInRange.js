@@ -5,16 +5,23 @@ import {
 } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useEffect, useState } from 'react';
+import nodata from '../../../assets/data.png';
 
 const PieInRange = (props) => {
   const [data, setData] = useState([]);
+  const [response, setResponse] = useState(true);
+
+  useEffect(() => {
+    setResponse(props.response);
+  }, [props.response]);
 
   useEffect(() => {
     percentage(props.percentage);
   }, [props.percentage]);
 
   const percentage = (data) => {
-    setData(Math.round(data));
+    if (data !== 0) setData(Math.round(data));
+    else setData(0);
   };
 
   return (

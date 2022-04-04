@@ -4,6 +4,8 @@ import axios from '../../../axios/axios';
 import './SugarPage.css';
 import SugarItem from './Items/SugarItem';
 
+import logo from '../../../logo-top.svg';
+
 const GETSUGAR_URL = '/sugar/';
 const DELETE_URL = '/sugar/delete/';
 const GETEDIT_URL = '/sugar/';
@@ -18,30 +20,12 @@ const SugarPage = (props) => {
   const [editErrMsg, setEditErrMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
 
+  const [load, setLoad] = useState(false);
+
   useEffect(() => {
     handleSubmit();
+    setLoad(false);
   }, []);
-
-  // const handleNewSugar = async (enteredSugarData) => {
-  //   const sugarData = {
-  //     ...enteredSugarData,
-  //   };
-  //   try {
-  //     const response = await axios.post(SUGAR_URL, JSON.stringify(sugarData), {
-  //       headers: { 'Content-Type': 'application/json' },
-  //       withCredentials: true,
-  //     });
-  //     console.log(response?.data);
-  //     if (response?.data === 400) {
-  //       console.log('err');
-  //     }
-  //   } catch (err) {
-  //     if (!err) {
-  //       console.log('no response');
-  //     } else console.log(err);
-  //   }
-  //   handleSubmit();
-  // };
 
   const handleSubmit = async () => {
     try {
@@ -50,10 +34,13 @@ const SugarPage = (props) => {
         withCredentials: true,
       });
       setData(response?.data);
+      // props.setLoad(true);
       console.log(response?.data);
     } catch (err) {
       if (err) setErrMsg('No response');
     }
+
+    setLoad(true);
   };
 
   const keyDelete = (key) => {
@@ -131,7 +118,11 @@ const SugarPage = (props) => {
     setErrMsg('');
   };
 
-  return (
+  return !load ? (
+    <div className='loader'>
+      <img src={logo} alt='logo' className='a' />
+    </div>
+  ) : (
     <div className='page-container'>
       {/* <div className='export-btn'>
         <button>Export to PDF</button>

@@ -5,6 +5,8 @@ import nodata from '../../../assets/data.png';
 import React, { useState, useEffect } from 'react';
 import PressureItem from './Items/PressureItem';
 
+import logo from '../../../logo-top.svg';
+
 import axios from '../../../axios/axios';
 
 const GETPRESSURE_URL = '/pressure/';
@@ -21,9 +23,11 @@ const PressurePage = () => {
   const [editMsg, setEditMsg] = useState('');
   const [editErrMsg, setEditErrMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     handleSubmit();
+    setLoad(false);
   }, []);
 
   const handleSubmit = async () => {
@@ -36,6 +40,7 @@ const PressurePage = () => {
       // const resData = response?.data;
       setData(response?.data);
     } catch (err) {}
+    setLoad(true);
   };
 
   const keyDelete = (key) => {
@@ -112,7 +117,11 @@ const PressurePage = () => {
     setEditMsg('');
     setErrMsg('');
   };
-  return (
+  return !load ? (
+    <div className='loader'>
+      <img src={logo} alt='logo' className='a' />
+    </div>
+  ) : (
     <div className='page-container'>
       {/* <div className='export-btn'>
       <button>Export to PDF</button>

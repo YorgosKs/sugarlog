@@ -143,11 +143,11 @@ router.post('/update-password', verifyJWT, async (req, res) => {
 });
 
 router.get('/logout', verifyJWT, (req, res) => {
-  return res
-    .clearCookie('token')
-    .status(200)
-    .json({ message: 'Logout success' })
-    .end();
+  // return
+  res.clearCookie('token');
+  res.status(200);
+  res.json({ message: 'Logout success' });
+  res.end();
 });
 
 module.exports = router;

@@ -4,6 +4,8 @@ import nodata from '../../../assets/data.png';
 import InsulinItem from './Items/InsulinItem';
 import axios from '../../../axios/axios';
 
+import logo from '../../../logo-top.svg';
+
 const GETINSULIN_URL = '/insulin/';
 const DELETE_URL = '/insulin/delete/';
 const INSULIN_URL = '/insulin/add/';
@@ -19,8 +21,11 @@ const InsulinPage = () => {
   const [editErrMsg, setEditErrMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
 
+  const [load, setLoad] = useState(false);
+
   useEffect(() => {
     handleSubmit();
+    setLoad(false);
   }, []);
 
   const handleSubmit = async () => {
@@ -32,6 +37,8 @@ const InsulinPage = () => {
       setData(response?.data);
       console.log(response?.data);
     } catch (err) {}
+
+    setLoad(true);
   };
 
   const keyDelete = (key) => {
@@ -109,7 +116,11 @@ const InsulinPage = () => {
     setErrMsg('');
   };
 
-  return (
+  return !load ? (
+    <div className='loader'>
+      <img src={logo} alt='logo' className='a' />
+    </div>
+  ) : (
     <div className='page-container'>
       {/* <div className='export-btn'>
         <button>Export to PDF</button>

@@ -45,6 +45,16 @@ const SugarForm = (props) => {
       setTimeMsg('');
     }
 
+    const date1 = new Date();
+    date1.setDate(date1.getDate());
+    const today = date1.toISOString().split('T')[0];
+
+    const day2 = new Date();
+    day2.setDate(day2.getDate() - 1);
+    const day2fix = day2.toISOString().split('T')[0];
+
+    if (today === date) console.log(true);
+
     const sugarData = {
       level: level,
       date: date,

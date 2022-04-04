@@ -4,6 +4,7 @@ import delete_btn from '../../../assets/delete.png';
 import nodata from '../../../assets/data.png';
 import React, { useState, useEffect } from 'react';
 import ActivityItem from './Items/ActivityItem';
+import logo from '../../../logo-top.svg';
 
 import axios from '../../../axios/axios';
 
@@ -20,9 +21,11 @@ const ActivityPage = () => {
   const [editMsg, setEditMsg] = useState('');
   const [editErrMsg, setEditErrMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     handleSubmit();
+    setLoad(false);
   }, []);
 
   const handleSubmit = async () => {
@@ -35,6 +38,7 @@ const ActivityPage = () => {
       // const resData = response?.data;
       setData(response?.data);
     } catch (err) {}
+    setLoad(true);
   };
 
   const keyDelete = (key) => {
@@ -114,7 +118,11 @@ const ActivityPage = () => {
 
   // handleSubmit();
 
-  return (
+  return !load ? (
+    <div className='loader'>
+      <img src={logo} alt='logo' className='a' />
+    </div>
+  ) : (
     <div className='page-container'>
       {/* <div className='export-btn'>
       <button>Export to PDF</button>

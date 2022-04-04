@@ -30,11 +30,86 @@ router.get('/', verifyJWT, async (req, res) => {
     .catch((err) => res.status(400).send(err));
 });
 
-router.get('/:id', verifyJWT, async (req, res) => {
-  Sugar.findById(req.params.id)
-    .then((sugar) => res.json(sugar))
-    .catch((err) => res.status(400).send(err));
+router.get('/avg-data', verifyJWT, async (req, res, next) => {
+  try {
+    const date1 = new Date();
+    date1.setDate(date1.getDate());
+    const formattedDate1 = date1.toISOString().split('T')[0];
+    const dayOne = await Sugar.find({
+      user: req.user.id,
+      date: formattedDate1,
+    }).select('-_id date level user');
+
+    const date2 = new Date();
+    date2.setDate(date2.getDate() - 1);
+    const formattedDate2 = date2.toISOString().split('T')[0];
+    const dayTwo = await Sugar.find({
+      user: req.user.id,
+      date: formattedDate2,
+    }).select('-_id date level user');
+
+    const date3 = new Date();
+    date3.setDate(date3.getDate() - 2);
+    const formattedDate3 = date3.toISOString().split('T')[0];
+    const dayThree = await Sugar.find({
+      user: req.user.id,
+      date: formattedDate3,
+    }).select('-_id date level user');
+
+    const date4 = new Date();
+    date4.setDate(date4.getDate() - 3);
+    const formattedDate4 = date4.toISOString().split('T')[0];
+    const dayFour = await Sugar.find({
+      user: req.user.id,
+      date: formattedDate4,
+    }).select('-_id date level user');
+
+    const date5 = new Date();
+    date5.setDate(date5.getDate() - 4);
+    const formattedDate5 = date5.toISOString().split('T')[0];
+    const dayFive = await Sugar.find({
+      user: req.user.id,
+      date: formattedDate5,
+    }).select('-_id date level user');
+
+    const date6 = new Date();
+    date6.setDate(date6.getDate() - 5);
+    const formattedDate6 = date6.toISOString().split('T')[0];
+    const daySix = await Sugar.find({
+      user: req.user.id,
+      date: formattedDate6,
+    }).select('-_id date level user');
+
+    const date7 = new Date();
+    date7.setDate(date7.getDate() - 6);
+    const formattedDate7 = date7.toISOString().split('T')[0];
+    const daySeven = await Sugar.find({
+      user: req.user.id,
+      date: formattedDate7,
+    }).select('-_id date level user');
+
+    const dataTwo = res.json([
+      dayOne,
+      dayTwo,
+      dayThree,
+      dayFour,
+      dayFive,
+      daySix,
+      daySeven,
+    ]);
+    return dataTwo;
+  } catch (err) {
+    console.log(err);
+  }
 });
+
+// GET EDIT DATA
+
+// router.get('/:id', verifyJWT, async (req, res) => {
+//   Sugar.findById(req.params.id)
+//     .then((sugar) => res.json(sugar))
+//     .catch((err) => res.status(400).send(err));
+// });
 
 router.post('/update/:id', verifyJWT, async (req, res) => {
   Sugar.findById(req.params.id).then((sugar) => {

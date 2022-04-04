@@ -68,6 +68,20 @@
   transition: opacity 0.3s ease;
 }
 
+.loader {
+  /* width: 100%;
+  height: calc(100vh - 100px);
+  margin: 100px auto; */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+
 @media only screen and (max-width: 1007px) {
   .wrapper {
     max-width: 90%;

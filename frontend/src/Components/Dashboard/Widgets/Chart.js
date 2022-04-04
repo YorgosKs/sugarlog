@@ -1,6 +1,7 @@
 import './Chart.css';
 import { ResponsiveContainer, XAxis, BarChart, Bar } from 'recharts';
 import { useEffect, useState } from 'react';
+import nodata from '../../../assets/data.png';
 
 const Chart = (props) => {
   const [today, setToday] = useState([]);
@@ -11,83 +12,108 @@ const Chart = (props) => {
   const [day6, setDay6] = useState([]);
   const [day7, setDay7] = useState([]);
 
-  const [day2Date, setDay2Date] = useState();
-  const [day3Date, setDay3Date] = useState();
-  const [day4Date, setDay4Date] = useState();
-  const [day5Date, setDay5Date] = useState();
-  const [day6Date, setDay6Date] = useState();
-  const [day7Date, setDay7Date] = useState();
-
-  const [day2Month, setDay2Month] = useState();
-  const [day3Month, setDay3Month] = useState();
-  const [day4Month, setDay4Month] = useState();
-  const [day5Month, setDay5Month] = useState();
-  const [day6Month, setDay6Month] = useState();
-  const [day7Month, setDay7Month] = useState();
+  useEffect(() => {
+    setToday(props.today);
+  }, [props.today]);
 
   useEffect(() => {
-    setToday(props.todayAVG);
-  }, [props.todayAVG]);
+    setDay2(props.day2);
+  }, [props.day2]);
 
   useEffect(() => {
-    setDay2(props.day2AVG);
-    setDay2Date(props.day2Date);
-    setDay2Month(props.day2Month);
-  }, [props.day2AVG, props.day2Date, props.day2Month]);
+    setDay3(props.day3);
+  }, [props.day3]);
 
   useEffect(() => {
-    setDay3(props.day3AVG);
-    setDay3Date(props.day3Date);
-    setDay3Month(props.day3Month);
-  }, [props.day3AVG, props.day3Date, props.day3Month]);
+    setDay4(props.day4);
+  }, [props.day4]);
 
   useEffect(() => {
-    setDay4(props.day4AVG);
-    setDay4Date(props.day4Date);
-    setDay4Month(props.day4Month);
-  }, [props.day4AVG, props.day4Date, props.day4Month]);
+    setDay5(props.day5);
+  }, [props.day5]);
 
   useEffect(() => {
-    setDay5(props.day5AVG);
-    setDay5Date(props.day5Date);
-    setDay5Month(props.day5Month);
-  }, [props.day5AVG, props.day5Date, props.day5Month]);
+    setDay6(props.day6);
+  }, [props.day6]);
 
   useEffect(() => {
-    setDay6(props.day6AVG);
-    setDay6Date(props.day6Date);
-    setDay6Month(props.day6Month);
-  }, [props.day6AVG, props.day6Date, props.day6Month]);
-
-  useEffect(() => {
-    setDay7(props.day7AVG);
-    setDay7Date(props.day7Date);
-    setDay7Month(props.day7Month);
-  }, [props.day7AVG, props.day7Date, props.day7Month]);
+    setDay7(props.day7);
+  }, [props.day7]);
 
   const reducer = (accumulator, curr) => accumulator + curr;
-  const avgToday = Math.round(today.reduce(reducer, 0) / props.todayAVG.length);
-  const avgDay2 = Math.round(day2.reduce(reducer, 0) / props.day2AVG.length);
-  const avgDay3 = Math.round(day3.reduce(reducer, 0) / props.day3AVG.length);
-  const avgDay4 = Math.round(day4.reduce(reducer, 0) / props.day4AVG.length);
-  const avgDay5 = Math.round(day5.reduce(reducer, 0) / props.day5AVG.length);
-  const avgDay6 = Math.round(day6.reduce(reducer, 0) / props.day6AVG.length);
-  const avgDay7 = Math.round(day7.reduce(reducer, 0) / props.day7AVG.length);
 
-  console.log(day2Date);
+  const avgToday = today.map((data) => parseInt(data.level));
+  const data1 = Math.round(avgToday.reduce(reducer, 0) / props.today.length);
+
+  const avgDay2 = day2.map((data) => parseInt(data.level));
+  const data2 = Math.round(avgDay2.reduce(reducer, 0) / props.day2.length);
+
+  const avgDay3 = day3.map((data) => parseInt(data.level));
+  const data3 = Math.round(avgDay3.reduce(reducer, 0) / props.day3.length);
+
+  const avgDay4 = day4.map((data) => parseInt(data.level));
+  const data4 = Math.round(avgDay4.reduce(reducer, 0) / props.day4.length);
+
+  const avgDay5 = day5.map((data) => parseInt(data.level));
+  const data5 = Math.round(avgDay5.reduce(reducer, 0) / props.day5.length);
+
+  const avgDay6 = day6.map((data) => parseInt(data.level));
+  const data6 = Math.round(avgDay6.reduce(reducer, 0) / props.day6.length);
+
+  const avgDay7 = day7.map((data) => parseInt(data.level));
+  const data7 = Math.round(avgDay7.reduce(reducer, 0) / props.day7.length);
+
+  const date = new Date();
+  date.setDate(date.getDate());
+
+  const day2d = new Date();
+  day2d.setDate(day2d.getDate() - 1);
+  const month2 = day2d.toLocaleString('en-us', { month: '2-digit' });
+  const date2 = day2d.toLocaleString('en-us', { day: '2-digit' });
+
+  const day3d = new Date();
+  day3d.setDate(day3d.getDate() - 2);
+  const month3 = day3d.toLocaleString('en-us', { month: '2-digit' });
+  const date3 = day3d.toLocaleString('en-us', { day: '2-digit' });
+
+  const day4d = new Date();
+  day4d.setDate(day4d.getDate() - 3);
+  const month4 = day4d.toLocaleString('en-us', { month: '2-digit' });
+  const date4 = day4d.toLocaleString('en-us', { day: '2-digit' });
+
+  const day5d = new Date();
+  day5d.setDate(day5d.getDate() - 4);
+  const month5 = day5d.toLocaleString('en-us', { month: '2-digit' });
+  const date5 = day5d.toLocaleString('en-us', { day: '2-digit' });
+
+  const day6d = new Date();
+  day6d.setDate(day6d.getDate() - 5);
+  const month6 = day6d.toLocaleString('en-us', { month: '2-digit' });
+  const date6 = day6d.toLocaleString('en-us', { day: '2-digit' });
+
+  const day7d = new Date();
+  day7d.setDate(day7d.getDate() - 6);
+  const month7 = day7d.toLocaleString('en-us', { month: '2-digit' });
+  const date7 = day7d.toLocaleString('en-us', { day: '2-digit' });
 
   const data = [
-    { name: 'Today', average: avgToday },
-    { name: day2Date + `/` + day2Month, average: avgDay2 },
-    { name: day3Date + `/` + day3Month, average: avgDay3 },
-    { name: day4Date + `/` + day4Month, average: avgDay4 },
-    { name: day5Date + `/` + day5Month, average: avgDay5 },
-    { name: day6Date + `/` + day6Month, average: avgDay6 },
-    { name: day7Date + `/` + day7Month, average: avgDay7 },
+    { name: 'Today', average: isNaN(data1) ? 0 : data1 },
+    { name: date2 + `/` + month2, average: isNaN(data2) ? 0 : data2 },
+    { name: date3 + `/` + month3, average: isNaN(data3) ? 0 : data3 },
+    { name: date4 + `/` + month4, average: isNaN(data4) ? 0 : data4 },
+    { name: date5 + `/` + month5, average: isNaN(data5) ? 0 : data5 },
+    { name: date6 + `/` + month6, average: isNaN(data6) ? 0 : data6 },
+    { name: date7 + `/` + month7, average: isNaN(data7) ? 0 : data7 },
   ];
 
   return (
     <div className='graph'>
+      {/* {!response ? (
+        <div className='no-data-container'>
+          <img src={nodata} className='data-img' alt='no-data' />
+          <p className='data-p'>Nothing to display</p>
+        </div>
+      ) : ( */}
       <ResponsiveContainer width='95%' height='70%' className='chart'>
         <BarChart width={640} height={200} data={data} className='chart'>
           <XAxis
@@ -111,6 +137,7 @@ const Chart = (props) => {
           />
         </BarChart>
       </ResponsiveContainer>
+      {/* )} */}
       <p>Daily sugar level average</p>
     </div>
   );

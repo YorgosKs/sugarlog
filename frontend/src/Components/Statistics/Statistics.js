@@ -9,13 +9,15 @@ import PressurePage from './Pages/Pressure';
 import WeightPage from './Pages/WeightPage';
 import { useState, useEffect } from 'react';
 
+import logo from '../../logo-top.svg';
+
 const Statistics = (props) => {
   const [page, setPage] = useState(<SugarPage />);
   const [currPage, setCurrPage] = useState();
 
   useEffect(() => {
     setPage(page);
-  }, [page]);
+  }, [page, props]);
 
   const pageSetter = (data) => {
     setPage(data);
@@ -25,6 +27,7 @@ const Statistics = (props) => {
     <div className='stats-container'>
       <Nav />
       <div className='filler'></div>
+
       <div className='stats-wrapper'>
         <HorizontalServiceButtons setPager={pageSetter} />
         {/* <SugarPage /> */}
@@ -33,7 +36,9 @@ const Statistics = (props) => {
         {/* <MealPage /> */}
         {/* <WeightPage /> */}
         {/* <PressurePage /> */}
+
         {page}
+
         <div className='btm-filler'></div>
       </div>
     </div>

@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import MealItem from './Items/MealItem';
 import axios from '../../../axios/axios';
 
+import logo from '../../../logo-top.svg';
+
 const GETMEAL_URL = '/meal/';
 const DELETE_URL = '/meal/delete/';
 const MEAL_URL = '/meal/add/';
@@ -18,9 +20,11 @@ const MealPage = () => {
   const [editMsg, setEditMsg] = useState('');
   const [editErrMsg, setEditErrMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     handleSubmit();
+    setLoad(false);
   }, []);
 
   const handleSubmit = async () => {
@@ -32,6 +36,7 @@ const MealPage = () => {
       console.log(JSON.stringify(response?.data));
       setData(response?.data);
     } catch (err) {}
+    setLoad(true);
   };
 
   const keyDelete = (key) => {
@@ -109,7 +114,11 @@ const MealPage = () => {
     setErrMsg('');
   };
 
-  return (
+  return !load ? (
+    <div className='loader'>
+      <img src={logo} alt='logo' className='a' />
+    </div>
+  ) : (
     <div className='page-container'>
       {/* <div className='export-btn'>
       <button>Export to PDF</button>
