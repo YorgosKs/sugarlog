@@ -4,8 +4,8 @@ import {
   buildStyles,
 } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+
 import { useEffect, useState } from 'react';
-import nodata from '../../../assets/data.png';
 
 const PieInRange = (props) => {
   const [data, setData] = useState([]);
@@ -40,20 +40,6 @@ const PieInRange = (props) => {
           width: '150px',
         })}
       />
-      {/* <CircularProgressbarWithChildren
-        value={percentage}
-        text={`${percentage}%\nin range`}
-        className='range-circle'
-        strokeWidth='15'
-        counterClockwise='true'
-        styles={buildStyles({
-          pathColor: `#DD105E`,
-          textColor: `#DD105E`,
-          textSize: '10px',
-          trailColor: 'none',
-          width: '150px',
-        })}
-      /> */}
     </div>
   );
 };

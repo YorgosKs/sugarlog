@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import axios from '../../axios/axios';
 import './InfoModal.css';
 import { useNavigate } from 'react-router-dom';
-// import arrow from '../../assets/arrow.png';
 
 const NUM_REGEX = /^[0-9]*$/;
 
@@ -19,8 +18,6 @@ const InfoModal = (props) => {
   const [sugarErr, setSugarErr] = useState('');
   const [minErr, setMinErr] = useState('');
   const [maxErr, setMaxErr] = useState('');
-
-  const navigate = useNavigate();
 
   const handleInfoData = async (e) => {
     e.preventDefault();
@@ -64,7 +61,6 @@ const InfoModal = (props) => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(response?.data);
     } catch (err) {
       if (err) {
         console.log(err);
@@ -77,7 +73,6 @@ const InfoModal = (props) => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(response?.data);
     } catch (err) {
       console.log(err);
     }
@@ -129,13 +124,6 @@ const InfoModal = (props) => {
         <p id='emailcheckmsg' className={sugarErr ? 'errmsg' : 'offscreen'}>
           {sugarErr}
         </p>
-        {/* <p
-          ref={errRef}
-          id='emailcheckmsg'
-          className={timeMsg ? 'errmsg' : 'offscreen'}
-        >
-          {timeMsg}
-        </p> */}
         <div className='info-input'>
           <div className='input-group'>
             <label>Min range</label>

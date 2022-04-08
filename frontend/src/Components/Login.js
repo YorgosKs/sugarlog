@@ -1,17 +1,17 @@
 import './Login.css';
-// import './Register.css';
 import logo from '../logo.svg';
 
-import { Link, useNavigate, Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import axios from '../axios/axios';
 import { useState, useEffect, useRef } from 'react';
+
+import ChangePwd from './ChangePwd';
 
 const PWD_REGEX = /^$|\s*/;
 const LOGIN_URL = '/login';
 
 const Login = (props) => {
   const errRef = useRef();
-  // const userRef = useRef();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,9 +23,8 @@ const Login = (props) => {
 
   useEffect(() => {
     setPwdErrMsg('');
+    setOpen(false);
   }, [password]);
-
-  // let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +42,6 @@ const Login = (props) => {
           withCredentials: true,
         }
       );
-      console.log(response?.data);
       if (response?.data === 401) {
         setEmailErrMsg('Email address not found');
       } else if (response?.data === 403) {
@@ -53,7 +51,7 @@ const Login = (props) => {
         setSuccess(true);
         const state = true;
         props.loggedInState(state);
-        window.localStorage.setItem('active', state);
+        window.localStorage.setItem('token', state);
       }
     } catch (err) {
       if (!err?.response) {
@@ -71,9 +69,20 @@ const Login = (props) => {
         <Navigate to='/dashboard' />
       ) : (
         <div className='container'>
-          <div className='left-side'>
+          <div
+            className='modal'
+            style={
+              open ? { opacity: 1, left: '50%', top: '50%' } : { opacity: 0 }
+            }
+          >
+            <ChangePwd setOpen={setOpen} />
+          </div>
+          <div className='leftSide'>
             <div className='login-form'>
               <form onSubmit={handleSubmit}>
+                <div>
+                  <img src={logo} alt='logo' className='logo-mobile' />
+                </div>
                 <div className='login-form_control title'>
                   <h2>Login</h2>
                   <p
@@ -89,12 +98,11 @@ const Login = (props) => {
                   <input
                     type='email'
                     id='email'
-                    // ref={userRef}
                     autoComplete='off'
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                     required
-                    // onBlur={emailCheck}
+                    style={{ color: 'white' }}
                   />
                   <p
                     ref={errRef}
@@ -121,24 +129,26 @@ const Login = (props) => {
                   >
                     {pwdErrMsg}
                   </p>
-                  <a href='#' className='form-messages'>
+                  <a
+                    href='#!'
+                    className='form-messages'
+                    onClick={() => setOpen(true)}
+                  >
                     Forgot password?
                   </a>
                   <Link to='/register' className='form-messages'>
                     Don't have an account?
                   </Link>
                 </div>
-                <div>
-                  {/* <Link to='/dashboard'> */}
+                <div className='login-form_control'>
                   <button className='form-button' type='submit'>
                     Login
                   </button>
-                  {/* </Link> */}
                 </div>
               </form>
             </div>
           </div>
-          <div className='right-side'>
+          <div className='rightSide'>
             <div className='message-container'>
               <div>
                 <img src={logo} alt='logo' className='logo' />

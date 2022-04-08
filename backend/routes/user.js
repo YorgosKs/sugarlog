@@ -65,6 +65,7 @@ router.post(
       if (!validPass) return res.json(403);
 
       const payload = { _id: user._id };
+      const payload1 = { id: 12345 };
 
       if (user && validPass) {
         const token = jwt.sign(
@@ -73,18 +74,47 @@ router.post(
           { expiresIn: 86400 },
           (err, token) => {
             if (err) return res.json({ message: err });
-            return res
-              .cookie('token', token, {
-                path: '*/',
-                httpOnly: true,
-                sameSite: 'none',
-                secure: true,
-                maxAge: 24 * 60 * 60 * 1000,
-              })
-              .status(200)
-              .json({ message: 'Login success!' });
+            return (
+              res
+                .cookie('token', token, {
+                  path: '*/',
+                  httpOnly: true,
+                  sameSite: 'none',
+                  secure: true,
+                  maxAge: 24 * 60 * 60 * 1000,
+                })
+                .cookie('loginToken', token, {
+                  path: '*/',
+                  httpOnly: false,
+                  // sameSite: 'none',
+                  secure: true,
+                  maxAge: 24 * 60 * 60 * 1000,
+                })
+                // .status(200)
+                // .json({ message: 'Login true!' });
+                .status(200)
+                .json({ message: 'Login success!' })
+            );
           }
         );
+        // const logInToken = jwt.sign(
+        //   payload1,
+        //   process.env.TOKEN_SECRET,
+        //   { expiresIn: 86400 },
+        //   (err, token) => {
+        //     if (err) return res.json({ message: err });
+        //     return res
+        //       .cookie('loginToken', token, {
+        //         path: '*/',
+        //         // httpOnly: false,
+        //         sameSite: 'none',
+        //         // secure: true,
+        //         maxAge: 24 * 60 * 60 * 1000,
+        //       })
+        //       .status(200)
+        //       .json({ message: 'Login true!' });
+        //   }
+        // );
       } else {
         return res.json({
           message: 'Something went wrong',
@@ -142,12 +172,35 @@ router.post('/update-password', verifyJWT, async (req, res) => {
   });
 });
 
+router.post('/change-password', async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  console.log(salt);
+  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+  console.log(hashedPassword);
+  User.findOne({ email: req.body.email }).then((user) => {
+    user.password = hashedPassword;
+    user
+      .save()
+      .then(() => res.json('Password updated!'))
+      .catch((err) => console.log(err));
+  });
+});
+
 router.get('/logout', verifyJWT, (req, res) => {
-  // return
-  res.clearCookie('token');
-  res.status(200);
-  res.json({ message: 'Logout success' });
-  res.end();
+  return res
+    .clearCookie('token', { domain: 'localhost', path: '/api/users' })
+    .clearCookie('loginToken', { domain: 'localhost', path: '/api/users' })
+
+    .status(200)
+    .json({ message: 'Logout success' })
+    .end();
+  // res.cookie('token', 'none', {
+  //   expires: new Date(Date.now() + 5 * 1000),
+  //   httpOnly: true,
+  // });
+  // res
+  //   .status(200)
+  //   .json({ success: true, message: 'User logged out successfully' });
 });
 
 module.exports = router;

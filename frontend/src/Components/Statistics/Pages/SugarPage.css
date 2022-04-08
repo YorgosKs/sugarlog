@@ -37,7 +37,7 @@ hr {
 }
 
 .export-btn {
-  width: 92%;
+  width: 100%;
   margin: 0 auto 2.5vh auto;
 }
 
@@ -78,7 +78,6 @@ hr {
   background-color: #eeeeee;
   margin: 0 auto;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
-  /* border-radius: 5px 5px 0 0; */
 }
 
 .title-row p {
@@ -88,10 +87,6 @@ hr {
   width: 100%;
   margin: 0 20px;
 }
-
-/* .hide {
-  opacity: 0;
-} */
 
 .modal {
   border: 2px black solid;
@@ -107,7 +102,6 @@ hr {
 }
 
 .offscreen {
-  /* display: none; */
   opacity: 0;
   transition: opacity 1s ease;
 }
@@ -160,87 +154,3 @@ hr {
     border: none;
   }
 }
-
-/* .title-row p {
-  width: 80px;
-  margin: 0 auto;
-  color: black;
-  font-size: 18px;
-  text-align: left;
-} */
-
-/* .title-row img {
-  width: 20px;
-  margin: 0 5px;
-  cursor: pointer;
-} */
-
-/* .col-title {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.col-data {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.col-data p {
-  margin: 0 auto;
-  font-size: 18px;
-} */
-
-/* 
-@media only screen and (max-width: 1007px) {
-  .title-row p {
-    font-size: 16px;
-  }
-
-  .export-btn button {
-    font-size: 14px;
-  }
-}
-
-@media only screen and (max-width: 640px) {
-  .hidden {
-    display: none;
-  }
-
-  hr {
-    width: 100%;
-  }
-
-  .title-row {
-    width: 90%;
-    flex-direction: row;
-    align-items: center;
-    box-shadow: 2px 0 5px -1px #888;
-  }
-
-  .col-title {
-    display: inherit;
-    width: 45%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .col-data {
-    width: 45%;
-    margin: 0 auto;
-    flex-direction: column;
-  }
-
-  .title-col p,
-  .data-col p {
-    font-size: 16px;
-  }
-
-  p img {
-    display: none;
-  }
-} */

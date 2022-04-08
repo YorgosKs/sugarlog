@@ -2,15 +2,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   margin: 0 auto;
 }
 
 .item {
-  width: 30%;
-  height: 90%;
-  margin: 10px auto;
-  border-radius: 20px;
+  width: 31%;
+  margin: 10px 0;
+  border-radius: 15px;
   background-color: #ffffff;
   box-shadow: 2px 0 10px -2px lightgray;
 }
@@ -35,12 +35,14 @@
 @media only screen and (max-width: 1007px) {
   .row {
     width: 100%;
+    justify-content: space-between;
   }
 
   .item {
-    width: 30%;
+    width: 32%;
     height: 120px;
-    margin: 10px auto;
+    margin: 10px 0 0 0;
+
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
@@ -72,9 +74,9 @@
   }
 
   .item {
-    width: 30%;
+    width: 32%;
     height: 120px;
-    margin: 10px auto;
+    margin: 10px 0 0 0;
     display: inline-flex;
     flex-direction: column;
     justify-content: center;

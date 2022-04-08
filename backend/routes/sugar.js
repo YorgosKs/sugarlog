@@ -30,7 +30,44 @@ router.get('/', verifyJWT, async (req, res) => {
     .catch((err) => res.status(400).send(err));
 });
 
-router.get('/avg-data', verifyJWT, async (req, res, next) => {
+router.get('/avg-hours', verifyJWT, async (req, res) => {
+  try {
+    const group00 = '00:00';
+    const group05 = '05:59';
+    const group1 = await Sugar.find({
+      user: req.user.id,
+      time: { $gte: group00, $lte: group05 },
+    }).select('-_id level');
+
+    const group06 = '06:00';
+    const group11 = '11:59';
+    const group2 = await Sugar.find({
+      user: req.user.id,
+      time: { $gte: group06, $lte: group11 },
+    }).select('-_id level');
+
+    const group12 = '12:00';
+    const group17 = '17:59';
+    const group3 = await Sugar.find({
+      user: req.user.id,
+      time: { $gte: group12, $lte: group17 },
+    }).select('-_id level');
+
+    const group18 = '18:00';
+    const group24 = '23:59';
+    const group4 = await Sugar.find({
+      user: req.user.id,
+      time: { $gte: group18, $lte: group24 },
+    }).select('-_id level');
+
+    const dataHrAvg = res.json([group1, group2, group3, group4]);
+    return dataHrAvg;
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+router.get('/avg-data', verifyJWT, async (req, res) => {
   try {
     const date1 = new Date();
     date1.setDate(date1.getDate());
@@ -88,7 +125,7 @@ router.get('/avg-data', verifyJWT, async (req, res, next) => {
       date: formattedDate7,
     }).select('-_id date level user');
 
-    const dataTwo = res.json([
+    const dataAvg = res.json([
       dayOne,
       dayTwo,
       dayThree,
@@ -97,7 +134,7 @@ router.get('/avg-data', verifyJWT, async (req, res, next) => {
       daySix,
       daySeven,
     ]);
-    return dataTwo;
+    return dataAvg;
   } catch (err) {
     console.log(err);
   }
@@ -105,11 +142,11 @@ router.get('/avg-data', verifyJWT, async (req, res, next) => {
 
 // GET EDIT DATA
 
-// router.get('/:id', verifyJWT, async (req, res) => {
-//   Sugar.findById(req.params.id)
-//     .then((sugar) => res.json(sugar))
-//     .catch((err) => res.status(400).send(err));
-// });
+router.get('/update-data/:id', verifyJWT, async (req, res) => {
+  Sugar.findById(req.params.id)
+    .then((sugar) => res.json(sugar))
+    .catch((err) => res.status(400).send(err));
+});
 
 router.post('/update/:id', verifyJWT, async (req, res) => {
   Sugar.findById(req.params.id).then((sugar) => {

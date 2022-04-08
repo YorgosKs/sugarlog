@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import './EditForm.css';
-// import arrow from '../../assets/arrow.png';
 
 const NUM_REGEX = /^[0-9]*$/;
 const DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
@@ -90,7 +89,6 @@ const EditPressureForm = (props) => {
       diastolic: diastolic.trim(),
       note: note.trim(),
     };
-    console.log(pressureData);
     props.getData(pressureData);
     props.setModal();
 
@@ -117,7 +115,6 @@ const EditPressureForm = (props) => {
         <div className='main-value'>
           <input
             type='number'
-            // pattern='[0-9]+'
             placeholder='Pulse'
             onChange={(e) => setPulse(e.target.value)}
             value={pulse || ''}
@@ -154,7 +151,6 @@ const EditPressureForm = (props) => {
             type='Time'
             value={time || ''}
             onChange={(e) => setTime(e.target.value)}
-            // required
           />
         </div>
         <p

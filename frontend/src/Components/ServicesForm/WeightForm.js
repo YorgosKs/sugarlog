@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import './SugarForm.css';
 
 import axios from '../../axios/axios';
-// import arrow from '../../assets/arrow.png';
 
 const NUM_REGEX = /^([0-9]|[1-9][0-9]|[1-9][0-9][0-9])$/;
 const DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
@@ -51,15 +50,10 @@ const EditMealForm = (props) => {
           withCredentials: true,
         }
       );
-      console.log(response?.data);
+
       props.closeModal();
-      if (response?.data === 400) {
-        console.log('err');
-      }
     } catch (err) {
-      if (!err) {
-        console.log('no response');
-      } else console.log(err);
+      console.log(err);
     }
     setWeightNum('');
     setDate('');
@@ -68,6 +62,15 @@ const EditMealForm = (props) => {
     setDateMsg('');
   };
 
+  const cancelHandler = () => {
+    props.closeModal();
+
+    setWeightNum('');
+    setDate('');
+    setNote('');
+    setWeightMsg('');
+    setDateMsg('');
+  };
   return (
     <div className='form-container'>
       <form onSubmit={handleData}>
@@ -119,7 +122,7 @@ const EditMealForm = (props) => {
           </button>
           <button
             className='button cancel'
-            onClick={props.closeModal}
+            onClick={cancelHandler}
             type='button'
           >
             Cancel

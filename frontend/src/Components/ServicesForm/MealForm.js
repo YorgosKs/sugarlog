@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import axios from '../../axios/axios';
 import './SugarForm.css';
 
@@ -65,16 +65,26 @@ const MealForm = (props) => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(response?.data);
+
       props.closeModal();
-      if (response?.data === 400) {
-        console.log('err');
-      }
     } catch (err) {
-      if (!err) {
-        console.log('no response');
-      } else console.log(err);
+      console.log(err);
     }
+
+    setCarbs('');
+    setDate('');
+    setTime('');
+    setProtein('');
+    setFats('');
+    setNote('');
+    setCarbsMsg('');
+    setProteinMsg('');
+    setFatsMsg('');
+    setDateMsg('');
+  };
+
+  const cancelHandler = () => {
+    props.closeModal();
 
     setCarbs('');
     setDate('');
@@ -94,7 +104,6 @@ const MealForm = (props) => {
         <div className='main-value'>
           <input
             type='number'
-            // pattern='[0-9]+'
             placeholder='Carbs'
             onChange={(e) => setCarbs(e.target.value)}
             value={carbs || ''}
@@ -178,7 +187,7 @@ const MealForm = (props) => {
           </button>
           <button
             className='button cancel'
-            onClick={props.closeModal}
+            onClick={cancelHandler}
             type='button'
           >
             Cancel

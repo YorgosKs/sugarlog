@@ -1,9 +1,8 @@
 import './SugarPage.css';
-import edit_btn from '../../../assets/edit.png';
-import delete_btn from '../../../assets/delete.png';
 import nodata from '../../../assets/data.png';
 import React, { useState, useEffect } from 'react';
 import WeightItem from './Items/WeightItem';
+import Pagination from './Pagination';
 
 import logo from '../../../logo-top.svg';
 
@@ -11,7 +10,6 @@ import axios from '../../../axios/axios';
 
 const GETWEIGHT_URL = '/weight/';
 const DELETE_URL = '/weight/delete/';
-const MEAL_URL = '/weight/add/';
 const GETEDIT_URL = '/weight/';
 const UPDATE_URL = '/weight/update/';
 
@@ -25,6 +23,20 @@ const WeightPage = () => {
   const [errMsg, setErrMsg] = useState('');
   const [load, setLoad] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+  const [active, setActive] = useState(false);
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    setActive(true);
+  };
+
   useEffect(() => {
     handleSubmit();
     setLoad(false);
@@ -36,9 +48,7 @@ const WeightPage = () => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(JSON.stringify(response?.data));
-      // const resData = response?.data;
-      setData(response?.data);
+      setData(response?.data.reverse());
     } catch (err) {}
     setLoad(true);
   };
@@ -48,13 +58,11 @@ const WeightPage = () => {
   };
 
   const handleDelete = async (key) => {
-    console.log('key ' + key);
     try {
       const response = await axios.delete(DELETE_URL + key, {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(response?.data);
     } catch (err) {
       console.log(err);
     }
@@ -72,7 +80,6 @@ const WeightPage = () => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(response?.data);
       setEditData(response?.data);
     } catch (err) {
       console.log(err);
@@ -92,21 +99,14 @@ const WeightPage = () => {
           withCredentials: true,
         }
       );
-      console.log(keyId);
       setKeyId('');
       setEditData([]);
       setSuccess(!success);
       setEditMsg('Weight entry has been updated.');
-
-      console.log(response);
-      if (response?.data === 400) {
-        console.log('err');
-      }
     } catch (err) {
       if (err) {
-        console.log('no response');
         setEditErrMsg('Something went wrong.');
-      } else console.log(err);
+      }
     }
 
     handleSubmit();
@@ -123,10 +123,6 @@ const WeightPage = () => {
     </div>
   ) : (
     <div className='page-container'>
-      {/* <div className='export-btn'>
-    <button>Export to PDF</button>
-    <button>Export to CSV</button>
-  </div> */}
       <div className='items-row'>
         <div
           className='sucContainer'
@@ -215,6 +211,13 @@ const WeightPage = () => {
             />
           ))
         )}
+        <Pagination
+          totalData={data.length}
+          postsPerPage={postsPerPage}
+          paginate={paginate}
+          active={active}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );

@@ -7,7 +7,6 @@
   background-color: #fbfbfb;
   font-size: 16px;
   border-radius: 10px;
-  /* align-items: flex-start; */
 }
 
 .back {
@@ -123,7 +122,6 @@ input:focus {
   border: none;
   transition-duration: 0.4s;
   cursor: pointer;
-  filter: drop-shadow(0 0 0.1rem black);
 }
 
 .button:hover {
@@ -137,10 +135,11 @@ input:focus {
   border: 2px solid #dd105e;
   color: #dd105e;
   filter: none;
+  box-shadow: 2px 0 10px -2px lightgrey;
 }
 
 .cancel:hover {
-  background-color: #eee;
+  background-color: transparent;
   transition: all 0.2s ease-in;
   transform: scale(0.98);
 }
@@ -152,7 +151,6 @@ input:focus {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  /* border: 2px solid; */
 }
 
 .offscreen {
@@ -197,7 +195,6 @@ input:focus {
   }
 
   .button {
-    /* width: 150px; */
     margin: 15px 0;
   }
 

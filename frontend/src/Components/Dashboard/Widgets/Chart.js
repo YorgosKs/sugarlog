@@ -108,13 +108,7 @@ const Chart = (props) => {
 
   return (
     <div className='graph'>
-      {/* {!response ? (
-        <div className='no-data-container'>
-          <img src={nodata} className='data-img' alt='no-data' />
-          <p className='data-p'>Nothing to display</p>
-        </div>
-      ) : ( */}
-      <ResponsiveContainer width='95%' height='70%' className='chart'>
+      <ResponsiveContainer width='99%' height='70%' className='chart'>
         <BarChart width={640} height={200} data={data} className='chart'>
           <XAxis
             dataKey='name'
@@ -125,19 +119,19 @@ const Chart = (props) => {
             axisLine={false}
             tickSize={0}
             tickMargin={10}
-            fontSize={16}
+            fontSize={15}
           />
           <Bar
             dataKey='average'
             fill='#DD105E'
             maxBarSize={45}
             radius={10}
-            label={{ fill: 'white', fontSize: 14 }}
+            label={{ fill: 'white', fontSize: 16 }}
             className='filter'
+            isAnimationActive={false}
           />
         </BarChart>
       </ResponsiveContainer>
-      {/* )} */}
       <p>Daily sugar level average</p>
     </div>
   );

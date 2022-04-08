@@ -73,7 +73,6 @@ const EditSugarForm = (props) => {
       medication: medication.trim(),
       note: note.trim(),
     };
-    console.log(sugarData);
     props.getData(sugarData);
     props.setModal();
 
@@ -98,7 +97,6 @@ const EditSugarForm = (props) => {
         <div className='main-value'>
           <input
             type='number'
-            // pattern='[0-9]+'
             placeholder='Sugar'
             onChange={(e) => setLevel(e.target.value)}
             value={level || ''}
@@ -135,7 +133,6 @@ const EditSugarForm = (props) => {
             type='Time'
             value={time || ''}
             onChange={(e) => setTime(e.target.value)}
-            // required
           />
         </div>
         <p

@@ -69,7 +69,6 @@ const EditMealForm = (props) => {
       calories: calories.trim(),
       note: note.trim(),
     };
-    console.log(activityData);
     props.getData(activityData);
     props.setModal();
 

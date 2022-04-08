@@ -7,7 +7,7 @@
   color: black;
   font-size: 18px;
   background-color: #ffffff;
-  box-shadow: 2px 0 10px 1px lightgray;
+  box-shadow: 2px 0 10px -2px lightgray;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -59,10 +59,6 @@ a {
 .nav-browse p:hover {
   color: #dd105e;
 }
-
-/* .active {
-  border-left: 10px solid #dd105e;
-} */
 
 .active p {
   color: #dd105e;
@@ -166,6 +162,7 @@ img:hover {
     height: 60px;
     align-items: center;
     justify-content: center;
+    box-shadow: 2px 0 15px -2px lightgray;
   }
 
   .nav-browse {
@@ -185,7 +182,7 @@ img:hover {
     width: 24px;
   }
 
-  .logout-img {
+  .logout-button {
     display: none;
   }
 }

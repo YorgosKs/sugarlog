@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import edit_btn from '../../../../assets/edit.png';
 import delete_btn from '../../../../assets/delete.png';
 import EditWeightForm from '../../../EditForms/EditWeightForm';
@@ -13,20 +13,14 @@ const WeightItem = (props) => {
   const date = new Date(props.date);
   const month = date.toLocaleString('en-us', { month: 'long' });
   const day = date.toLocaleString('en-us', { day: '2-digit' });
-  const time = date.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-  const year = date.getFullYear();
+
   const formattedDate = date.toISOString().split('T')[0];
 
   const handleDelete = (key) => {
-    console.log('edit');
     props.handleDel(key);
   };
 
   const handleEdit = (key) => {
-    console.log(key);
     props.handleEd(key);
     setOpen(true);
   };
@@ -89,7 +83,6 @@ const WeightItem = (props) => {
             <p>
               {day} {month}
             </p>
-            {/* <p>{month}</p> */}
           </div>
         </div>
 

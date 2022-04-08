@@ -3,12 +3,13 @@ import nodata from '../../../assets/data.png';
 import axios from '../../../axios/axios';
 import './SugarPage.css';
 import SugarItem from './Items/SugarItem';
+import Pagination from './Pagination';
 
 import logo from '../../../logo-top.svg';
 
 const GETSUGAR_URL = '/sugar/';
 const DELETE_URL = '/sugar/delete/';
-const GETEDIT_URL = '/sugar/';
+const GETEDIT_URL = '/sugar/update-data/';
 const UPDATE_URL = '/sugar/update/';
 
 const SugarPage = (props) => {
@@ -22,6 +23,22 @@ const SugarPage = (props) => {
 
   const [load, setLoad] = useState(false);
 
+  // PAGINATION
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+  const [active, setActive] = useState(false);
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    setActive(true);
+  };
+
   useEffect(() => {
     handleSubmit();
     setLoad(false);
@@ -33,9 +50,7 @@ const SugarPage = (props) => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      setData(response?.data);
-      // props.setLoad(true);
-      console.log(response?.data);
+      setData(response?.data.reverse());
     } catch (err) {
       if (err) setErrMsg('No response');
     }
@@ -48,13 +63,11 @@ const SugarPage = (props) => {
   };
 
   const handleDelete = async (key) => {
-    console.log('key ' + key);
     try {
       const response = await axios.delete(DELETE_URL + key, {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(response?.data);
     } catch (err) {
       console.log(err);
     }
@@ -72,7 +85,6 @@ const SugarPage = (props) => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(response?.data);
       setEditData(response?.data);
     } catch (err) {
       console.log(err);
@@ -92,21 +104,14 @@ const SugarPage = (props) => {
           withCredentials: true,
         }
       );
-      console.log(keyId);
       setKeyId('');
       setEditData([]);
       setSuccess(!success);
       setEditMsg('Sugar entry has been updated.');
-
-      console.log(response);
-      if (response?.data === 400) {
-        console.log('err');
-      }
     } catch (err) {
       if (err) {
-        console.log('no response');
         setEditErrMsg('Something went wrong.');
-      } else console.log(err);
+      }
     }
 
     handleSubmit();
@@ -124,10 +129,6 @@ const SugarPage = (props) => {
     </div>
   ) : (
     <div className='page-container'>
-      {/* <div className='export-btn'>
-        <button>Export to PDF</button>
-        <button>Export to CSV</button>
-      </div> */}
       <div className='items-row'>
         <div
           className='sucContainer'
@@ -204,7 +205,7 @@ const SugarPage = (props) => {
             <p className='data-p'>Nothing to display</p>
           </div>
         ) : (
-          data.map((sugar) => (
+          currentPosts.map((sugar) => (
             <SugarItem
               key={sugar._id}
               level={sugar.level}
@@ -223,6 +224,13 @@ const SugarPage = (props) => {
           ))
         )}
       </div>
+      <Pagination
+        totalData={data.length}
+        postsPerPage={postsPerPage}
+        paginate={paginate}
+        active={active}
+        currentPage={currentPage}
+      />
     </div>
   );
 };

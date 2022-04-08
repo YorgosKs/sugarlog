@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import './SugarForm.css';
 
 import axios from '../../axios/axios';
-// import arrow from '../../assets/arrow.png';
 
 const NUM_REGEX = /^[0-9]*$/;
 const DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
@@ -79,16 +78,26 @@ const PressureForm = (props) => {
           withCredentials: true,
         }
       );
-      console.log(response?.data);
       props.closeModal();
-      if (response?.data === 400) {
-        console.log('err');
-      }
     } catch (err) {
-      if (!err) {
-        console.log('no response');
-      } else console.log(err);
+      console.log(err);
     }
+
+    setPulse('');
+    setDate('');
+    setTime('');
+    setSystolic('');
+    setDiastolic('');
+    setNote('');
+    setPulseMsg('');
+    setSystolicMsg('');
+    setDiastolicMsg('');
+    setDateMsg('');
+    setTimeMsg('');
+  };
+
+  const cancelHandler = () => {
+    props.closeModal();
 
     setPulse('');
     setDate('');
@@ -109,7 +118,6 @@ const PressureForm = (props) => {
         <div className='main-value'>
           <input
             type='number'
-            // pattern='[0-9]+'
             placeholder='Pulse'
             onChange={(e) => setPulse(e.target.value)}
             value={pulse || ''}
@@ -146,7 +154,6 @@ const PressureForm = (props) => {
             type='Time'
             value={time || ''}
             onChange={(e) => setTime(e.target.value)}
-            // required
           />
         </div>
         <p
@@ -200,7 +207,7 @@ const PressureForm = (props) => {
           </button>
           <button
             className='button cancel'
-            onClick={props.closeModal}
+            onClick={cancelHandler}
             type='button'
           >
             Cancel

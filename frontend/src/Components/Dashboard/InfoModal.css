@@ -1,4 +1,4 @@
-  .info-form-container {
+.info-form-container {
   width: 40%;
   height: 90%;
   margin: 5vh auto;
@@ -161,7 +161,6 @@ input:focus {
   }
 
   .button {
-    /* width: 150px; */
     margin: 15px 0;
   }
 

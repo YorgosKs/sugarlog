@@ -1,6 +1,7 @@
 import './SugarForm.css';
 import { useState } from 'react';
 import axios from '../../axios/axios';
+import moment from 'moment';
 
 const SUGAR_URL = '/sugar/add/';
 const NUM_REGEX = /^([0-9]|[1-9][0-9]|[1-9][0-9][0-9])$/;
@@ -22,10 +23,10 @@ const SugarForm = (props) => {
     e.preventDefault();
 
     const levelCheck = NUM_REGEX.test(level);
-    console.log(levelCheck);
+
     if (!levelCheck) {
       setLevelMsg('Sugar level should be a valid number.');
-      console.log(levelCheck);
+
       return;
     } else {
       setLevelMsg('');
@@ -45,20 +46,12 @@ const SugarForm = (props) => {
       setTimeMsg('');
     }
 
-    const date1 = new Date();
-    date1.setDate(date1.getDate());
-    const today = date1.toISOString().split('T')[0];
-
-    const day2 = new Date();
-    day2.setDate(day2.getDate() - 1);
-    const day2fix = day2.toISOString().split('T')[0];
-
-    if (today === date) console.log(true);
+    const timeF = moment(time, ['h:mm A']).format('HH:mm');
 
     const sugarData = {
       level: level,
       date: date,
-      time: time,
+      time: timeF,
       activity: activity,
       medication: medication,
       note: note,
@@ -68,18 +61,27 @@ const SugarForm = (props) => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(response?.data);
+
       props.closeModal();
-      if (response?.data === 400) {
-        console.log('err');
-      }
     } catch (err) {
-      if (!err) {
-        console.log('no response');
-      } else console.log(err);
+      console.log(err);
     }
 
     setLevel('');
+    setDate('');
+    setTime('');
+    setActivtiy('');
+    setMedication('');
+    setNote('');
+    setLevelMsg('');
+    setDateMsg('');
+    setTimeMsg('');
+  };
+
+  const cancelHandler = () => {
+    props.closeModal();
+
+    setLevel();
     setDate('');
     setTime('');
     setActivtiy('');
@@ -121,7 +123,7 @@ const SugarForm = (props) => {
         <div className='form-input'>
           <label>Time</label>
           <input
-            type='Time'
+            type='time'
             onChange={(e) => setTime(e.target.value)}
             value={time || ''}
             required
@@ -161,7 +163,7 @@ const SugarForm = (props) => {
           <button
             className='button cancel'
             type='button'
-            onClick={props.closeModal}
+            onClick={cancelHandler}
           >
             Cancel
           </button>

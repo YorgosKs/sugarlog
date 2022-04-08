@@ -26,13 +26,12 @@
   justify-content: center;
   width: 100%;
   margin: 0 auto;
-  /* border: 2px solid black; */
 }
 
 .left-col {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   width: 70%;
   margin: 0 auto;
 }
@@ -44,16 +43,11 @@
 .right-col {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 25%;
-  height: 100%;
   margin: 0 auto;
 }
-
-/* .form-wrapper {
-  width: 50%;
-} */
 
 .modal {
   border: 2px black solid;
@@ -69,10 +63,6 @@
 }
 
 .loader {
-  /* width: 100%;
-  height: calc(100vh - 100px);
-  margin: 100px auto; */
-  display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
@@ -97,7 +87,10 @@
   }
 
   .horizontal-pie {
-    display: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 }
 

@@ -4,14 +4,14 @@
 }
 
 .filter {
-  filter: drop-shadow(0 0 0.05rem black);
+  box-shadow: 2px 0 10px -2px lightgrey;
 }
 
 .range {
   width: 100%;
   margin: 10px auto;
   background-color: #fff;
-  border-radius: 30px;
+  border-radius: 20px;
   box-shadow: 2px 0 10px -3px #888;
   display: flex;
   flex-direction: column;

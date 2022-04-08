@@ -10,8 +10,8 @@ import statsFocus from '../assets/stats_focus.png';
 import settings from '../assets/settings.svg';
 import settingsFocus from '../assets/settings_focus.svg';
 
-import { Link, Navigate, useNavigate, NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link, useNavigate, NavLink } from 'react-router-dom';
+import { useState } from 'react';
 import axios from '../axios/axios';
 
 const LOGOUT_URL = '/logout';
@@ -21,27 +21,19 @@ const Nav = (props) => {
   const [activeStats, setActiveStats] = useState(false);
   const [activeSettings, setActiveSettings] = useState(false);
 
-  const navigate = useNavigate();
   const handleLogout = async () => {
     try {
       const response = await axios.get(LOGOUT_URL, {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(response?.data);
-      // const state = false;
-      // props.logOutState(state);
-      localStorage.removeItem('active');
-      // navigate('/');
+      localStorage.removeItem('token');
       window.location.replace('/login');
+      return false;
     } catch (err) {
       console.log(err);
     }
   };
-
-  // useEffect(() => {
-  //   handleActiveDash();
-  // }, []);
 
   const handleActiveDash = () => {
     setActiveDash(true);

@@ -83,7 +83,6 @@ const EditMealForm = (props) => {
       fats: fats.trim(),
       note: note.trim(),
     };
-    console.log(mealData);
     props.getData(mealData);
     props.setModal();
 

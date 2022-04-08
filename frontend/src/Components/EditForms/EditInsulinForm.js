@@ -67,7 +67,7 @@ const EditInsulinForm = (props) => {
       type: type.trim(),
       note: note.trim(),
     };
-    console.log(insulinData);
+
     props.getData(insulinData);
     props.setModal();
 

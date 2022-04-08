@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './SugarForm.css';
 import axios from '../../axios/axios';
 
@@ -58,16 +58,23 @@ const InsulinForm = (props) => {
           withCredentials: true,
         }
       );
-      console.log(response?.data);
       props.closeModal();
-      if (response?.data === 400) {
-        console.log('err');
-      }
     } catch (err) {
-      if (!err) {
-        console.log('no response');
-      } else console.log(err);
+      console.log(err);
     }
+    setUnits('');
+    setDate();
+    setTime('');
+    setType('');
+    setNote('');
+    setUnitsMsg('');
+    setDateMsg('');
+    setTimeMsg('');
+  };
+
+  const cancelHandler = () => {
+    props.closeModal();
+
     setUnits('');
     setDate();
     setTime('');
@@ -139,7 +146,7 @@ const InsulinForm = (props) => {
           </button>
           <button
             className='button cancel'
-            onClick={props.closeModal}
+            onClick={cancelHandler}
             type='button'
           >
             Cancel

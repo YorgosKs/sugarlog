@@ -7,17 +7,18 @@ import Chart from './Widgets/Chart';
 import PieInRange from './Widgets/PieInRange';
 import PieHourRange from './Widgets/PieHourRange';
 import ServiceButtons from './ServiceButtons';
-import SugarForm from '../ServicesForm/SugarForm';
 import InfoModal from './InfoModal';
 import axios from '../../axios/axios';
 
 import { useState, useEffect } from 'react';
+import InRange from './Widgets/InRange';
 
 const GETUSER_URL = '/';
 const GETSUGAR_URL = '/sugar/';
 const GETINFO_URL = '/info/';
 
 const AVGDATA_URL = '/sugar/avg-data';
+const AVGHOUR_URL = '/sugar/avg-hours';
 
 const Dashboard = () => {
   const [load, setLoad] = useState(false);
@@ -27,12 +28,7 @@ const Dashboard = () => {
   const [minRange, setMinRange] = useState('');
   const [maxRange, setMaxRange] = useState('');
   const rangeLevel = [];
-
-  const [dates, setDates] = useState('');
   const [errMsg, setErrMsg] = useState('');
-
-  const [response, setResponse] = useState(false);
-
   const [today, setToday] = useState([]);
   const [day2, setDay2] = useState([]);
   const [day3, setDay3] = useState([]);
@@ -40,6 +36,22 @@ const Dashboard = () => {
   const [day5, setDay5] = useState([]);
   const [day6, setDay6] = useState([]);
   const [day7, setDay7] = useState([]);
+
+  const [group1, setGroup1] = useState([]);
+  const group1Range = [];
+  const [count1, setCount1] = useState();
+
+  const [group2, setGroup2] = useState([]);
+  const group2Range = [];
+  const [count2, setCount2] = useState();
+
+  const [group3, setGroup3] = useState([]);
+  const group3Range = [];
+  const [count3, setCount3] = useState();
+
+  const [group4, setGroup4] = useState([]);
+  const group4Range = [];
+  const [count4, setCount4] = useState();
 
   useEffect(() => {
     handleInfoModal();
@@ -101,10 +113,31 @@ const Dashboard = () => {
     } catch (err) {
       console.log(err);
     }
+
+    try {
+      const response = await axios.get(AVGHOUR_URL, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      });
+      if (response?.data[0].length > 0) setGroup1(response?.data[0]);
+      else setGroup1([]);
+      if (response?.data[1].length > 0) setGroup2(response?.data[1]);
+      else setGroup2([]);
+      if (response?.data[2].length > 0) setGroup3(response?.data[2]);
+      else setGroup3([]);
+      if (response?.data[3].length > 0) setGroup4(response?.data[3]);
+      else setGroup4([]);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const pieRange = () => {
     data.forEach(range);
+    group1.forEach(range1);
+    group2.forEach(range2);
+    group3.forEach(range3);
+    group4.forEach(range4);
   };
 
   const range = (data) => {
@@ -112,7 +145,51 @@ const Dashboard = () => {
       rangeLevel.push(data.level);
     }
     setCount(rangeLevel.length);
-    setTimeout(() => setLoad(true), 500);
+    setTimeout(() => setLoad(true), 800);
+  };
+
+  const range1 = (group1) => {
+    if (
+      group1.level >= parseInt(minRange) &&
+      group1.level <= parseInt(maxRange)
+    ) {
+      group1Range.push(group1.level);
+    }
+
+    setCount1(group1Range.length);
+  };
+
+  const range2 = (group2) => {
+    if (
+      group2.level >= parseInt(minRange) &&
+      group2.level <= parseInt(maxRange)
+    ) {
+      group2Range.push(group2.level);
+    }
+
+    setCount2(group2Range.length);
+  };
+
+  const range3 = (group3) => {
+    if (
+      group3.level >= parseInt(minRange) &&
+      group3.level <= parseInt(maxRange)
+    ) {
+      group3Range.push(group3.level);
+    }
+
+    setCount3(group3Range.length);
+  };
+
+  const range4 = (group4) => {
+    if (
+      group4.level >= parseInt(minRange) &&
+      group4.level <= parseInt(maxRange)
+    ) {
+      group4Range.push(group4.level);
+    }
+
+    setCount4(group4Range.length);
   };
 
   const handleInfoModal = async () => {
@@ -131,7 +208,6 @@ const Dashboard = () => {
 
   const handleCloseInfoModal = (data) => {
     if (data === true) setInfoModal(!infoModal);
-    console.log(data);
   };
 
   const date = new Date();
@@ -180,12 +256,24 @@ const Dashboard = () => {
                 day7={day7}
               />
               <div className='horizontal-pie'>
-                <PieInRange percentage={(count / data.length) * 100} />
+                <InRange
+                  percentage={(count / data.length) * 100}
+                  perc1={(count1 / group1.length) * 100}
+                  perc2={(count2 / group2.length) * 100}
+                  perc3={(count3 / group3.length) * 100}
+                  perc4={(count4 / group4.length) * 100}
+                />
               </div>
               <ServiceButtons handleSubmit={handleSubmit} pieRange={pieRange} />
             </div>
             <div className='right-col'>
               <PieInRange percentage={(count / data.length) * 100} />
+              <PieHourRange
+                perc1={(count1 / group1.length) * 100}
+                perc2={(count2 / group2.length) * 100}
+                perc3={(count3 / group3.length) * 100}
+                perc4={(count4 / group4.length) * 100}
+              />
             </div>
           </div>
         </div>

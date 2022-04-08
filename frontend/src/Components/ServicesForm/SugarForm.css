@@ -60,7 +60,6 @@ form {
 input:focus {
   outline: none;
   border-bottom: 3px solid #a7c4bc;
-  /* transition: all 0.2s linear; */
   transform: scale(1);
 }
 .main-value label {

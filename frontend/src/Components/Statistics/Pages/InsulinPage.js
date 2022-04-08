@@ -3,12 +3,12 @@ import './SugarPage.css';
 import nodata from '../../../assets/data.png';
 import InsulinItem from './Items/InsulinItem';
 import axios from '../../../axios/axios';
+import Pagination from './Pagination';
 
 import logo from '../../../logo-top.svg';
 
 const GETINSULIN_URL = '/insulin/';
 const DELETE_URL = '/insulin/delete/';
-const INSULIN_URL = '/insulin/add/';
 const GETEDIT_URL = '/insulin/';
 const UPDATE_URL = '/insulin/update/';
 
@@ -23,6 +23,20 @@ const InsulinPage = () => {
 
   const [load, setLoad] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+  const [active, setActive] = useState(false);
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    setActive(true);
+  };
+
   useEffect(() => {
     handleSubmit();
     setLoad(false);
@@ -34,8 +48,7 @@ const InsulinPage = () => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      setData(response?.data);
-      console.log(response?.data);
+      setData(response?.data.reverse());
     } catch (err) {}
 
     setLoad(true);
@@ -46,13 +59,11 @@ const InsulinPage = () => {
   };
 
   const handleDelete = async (key) => {
-    console.log('key ' + key);
     try {
       const response = await axios.delete(DELETE_URL + key, {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(response?.data);
     } catch (err) {
       console.log(err);
     }
@@ -70,7 +81,6 @@ const InsulinPage = () => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(response?.data);
       setEditData(response?.data);
     } catch (err) {
       console.log(err);
@@ -90,21 +100,14 @@ const InsulinPage = () => {
           withCredentials: true,
         }
       );
-      console.log(keyId);
       setKeyId('');
       setEditData([]);
       setSuccess(!success);
       setEditMsg('Insulin entry has been updated.');
-
-      console.log(response);
-      if (response?.data === 400) {
-        console.log('err');
-      }
     } catch (err) {
       if (err) {
-        console.log('no response');
         setEditErrMsg('Something went wrong.');
-      } else console.log(err);
+      }
     }
 
     handleSubmit();
@@ -122,10 +125,6 @@ const InsulinPage = () => {
     </div>
   ) : (
     <div className='page-container'>
-      {/* <div className='export-btn'>
-        <button>Export to PDF</button>
-        <button>Export to CSV</button>
-      </div> */}
       <div className='items-row'>
         <div
           className='sucContainer'
@@ -218,6 +217,13 @@ const InsulinPage = () => {
             />
           ))
         )}
+        <Pagination
+          totalData={data.length}
+          postsPerPage={postsPerPage}
+          paginate={paginate}
+          active={active}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import axios from '../../axios/axios';
 import './SugarForm.css';
 
@@ -60,16 +60,23 @@ const MealForm = (props) => {
           withCredentials: true,
         }
       );
-      console.log(response?.data);
       props.closeModal();
-      if (response?.data === 400) {
-        console.log('err');
-      }
     } catch (err) {
-      if (!err) {
-        console.log('no response');
-      } else console.log(err);
+      console.log(err);
     }
+
+    setType('');
+    setDate('');
+    setDistance('');
+    setCalories('');
+    setNote('');
+    setDistanceMsg('');
+    setCaloriesMsg('');
+    setDateMsg('');
+  };
+
+  const cancelHandler = () => {
+    props.closeModal();
 
     setType('');
     setDate('');
@@ -87,7 +94,6 @@ const MealForm = (props) => {
         <div className='main-value'>
           <input
             type='text'
-            // placeholder='eg running'
             onChange={(e) => setType(e.target.value)}
             value={type || ''}
             required
@@ -154,7 +160,7 @@ const MealForm = (props) => {
           </button>
           <button
             className='button cancel'
-            onClick={props.closeModal}
+            onClick={cancelHandler}
             type='button'
           >
             Cancel

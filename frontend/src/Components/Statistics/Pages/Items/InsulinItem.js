@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import edit_btn from '../../../../assets/edit.png';
 import delete_btn from '../../../../assets/delete.png';
 import EditInsulinForm from '../../../EditForms/EditInsulinForm';
@@ -13,20 +13,14 @@ const InsulinItem = (props) => {
   const date = new Date(props.date);
   const month = date.toLocaleString('en-us', { month: 'long' });
   const day = date.toLocaleString('en-us', { day: '2-digit' });
-  const time = date.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-  const year = date.getFullYear();
+
   const formattedDate = date.toISOString().split('T')[0];
 
   const handleDelete = (key) => {
-    console.log('edit');
     props.handleDel(key);
   };
 
   const handleEdit = (key) => {
-    console.log(key);
     props.handleEd(key);
     setOpen(true);
   };
@@ -41,7 +35,6 @@ const InsulinItem = (props) => {
     setOpen(true);
   };
 
-  // ALLAGH EDW
   const handleEditInsulin = (data) => {
     const dataInsulin = { ...data };
     props.getData(dataInsulin);
@@ -58,13 +51,12 @@ const InsulinItem = (props) => {
           formattedDate={formattedDate}
           setModal={openDrop}
           setModal1={openDrop1}
-          // ALLAGH EDW
           getData={handleEditInsulin}
         />
       </div>
       <div className='desktop-row hide-desk'>
         <div className='data-row'>
-          <p>{props.units}</p>
+          <p>{props.units} u</p>
           <p>{day + ' ' + month}</p>
           <p>{props.time}</p>
           <p>{props.type}</p>
@@ -89,12 +81,11 @@ const InsulinItem = (props) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className='item-header'>
-          <p>{props.units} units</p>
+          <p>{props.units} u</p>
           <div>
             <p>
               {day} {month}
             </p>
-            {/* <p>{month}</p> */}
           </div>
         </div>
 

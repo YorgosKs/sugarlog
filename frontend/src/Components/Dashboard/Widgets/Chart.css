@@ -1,5 +1,5 @@
 .graph {
-  width: 95%;
+  width: 100%;
   height: 250px;
   margin: 10px auto;
   background-color: #ffffff;
@@ -13,10 +13,15 @@
 }
 
 .graph p {
-  color: black;
+  color: rgb(113, 113, 113);
+
   font-size: 20px;
   margin-left: 40px;
   margin-top: 10px;
+}
+
+.bar-shadow {
+  box-shadow: 2px 0 10px -2px lightgrey;
 }
 
 @media only screen and (max-width: 1007px) {
