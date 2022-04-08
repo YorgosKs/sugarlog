@@ -75,14 +75,14 @@ router.post(
             if (err) return res.json({ message: err });
             return res
               .cookie('token', token, {
-                path: '*/',
+                path: '/api/users',
                 httpOnly: true,
                 sameSite: 'none',
                 secure: true,
                 maxAge: 24 * 60 * 60 * 1000,
               })
               .cookie('loginToken', token, {
-                path: '*/',
+                path: '/api/users',
                 httpOnly: false,
                 // sameSite: 'none',
                 secure: true,
