@@ -8,7 +8,7 @@ import { useState, useEffect, useRef } from 'react';
 import ChangePwd from './ChangePwd';
 
 const PWD_REGEX = /^$|\s*/;
-const LOGIN_URL = '/login';
+const LOGIN_URL = '/api/users/login';
 
 const Login = (props) => {
   const errRef = useRef();
