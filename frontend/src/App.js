@@ -30,7 +30,7 @@ function App() {
         <Route path='/' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path='/register-completed' element={<SuccessRegister />} />
         <Route
-          path='/#dashboard'
+          path='/dashboard'
           element={
             <Protected isLoggedIn={isLoggedIn}>
               <Dashboard />
