@@ -158,7 +158,6 @@ router.get('/logout', verifyJWT, (req, res) => {
     .clearCookie('token', {
       domain: 'sugarlog.xyz',
       path: '/api/users',
-      httpOnly,
     })
     .status(200)
     .json({ message: 'Logout success' })
