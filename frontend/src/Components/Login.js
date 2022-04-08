@@ -59,7 +59,6 @@ const Login = (props) => {
       } else {
         setErrMsg('Login Failed');
       }
-      errRef.current.focus();
     }
   };
 
