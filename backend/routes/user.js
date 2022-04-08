@@ -73,7 +73,7 @@ router.post(
             return res
               .cookie('token', token, {
                 path: '/api/users',
-                httpOnly,
+                httpOnly: true,
                 sameSite: 'none',
                 secure,
                 maxAge: 24 * 60 * 60 * 1000,
