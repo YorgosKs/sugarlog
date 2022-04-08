@@ -62,7 +62,6 @@ router.post(
       if (!validPass) return res.json(403);
 
       const payload = { _id: user._id };
-      const payload1 = { id: 12345 };
 
       if (user && validPass) {
         const token = jwt.sign(
@@ -71,25 +70,16 @@ router.post(
           { expiresIn: 86400 },
           (err, token) => {
             if (err) return res.json({ message: err });
-            return (
-              res
-                .cookie('token', token, {
-                  path: '/api/users',
-                  httpOnly: true,
-                  sameSite: 'none',
-                  secure: true,
-                  maxAge: 24 * 60 * 60 * 1000,
-                })
-                // .cookie('loginToken', token, {
-                //   path: '/api/users',
-                //   httpOnly: false,
-                //   // sameSite: 'none',
-                //   secure: true,
-                //   maxAge: 24 * 60 * 60 * 1000,
-                // })
-                .status(200)
-                .json({ message: 'Login success!' })
-            );
+            return res
+              .cookie('token', token, {
+                path: '/api/users',
+                httpOnly: true,
+                sameSite: 'none',
+                secure: true,
+                maxAge: 24 * 60 * 60 * 1000,
+              })
+              .status(200)
+              .json({ message: 'Login success!' });
           }
         );
       } else {
@@ -165,9 +155,7 @@ router.post('/change-password', async (req, res) => {
 
 router.get('/logout', verifyJWT, (req, res) => {
   return res
-    .clearCookie('token', { domain: 'localhost', path: '/api/users' })
-    .clearCookie('loginToken', { domain: 'localhost', path: '/api/users' })
-
+    .clearCookie('token', { domain: 'sugarlog.xyz', path: '/api/users' })
     .status(200)
     .json({ message: 'Logout success' })
     .end();
