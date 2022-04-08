@@ -45,9 +45,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'https://my-app-uy3g5.ondigitalocean.app/',
+    origin: '*',
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     credentials: true,
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
   })
 );
 
