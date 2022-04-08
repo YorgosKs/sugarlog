@@ -75,7 +75,7 @@ router.post(
                 path: '/api/users',
                 httpOnly: true,
                 sameSite: 'none',
-                secure,
+                secure: true,
                 maxAge: 24 * 60 * 60 * 1000,
               })
               .status(200)
