@@ -67,6 +67,26 @@ const Dashboard = () => {
     pieRange();
   });
 
+  const handleInfoModal = async () => {
+    try {
+      const response = await axios.get(GETUSER_URL, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      });
+      if (response?.data.infoComplete === false) {
+        setInfoModal(response?.data.infoComplete);
+      } else setInfoModal(true);
+    } catch (err) {
+      console.log(err);
+    }
+
+    setLoad(true);
+  };
+
+  const handleCloseInfoModal = (data) => {
+    if (data === true) setInfoModal(!infoModal);
+  };
+
   const handleGetInfo = async () => {
     try {
       const response = await axios.get(GETINFO_URL, {
@@ -190,24 +210,6 @@ const Dashboard = () => {
     }
 
     setCount4(group4Range.length);
-  };
-
-  const handleInfoModal = async () => {
-    try {
-      const response = await axios.get(GETUSER_URL, {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      });
-      if (response?.data.infoComplete === false)
-        setInfoModal(response?.data.infoComplete);
-      else setInfoModal(true);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleCloseInfoModal = (data) => {
-    if (data === true) setInfoModal(!infoModal);
   };
 
   const date = new Date();
