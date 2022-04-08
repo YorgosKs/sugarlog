@@ -1,0 +1,46 @@
+.stats-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.filler {
+  width: 200px;
+  margin: 0;
+}
+
+.stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.btm-filler {
+  height: 50px;
+}
+
+@media only screen and (max-width: 1007px) {
+  .filler {
+    width: 80px;
+  }
+
+  .stats-wrapper {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .filler {
+    display: none;
+  }
+
+  .stats-wrapper {
+    width: 100%;
+  }
+
+  .btm-filler {
+    height: 100px;
+  }
+}

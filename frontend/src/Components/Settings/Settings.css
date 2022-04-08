@@ -1,0 +1,163 @@
+.settings-container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.filler {
+  width: 200px;
+}
+
+.settings-wrapper {
+  width: 90%;
+  margin: 2.5vh auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.col-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.btn-item {
+  width: 85%;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 10px auto;
+}
+.btn-item button:hover {
+  background-color: #c3195d;
+  color: white;
+  transition-duration: 0.2s;
+  transform: scale(0.98);
+}
+
+.btn-item button {
+  margin: auto 0;
+  background-color: #dd105e;
+  color: white;
+  font-size: 16px;
+  padding: 10px 40px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid #dd105e;
+  box-shadow: 2px 0 5px -2px lightgray;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.settings-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 85%;
+  border-radius: 10px;
+  background-color: #ccc;
+  margin: 5px auto;
+  box-shadow: 2px 0 5px -2px lightgray;
+}
+
+.settings-item input {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  width: 90%;
+  height: 25px;
+  margin: 0 auto 10px auto;
+  padding: 5px 3px;
+  border: none;
+  border-bottom: 3px solid white;
+  background-color: transparent;
+  transition: all 0.4s ease;
+  border-radius: 0px;
+}
+
+.settings-item label {
+  width: 90%;
+  font-weight: 500;
+  color: #303841;
+  margin: 10px auto 5px auto;
+}
+
+.settings-item select {
+  width: 90%;
+  border: none;
+  height: 40px;
+  margin: 0 auto 10px auto;
+
+  border-bottom: 3px solid white;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+.settings-group {
+  display: inline-flex;
+  flex-direction: row;
+  width: 90%;
+  margin: 5px auto;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 3px solid #dd105e;
+  color: black !important;
+  font-size: 16px;
+}
+
+.logout-btn {
+  display: none;
+}
+
+@media only screen and (max-width: 1007px) {
+  .filler {
+    width: 100px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .settings-wrapper {
+    width: 100%;
+  }
+
+  .filler {
+    display: none;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .btm-filler {
+    height: 80px;
+  }
+
+  .settings-item label,
+  .settings-item input {
+    width: 85%;
+  }
+
+  .logout-btn {
+    display: inline-flex;
+    margin-left: 20px !important;
+    width: 150px;
+    margin: auto 0;
+    background-color: transparent !important;
+    color: black !important;
+    font-size: 16px;
+    padding: 10px 40px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid #dd105e;
+  }
+}

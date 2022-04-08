@@ -1,0 +1,40 @@
+.chart {
+  margin-left: 0;
+  margin-top: 20px;
+}
+
+.filter {
+  box-shadow: 2px 0 10px -2px lightgrey;
+}
+
+.range {
+  width: 100%;
+  margin: 10px auto;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 2px 0 10px -3px #888;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+}
+
+.range-circle {
+  width: 150px;
+  height: 150px;
+  margin: 50px auto;
+}
+
+@media only screen and (max-width: 1007px) {
+  .range {
+    width: 100%;
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 2px 0 10px -3px #888;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-self: center;
+  }
+}

@@ -1,23 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import Login from './Components/Login';
+import Register from './Components/Register';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Statistics from './Components/Statistics/Statistics';
+import Settings from './Components/Settings/Settings';
+import HomePage from './homePage';
+import Protected from './Components/Protected';
+import { Routes, Route } from 'react-router-dom';
+import SuccessRegister from './Components/SuccessRegister';
+import NotFound from './Components/NotFound';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    JSON.parse(window.localStorage.getItem('token'))
+  );
+
+  useEffect(() => {
+    setIsLoggedIn(localStorage.getItem('token'));
+  }, []);
+
+  const logInHandler = (state) => {
+    if (state === true) setIsLoggedIn(true);
+    console.log(state);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='main'>
+      <Routes>
+        <Route path='/' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path='/register-completed' element={<SuccessRegister />} />
+        <Route
+          path='/dashboard'
+          element={
+            <Protected isLoggedIn={isLoggedIn}>
+              <Dashboard />
+            </Protected>
+          }
+        />
+        <Route
+          path='/statistics'
+          element={
+            <Protected isLoggedIn={isLoggedIn}>
+              <Statistics />
+            </Protected>
+          }
+        />
+        <Route
+          path='/settings'
+          element={
+            <Protected isLoggedIn={isLoggedIn}>
+              <Settings />
+            </Protected>
+          }
+        />
+
+        <Route path='/login' element={<Login loggedInState={logInHandler} />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
     </div>
   );
 }

@@ -1,0 +1,244 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.leftSide {
+  width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+form {
+  padding: 0 100px;
+}
+
+.register-form {
+  background-color: rgba(70, 70, 110);
+  width: 85%;
+  height: 85vh;
+  border-radius: 30px 0 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.register-form_control {
+  width: 60%;
+  margin: 20px auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title h2 {
+  color: white;
+  font-size: 30px;
+}
+
+.register-form_control label {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.register-form_control input {
+  color: white;
+  font-size: 16px;
+  width: 100%;
+  height: 25px;
+  margin: 5px auto;
+  padding: 5px 3px;
+  border: none;
+  border-bottom: 3px solid white;
+  background-color: rgba(70, 70, 110);
+  transition: all 0.2s ease-out;
+}
+
+.register-form_control input:focus {
+  color: white !important;
+}
+
+.message-container {
+  background-color: rgba(70, 70, 110);
+  width: 85%;
+  height: 85vh;
+  border-radius: 0 30px 30px 0;
+}
+
+.form-button {
+  min-width: 30%;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: white;
+  background-color: #dd105e;
+  border-radius: 8px;
+  border: none;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.form-button:hover {
+  background-color: #c3195d;
+  transition: all 0.2s ease-in;
+  transform: scale(0.98);
+}
+
+hr {
+  width: 80%;
+  color: white;
+}
+.form-messages {
+  margin: 2px 0;
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.form-messages:hover {
+  color: white;
+  transition: all 0.2s ease-in;
+}
+
+.rightSide {
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: rgba(70, 70, 110, 0.25);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.message-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logo {
+  width: 70%;
+  margin: 50px auto 0 auto;
+}
+
+.message-content {
+  color: white;
+}
+
+.message-content h2 {
+  font-size: 30px;
+  margin: 50px auto 0 auto;
+}
+
+.message-content h1 {
+  margin: 20px auto;
+  font-size: 50px;
+}
+
+.msg_container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+.done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.done-svg {
+  width: 120px;
+}
+
+/* AXIOS */
+
+.offscreen {
+  display: none;
+}
+
+.errmsg {
+  display: inline-block;
+  background-color: #fff89a;
+  color: black;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-left: 10px solid #ffb72b;
+  border-radius: 3px;
+}
+
+.hide {
+  display: none;
+}
+
+.valid {
+  color: white;
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #000;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+.show {
+  display: inherit;
+  color: white;
+  font-size: 16px;
+}
+
+.hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+@media only screen and (max-width: 640px) {
+  .rightSide {
+    display: none;
+  }
+
+  .leftSide {
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .register-form {
+    width: 90%;
+    border-radius: 10px;
+  }
+
+  .logo-mobile {
+    display: inherit;
+    width: 60%;
+    margin: 40px 0 0 0;
+  }
+
+  .register-form_control {
+    margin-top: 5px;
+  }
+}
