@@ -5,6 +5,10 @@ require('dotenv').config();
 const cors = require('cors');
 const verifyJWT = require('./middleware/auth');
 
+var compression = require('compression');
+
+var helmet = require('helmet');
+
 // ROUTES
 const userRoute = require('./routes/user');
 const infoRoute = require('./routes/info');
@@ -35,6 +39,8 @@ connection.once('open', () => {
 });
 
 // MIDDLEWARE
+app.use(compression());
+app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 app.use(
