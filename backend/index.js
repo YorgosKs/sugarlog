@@ -46,7 +46,6 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: 'https://sugarlog.xyz',
-    // origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     credentials: true,
   })
