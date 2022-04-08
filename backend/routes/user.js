@@ -17,7 +17,6 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
-    console.log(req.body);
     if (!errors.isEmpty()) {
       return res.status(422).json(errors.array());
     } else {
@@ -53,7 +52,6 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
-    console.log(req.body);
     if (!errors.isEmpty()) {
       return res.status(422).json(errors.array());
     } else {
