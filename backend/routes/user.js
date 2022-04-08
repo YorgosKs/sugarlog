@@ -5,7 +5,6 @@ const { check, validationResult, body } = require('express-validator');
 const User = require('../models/user.model');
 
 const verifyJWT = require('../middleware/auth');
-// const validate = require('./validate');
 
 // REGISTER
 router.post(
@@ -74,47 +73,25 @@ router.post(
           { expiresIn: 86400 },
           (err, token) => {
             if (err) return res.json({ message: err });
-            return (
-              res
-                .cookie('token', token, {
-                  path: '*/',
-                  httpOnly: true,
-                  sameSite: 'none',
-                  secure: true,
-                  maxAge: 24 * 60 * 60 * 1000,
-                })
-                .cookie('loginToken', token, {
-                  path: '*/',
-                  httpOnly: false,
-                  // sameSite: 'none',
-                  secure: true,
-                  maxAge: 24 * 60 * 60 * 1000,
-                })
-                // .status(200)
-                // .json({ message: 'Login true!' });
-                .status(200)
-                .json({ message: 'Login success!' })
-            );
+            return res
+              .cookie('token', token, {
+                path: '*/',
+                httpOnly: true,
+                sameSite: 'none',
+                secure: true,
+                maxAge: 24 * 60 * 60 * 1000,
+              })
+              .cookie('loginToken', token, {
+                path: '*/',
+                httpOnly: false,
+                // sameSite: 'none',
+                secure: true,
+                maxAge: 24 * 60 * 60 * 1000,
+              })
+              .status(200)
+              .json({ message: 'Login success!' });
           }
         );
-        // const logInToken = jwt.sign(
-        //   payload1,
-        //   process.env.TOKEN_SECRET,
-        //   { expiresIn: 86400 },
-        //   (err, token) => {
-        //     if (err) return res.json({ message: err });
-        //     return res
-        //       .cookie('loginToken', token, {
-        //         path: '*/',
-        //         // httpOnly: false,
-        //         sameSite: 'none',
-        //         // secure: true,
-        //         maxAge: 24 * 60 * 60 * 1000,
-        //       })
-        //       .status(200)
-        //       .json({ message: 'Login true!' });
-        //   }
-        // );
       } else {
         return res.json({
           message: 'Something went wrong',
@@ -194,13 +171,6 @@ router.get('/logout', verifyJWT, (req, res) => {
     .status(200)
     .json({ message: 'Logout success' })
     .end();
-  // res.cookie('token', 'none', {
-  //   expires: new Date(Date.now() + 5 * 1000),
-  //   httpOnly: true,
-  // });
-  // res
-  //   .status(200)
-  //   .json({ success: true, message: 'User logged out successfully' });
 });
 
 module.exports = router;

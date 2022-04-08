@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 module.exports = function (req, res, next) {
-  // const token = req.headers['x-access-token']?.split(' ')[1];
   const token = req.cookies.token;
   if (token) {
     jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
@@ -14,7 +13,6 @@ module.exports = function (req, res, next) {
         });
       req.user = {};
       req.user.id = jwt.decode(token)._id;
-      // res.locals.uid = req.user.id;
       console.log(req.user.id);
 
       next();
