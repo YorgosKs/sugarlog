@@ -73,9 +73,9 @@ router.post(
             return res
               .cookie('token', token, {
                 path: '/api/users',
-                httpOnly: true,
+                httpOnly,
                 sameSite: 'none',
-                secure: true,
+                secure,
                 maxAge: 24 * 60 * 60 * 1000,
               })
               .status(200)
