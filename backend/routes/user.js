@@ -153,14 +153,16 @@ router.post('/change-password', async (req, res) => {
 });
 
 router.get('/logout', verifyJWT, (req, res) => {
-  return res
-    .clearCookie(token, {
-      domain: 'backend2-kgr8s.ondigitalocean.app',
-      path: '/',
-    })
-    .status(200)
-    .json({ message: 'Logout success' })
-    .end();
+  if (req.cookies.token) {
+    return res
+      .clearCookie('token', {
+        domain: 'backend2-kgr8s.ondigitalocean.app',
+        path: '/',
+      })
+      .status(200)
+      .json({ message: 'Logout success' })
+      .end();
+  }
 });
 
 module.exports = router;
