@@ -66,7 +66,6 @@ router.post(
         const token = jwt.sign(
           payload,
           process.env.TOKEN_SECRET,
-          { expiresIn: 86400 },
           (err, token) => {
             if (err) return res.json({ message: err });
             return res
@@ -76,6 +75,7 @@ router.post(
                 sameSite: 'none',
                 secure: true,
                 maxAge: 24 * 60 * 60 * 1000,
+                expiresIn: 86400,
               })
               .status(200)
               .json({ message: 'Login success!' });
