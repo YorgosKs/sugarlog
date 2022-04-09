@@ -73,7 +73,7 @@ router.post(
                 path: '/',
                 httpOnly: true,
                 sameSite: 'none',
-                secure,
+                secure: true,
                 maxAge: 24 * 60 * 60 * 1000,
                 expiresIn: 86400,
               })
@@ -154,14 +154,17 @@ router.post('/change-password', async (req, res) => {
 
 router.get('/logout', verifyJWT, (req, res) => {
   if (req.cookies.token) {
-    return res
-      .clearCookie('token', {
+    try {
+      res.clearCookie('token', {
         domain: 'backend2-kgr8s.ondigitalocean.app',
         path: '/',
-      })
-      .status(200)
-      .json({ message: 'Logout success' })
-      .end();
+      });
+      res.status(200);
+      res.json({ message: 'Logout success' });
+      res.end();
+    } catch (err) {
+      console.log(err);
+    }
   }
 });
 
