@@ -71,7 +71,7 @@ router.post(
             if (err) return res.json({ message: err });
             return res
               .cookie('token', token, {
-                path: '/api/users',
+                path: '/',
                 httpOnly: true,
                 sameSite: 'none',
                 secure: true,
@@ -154,13 +154,10 @@ router.post('/change-password', async (req, res) => {
 
 router.get('/logout', verifyJWT, (req, res) => {
   return res
-    .clearCookie(
-      'token'
-      // , {
-      //   domain: 'https://backend2-kgr8s.ondigitalocean.app',
-      //   path: '/api/users',
-      // }
-    )
+    .clearCookie('token', {
+      domain: 'backend2-kgr8s.ondigitalocean.app',
+      path: '/',
+    })
     .status(200)
     .json({ message: 'Logout success' })
     .end();
