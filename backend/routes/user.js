@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { check, validationResult, body } = require('express-validator');
 const User = require('../models/user.model');
-
 const verifyJWT = require('../middleware/auth');
 
 // REGISTER
@@ -155,10 +154,13 @@ router.post('/change-password', async (req, res) => {
 
 router.get('/logout', verifyJWT, (req, res) => {
   return res
-    .clearCookie('token', {
-      domain: 'https://backend2-kgr8s.ondigitalocean.app',
-      path: '/api/users',
-    })
+    .clearCookie(
+      'token'
+      // , {
+      //   domain: 'https://backend2-kgr8s.ondigitalocean.app',
+      //   path: '/api/users',
+      // }
+    )
     .status(200)
     .json({ message: 'Logout success' })
     .end();
