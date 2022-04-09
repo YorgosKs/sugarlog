@@ -154,7 +154,7 @@ router.post('/change-password', async (req, res) => {
 
 router.get('/logout', verifyJWT, (req, res) => {
   return res
-    .clearCookie('token', {
+    .clearCookie(token, {
       domain: 'backend2-kgr8s.ondigitalocean.app',
       path: '/',
     })
