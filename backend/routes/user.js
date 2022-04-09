@@ -73,7 +73,6 @@ router.post(
                 path: '/',
                 httpOnly: true,
                 sameSite: 'none',
-                secure: true,
                 maxAge: 24 * 60 * 60 * 1000,
                 expiresIn: 86400,
               })
