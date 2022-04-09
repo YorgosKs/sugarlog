@@ -159,7 +159,9 @@ router.get('/logout', verifyJWT, (req, res) => {
       res.clearCookie('token', {
         domain: 'backend2-kgr8s.ondigitalocean.app',
         path: '/',
-        expiresIn: 0,
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
       });
       res.status(200);
       res.json({ message: 'Logout success' });
