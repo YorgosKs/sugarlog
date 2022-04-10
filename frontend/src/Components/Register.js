@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import './Register.css';
+import './Login2';
 import logo from '../logo.svg';
 import { Link } from 'react-router-dom';
 import axios from '../axios/axios';
@@ -102,103 +102,76 @@ const Login = () => {
       >
         <SuccessRegister setOpen={success} />
       </div>
-      <div className='leftSide'>
-        <div className='register-form'>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <img src={logo} alt='logo' className='logo-mobile' />
-            </div>
-            <div className='register-form_control title'>
-              <h2>Register</h2>
-              <p
-                ref={errRef}
-                className={errMsg ? 'errmsg' : 'offscreen'}
-                aria-live='assertive'
-              >
-                {errMsg}
-              </p>
-            </div>
-            <div className='register-form_control'>
-              <label>Email</label>
-              <input
-                type='email'
-                id='email'
-                // ref={userRef}
-                autoComplete='off'
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                required
-                onBlur={emailCheck}
-              />
-              <p
-                ref={errRef}
-                id='emailcheckmsg'
-                className={emailErrMsg ? 'errmsg' : 'offscreen'}
-              >
-                {emailErrMsg}
-              </p>
-            </div>
-            <div className='register-form_control'>
-              <label>Password</label>
-              <input
-                type='password'
-                id='password'
-                onChange={(e) => setPwd(e.target.value)}
-                value={password}
-                required
-                aria-invalid={validPwd ? 'false' : 'true'}
-                aria-describedby='pwdnote'
-                onFocus={() => setPwdFocus(true)}
-                onBlur={() => setPwdFocus(false)}
-              />
-              <p
-                id='pwdnote'
-                className={pwdFocus && !validPwd ? 'errmsg' : 'offscreen'}
-              >
-                8 to 24 characters.
-                <br />
-                Must include uppercase and lowercase letters, a number and a
-                special character.
-              </p>
-              <p
-                ref={errRef}
-                id='emailcheckmsg'
-                className={pwdErrMsg ? 'errmsg' : 'offscreen'}
-              >
-                {pwdErrMsg}
-              </p>
-              <Link to='/login' className='form-messages'>
-                Already have an account?
-              </Link>
-            </div>
-            <div className='login-form_control'>
-              <button className='form-button' type='submit'>
-                Register
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div className='rightSide'>
-        <div className='message-container'>
-          <div>
-            <img src={logo} alt='logo' className='logo' />
+      <div className='form-wrapper'>
+        <form className='login-form' onSubmit={handleSubmit}>
+          <img src={logo} alt='logo' />
+          <h2>Register</h2>
+          <p
+            ref={errRef}
+            className={errMsg ? 'errmsg' : 'offscreen'}
+            aria-live='assertive'
+          >
+            {errMsg}
+          </p>
+
+          <div className='form-group'>
+            <label>Email</label>
+            <input
+              type='email'
+              id='email'
+              // ref={userRef}
+              autoComplete='off'
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              required
+              onBlur={emailCheck}
+            />
+            <p
+              ref={errRef}
+              id='emailcheckmsg'
+              className={emailErrMsg ? 'errmsg' : 'offscreen'}
+            >
+              {emailErrMsg}
+            </p>
           </div>
-          <div className='message-content'>
-            <h2>Your diabetes tracker.</h2>
-          </div>
-          <div className='message-content'>
-            <h1>
-              all in
+          <div className='form-group'>
+            <label>Password</label>
+            <input
+              type='password'
+              id='password'
+              onChange={(e) => setPwd(e.target.value)}
+              value={password}
+              required
+              aria-invalid={validPwd ? 'false' : 'true'}
+              aria-describedby='pwdnote'
+              onFocus={() => setPwdFocus(true)}
+              onBlur={() => setPwdFocus(false)}
+            />
+            <p
+              id='pwdnote'
+              className={pwdFocus && !validPwd ? 'errmsg' : 'offscreen'}
+            >
+              8 to 24 characters.
               <br />
-              ONE
-              <br />
-              PLACE!
-            </h1>
+              Must include uppercase and lowercase letters, a number and a
+              special character.
+            </p>
+            <p
+              ref={errRef}
+              id='emailcheckmsg'
+              className={pwdErrMsg ? 'errmsg' : 'offscreen'}
+            >
+              {pwdErrMsg}
+            </p>
+            <Link to='/login' className='form-messages'>
+              Already have an account?
+            </Link>
           </div>
-        </div>
+          <div className='form-group'>
+            <button>Register</button>
+          </div>
+        </form>
       </div>
-      }
     </div>
   );
 };

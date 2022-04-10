@@ -80,9 +80,16 @@ const Login = (props) => {
             <div className='login-form'>
               <form onSubmit={handleSubmit}>
                 <div>
-                  <img src={logo} alt='logo' className='logo-mobile' />
+                  {/* <img src={logo} alt='logo' className='logo-mobile' /> */}
                 </div>
                 <div className='login-form_control title'>
+                  <img
+                    src={logo}
+                    alt='logo'
+                    className='logo-mobile'
+                    style={{ display: 'inline-block' }}
+                  />
+
                   <h2>Login</h2>
                   <p
                     ref={errRef}
