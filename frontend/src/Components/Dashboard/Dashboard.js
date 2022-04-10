@@ -14,6 +14,7 @@ import axios from '../../axios/axios';
 
 import { useState, useEffect } from 'react';
 import InRange from './Widgets/InRange';
+import { useNavigate } from 'react-router-dom';
 
 const GETUSER_URL = '/';
 const GETSUGAR_URL = '/sugar/';
@@ -55,7 +56,8 @@ const Dashboard = () => {
 
   const [group4, setGroup4] = useState([]);
   const group4Range = [];
-  const [count4, setCount4] = useState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     handleInfoModal();
@@ -236,7 +238,8 @@ const Dashboard = () => {
         withCredentials: true,
       });
       localStorage.removeItem('token');
-      window.location.replace('/login');
+      navigate('/login');
+
       return false;
     } catch (err) {
       console.log(err);
