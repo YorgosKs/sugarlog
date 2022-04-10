@@ -269,7 +269,10 @@ const Dashboard = () => {
               <img src={user} alt='user' onClick={() => setLogout(true)} />
               <p
                 style={
-                  !logout ? { opacity: 0 } : { opacity: 1, height: 'auto' }
+                  // !logout ? { opacity: 0 } : { opacity: 1, height: 'auto' }
+                  !logout
+                    ? { display: 'none' }
+                    : { display: 'flex', height: 'auto' }
                 }
                 onClick={handleLogout}
               >

@@ -60,4 +60,8 @@ li.active-link {
     border-radius: 50%;
     cursor: pointer;
   }
+
+  li.active-link {
+    background-color: #d1e9d2;
+  }
 }
