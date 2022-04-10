@@ -2,7 +2,6 @@ import './Settings.css';
 import Nav from '../Nav';
 import { useState, useEffect } from 'react';
 import axios from '../../axios/axios';
-import logout from '../../logout.png';
 
 import logo from '../../logo-top.svg';
 
@@ -12,7 +11,6 @@ const UPDATEINFO_URL = '/info/update-info/';
 const UPDATEEMAIL_URL = '/update-email';
 const UPDATEPWD_URL = '/update-password';
 const CHECK_URL = '/check';
-const LOGOUT_URL = '/logout';
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const PWD_REGEX =
@@ -168,20 +166,6 @@ const Settings = () => {
   const clearMsg = () => {
     setUpdateMsg('');
     setUpdateErrMsg('');
-  };
-
-  const handleLogout = async () => {
-    try {
-      const response = await axios.get(LOGOUT_URL, {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      });
-      localStorage.removeItem('token');
-      window.location.replace('/login');
-      return false;
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   return (
@@ -343,19 +327,6 @@ const Settings = () => {
               <div className='btn-item'>
                 <button className='item-button' type='submit'>
                   Save changes
-                </button>
-                <button
-                  className='logout-btn'
-                  type='button'
-                  onClick={handleLogout}
-                >
-                  <img
-                    src={logout}
-                    alt='logout'
-                    className='logout-img'
-                    style={{ marginRight: '5px' }}
-                  />
-                  <span>Logout</span>
                 </button>
               </div>
             </form>

@@ -2,6 +2,8 @@ import Nav from '../Nav';
 import './Dashboard.css';
 
 import logo from '../../logo-top.svg';
+import user from '../../assets/user.png';
+import logoutImg from '../../logout.png';
 
 import Chart from './Widgets/Chart';
 import PieInRange from './Widgets/PieInRange';
@@ -19,9 +21,11 @@ const GETINFO_URL = '/info/';
 
 const AVGDATA_URL = '/sugar/avg-data';
 const AVGHOUR_URL = '/sugar/avg-hours';
+const LOGOUT_URL = '/logout';
 
 const Dashboard = () => {
   const [load, setLoad] = useState(false);
+  const [logout, setLogout] = useState(false);
   const [infoModal, setInfoModal] = useState(true);
   const [data, setData] = useState([]);
   const [count, setCount] = useState();
@@ -59,6 +63,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     setLoad(false);
+    setLogout(false);
     handleSubmit();
     handleGetInfo();
   }, []);
@@ -224,6 +229,20 @@ const Dashboard = () => {
     msg = 'Good evening!';
   }
 
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get(LOGOUT_URL, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      });
+      localStorage.removeItem('token');
+      window.location.replace('/login');
+      return false;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className='dashboard-container'>
       <Nav />
@@ -244,9 +263,23 @@ const Dashboard = () => {
           >
             <InfoModal closeInfoModal={handleCloseInfoModal} />
           </div>
-          <h2 className='msg'>{msg}</h2>
+          <div className='top-msg'>
+            <h2 className='msg'>{msg}</h2>
+            <div className='logout-user'>
+              <img src={user} alt='user' onClick={() => setLogout(true)} />
+              <p
+                style={
+                  !logout ? { opacity: 0 } : { opacity: 1, height: 'auto' }
+                }
+                onClick={handleLogout}
+              >
+                <img src={logoutImg} alt='logout' />
+                Logout
+              </p>
+            </div>
+          </div>
 
-          <div className='dashboard-wrapper'>
+          <div className='dashboard-wrapper' onClick={() => setLogout(false)}>
             <div className='left-col'>
               <Chart
                 today={today}
