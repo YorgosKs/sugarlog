@@ -58,7 +58,6 @@ const Login = (props) => {
         setPwdErrMsg('Password is wrong');
       } else {
         setSuccess(true);
-        props.setSuccessLogin(true);
         const state = true;
         props.loggedInState(state);
         window.localStorage.setItem('token', state);

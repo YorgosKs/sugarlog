@@ -15,11 +15,8 @@ function App() {
     JSON.parse(window.localStorage.getItem('token'))
   );
 
-  const [successLogin, setSuccessLogin] = useState(false);
-
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem('token'));
-    setSuccessLogin(false);
   }, []);
 
   const logInHandler = (state) => {
@@ -31,20 +28,12 @@ function App() {
     <div className='main'>
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route
-          path='/login'
-          element={
-            <Login
-              loggedInState={logInHandler}
-              successLogin={setSuccessLogin}
-            />
-          }
-        />
+        <Route path='/login' element={<Login loggedInState={logInHandler} />} />
         <Route path='/register' element={<Register />} />
         <Route
           path='/dashboard'
           element={
-            <Protected isLoggedIn={isLoggedIn} successLogin={successLogin}>
+            <Protected isLoggedIn={isLoggedIn}>
               <Dashboard />
             </Protected>
           }
