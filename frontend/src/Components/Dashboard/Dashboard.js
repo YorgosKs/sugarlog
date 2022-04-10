@@ -56,6 +56,7 @@ const Dashboard = () => {
 
   const [group4, setGroup4] = useState([]);
   const group4Range = [];
+  const [count4, setCount4] = useState();
 
   const navigate = useNavigate();
 
