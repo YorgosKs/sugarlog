@@ -39,6 +39,9 @@ connection.once('open', () => {
 });
 
 // MIDDLEWARE
+app.use(
+  require('prerender-node').set('prerenderToken', 'LLmStSYjTheOwaxtbpUJ')
+);
 app.use(compression());
 app.use(helmet());
 app.use(express.json());
