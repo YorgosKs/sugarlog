@@ -27,8 +27,9 @@ function App() {
   return (
     <div className='main'>
       <Routes>
-        <Route path='/' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path='/register-completed' element={<SuccessRegister />} />
+        <Route path='/' element={<Login />} />
+        <Route path='/login' element={<Login loggedInState={logInHandler} />} />
+        <Route path='/register' element={<Register />} />
         <Route
           path='/dashboard'
           element={
@@ -53,9 +54,6 @@ function App() {
             </Protected>
           }
         />
-
-        <Route path='/login' element={<Login loggedInState={logInHandler} />} />
-        <Route path='/register' element={<Register />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>

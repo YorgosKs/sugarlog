@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import './Login2';
 import logo from '../logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../axios/axios';
 
 import SuccessRegister from './SuccessRegister';
@@ -24,6 +24,15 @@ const Login = () => {
   const [emailErrMsg, setEmailErrMsg] = useState('');
   const [pwdErrMsg, setPwdErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (window.localStorage.getItem('token')) {
+      navigate('/dashboard');
+    } else {
+      return;
+    }
+  }, [navigate]);
 
   useEffect(() => {
     setValidEmail(EMAIL_REGEX.test(email));

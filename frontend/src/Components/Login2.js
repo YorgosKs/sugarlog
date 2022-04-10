@@ -1,7 +1,7 @@
 import './Login2.css';
 import logo from '../logo.svg';
 
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from '../axios/axios';
 import { useState, useEffect, useRef } from 'react';
 
@@ -20,6 +20,15 @@ const Login = (props) => {
   const [pwdErrMsg, setPwdErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (window.localStorage.getItem('token')) {
+      navigate('/dashboard');
+    } else {
+      return;
+    }
+  }, [navigate]);
 
   useEffect(() => {
     setPwdErrMsg('');
