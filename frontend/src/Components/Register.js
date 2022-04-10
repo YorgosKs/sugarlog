@@ -97,7 +97,7 @@ const Login = () => {
       <div
         className='modal'
         style={
-          !success ? { opacity: 1, left: '50%', top: '50%' } : { opacity: 0 }
+          success ? { opacity: 1, left: '50%', top: '50%' } : { opacity: 0 }
         }
       >
         <SuccessRegister setOpen={success} />
