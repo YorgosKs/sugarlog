@@ -9,6 +9,7 @@ import Protected from './Components/Protected';
 import { Routes, Route } from 'react-router-dom';
 import SuccessRegister from './Components/SuccessRegister';
 import NotFound from './Components/NotFound';
+import Landing from './Components/Landing';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -27,7 +28,7 @@ function App() {
   return (
     <div className='main'>
       <Routes>
-        <Route path='/' element={<Login />} />
+        <Route path='/' element={<Landing />} />
         <Route path='/login' element={<Login loggedInState={logInHandler} />} />
         <Route path='/register' element={<Register />} />
         <Route
