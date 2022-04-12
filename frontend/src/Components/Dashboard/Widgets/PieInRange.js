@@ -20,7 +20,8 @@ const PieInRange = (props) => {
   }, [props.percentage]);
 
   const percentage = (data) => {
-    if (data !== 0) setData(Math.round(data));
+    const num = data;
+    if (num !== 0) setData(Math.round(num));
     else setData(0);
   };
 
