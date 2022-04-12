@@ -8,7 +8,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useEffect, useState } from 'react';
 
 const PieInRange = (props) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(0);
   const [response, setResponse] = useState(true);
 
   useEffect(() => {
