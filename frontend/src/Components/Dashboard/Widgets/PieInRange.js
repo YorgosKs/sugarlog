@@ -12,6 +12,10 @@ const PieInRange = (props) => {
   const [response, setResponse] = useState(true);
 
   useEffect(() => {
+    setData(0);
+  }, []);
+
+  useEffect(() => {
     setResponse(props.response);
   }, [props.response]);
 
@@ -21,8 +25,11 @@ const PieInRange = (props) => {
 
   const percentage = (data) => {
     const num = data;
-    if (num !== 0) setData(Math.round(num));
-    else setData(0);
+    if (num !== 0) {
+      setData(Math.round(num));
+    } else {
+      setData(Math.round(0));
+    }
   };
 
   return (
