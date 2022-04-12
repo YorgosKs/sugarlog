@@ -16,6 +16,8 @@ function App() {
     JSON.parse(window.localStorage.getItem('token'))
   );
 
+  const [landEmail, setLandEmail] = useState('');
+
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem('token'));
   }, []);
@@ -28,9 +30,9 @@ function App() {
   return (
     <div className='main'>
       <Routes>
-        <Route path='/' element={<Landing />} />
+        <Route path='/' element={<Landing setLandEmail={setLandEmail} />} />
         <Route path='/login' element={<Login loggedInState={logInHandler} />} />
-        <Route path='/register' element={<Register />} />
+        <Route path='/register' element={<Register landEmail={landEmail} />} />
         <Route
           path='/dashboard'
           element={

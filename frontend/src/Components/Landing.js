@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 
-const Landing = () => {
+const Landing = (props) => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -106,7 +106,11 @@ const Landing = () => {
           </div>
         </div>
         <div className='email-input'>
-          <input type='email' placeholder='Enter your email' />
+          <input
+            type='email'
+            placeholder='Enter your email'
+            onChange={(e) => props.setLandEmail(e.target.value)}
+          />
           <button>
             <Link to='/register' style={{ color: 'white' }}>
               Join now!

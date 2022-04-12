@@ -8,12 +8,14 @@ import SuccessRegister from './SuccessRegister';
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const PWD_REGEX =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 const REGISTER_URL = '/register';
 const CHECK_URL = '/check';
 
-const Login = () => {
+const Login = (props) => {
   const errRef = useRef();
+
+  const emailRef = useRef();
 
   const [email, setEmail] = useState('');
   const [validEmail, setValidEmail] = useState(false);
@@ -45,6 +47,11 @@ const Login = () => {
   useEffect(() => {
     setErrMsg('');
   }, [email, password]);
+
+  useEffect(() => {
+    setEmail(props.landEmail);
+    emailRef.current.focus();
+  }, [props.landEmail]);
 
   const emailCheck = async (e) => {
     e.preventDefault();
@@ -128,7 +135,7 @@ const Login = () => {
             <input
               type='email'
               id='email'
-              // ref={userRef}
+              ref={emailRef}
               autoComplete='off'
               onChange={(e) => setEmail(e.target.value)}
               value={email}
@@ -164,7 +171,7 @@ const Login = () => {
               8 to 24 characters.
               <br />
               Must include uppercase and lowercase letters, a number and a
-              special character.
+              special character (@ $ ! % * ? &).
             </p>
             <p
               ref={errRef}
