@@ -154,6 +154,14 @@ h1.hero-h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.2s linear;
+}
+
+.card-1:hover,
+.card-2:hover,
+.card-3:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 0 10px -2px lightgray;
 }
 
 .card-1 img,
