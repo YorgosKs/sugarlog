@@ -160,7 +160,7 @@ h1.hero-h1 {
 .card-1:hover,
 .card-2:hover,
 .card-3:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   box-shadow: 2px 0 10px -2px lightgray;
 }
 
