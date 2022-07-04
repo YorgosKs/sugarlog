@@ -22,9 +22,14 @@ const InRange = (props) => {
   }, [props.percentage]);
 
   const percentage = (data) => {
-    if (data !== 0) setData(Math.round(data));
-    else setData(0);
+    if (data.length > 0) setData(Math.round(data));
+    else setData('Add sugar value.');
   };
+
+  // const percentage = (data) => {
+  //   if (data !== 0) setData(Math.round(data));
+  //   else setData(0);
+  // };
 
   const [group1, setGroup1] = useState([]);
   const [group2, setGroup2] = useState([]);
