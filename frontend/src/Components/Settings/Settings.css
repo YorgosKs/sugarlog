@@ -81,15 +81,6 @@
   transition: all 0.4s ease;
 }
 
-.settings-item input:focus {
-  background-color: #ccc;
-  color: rgba(0, 0, 0, 0.8);
-}
-
-.settings-item select:focus {
-  background-color: #ccc;
-}
-
 .settings-item label {
   width: 90%;
   font-weight: 500;
