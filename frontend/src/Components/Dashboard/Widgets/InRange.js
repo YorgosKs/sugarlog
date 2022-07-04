@@ -22,14 +22,9 @@ const InRange = (props) => {
   }, [props.percentage]);
 
   const percentage = (data) => {
-    if (data.length > 0) setData(Math.round(data));
-    else setData('Add sugar value.');
+    if (data !== 0) setData(Math.round(data));
+    else setData(0);
   };
-
-  // const percentage = (data) => {
-  //   if (data !== 0) setData(Math.round(data));
-  //   else setData(0);
-  // };
 
   const [group1, setGroup1] = useState([]);
   const [group2, setGroup2] = useState([]);
@@ -66,7 +61,8 @@ const InRange = (props) => {
       <div className='range-left'>
         <CircularProgressbarWithChildren
           value={data}
-          text={`${data}%\nin range`}
+          // text={`${data}%\nin range`}
+          text={data ? `${data}%\nin range` : `Add sugar value.`}
           className='range-circle'
           strokeWidth='15'
           counterClockwise='true'
