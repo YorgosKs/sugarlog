@@ -61,8 +61,7 @@ const InRange = (props) => {
       <div className='range-left'>
         <CircularProgressbarWithChildren
           value={data}
-          // text={`${data}%\nin range`}
-          text={data ? `${data}%\nin range` : `Add sugar value.`}
+          text={`${data}%\nin range`}
           className='range-circle'
           strokeWidth='15'
           counterClockwise='true'

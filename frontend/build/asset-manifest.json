@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.06312305.css",
-    "main.js": "/static/js/main.47be2388.js",
+    "main.css": "/static/css/main.7148d4c5.css",
+    "main.js": "/static/js/main.2adca6c6.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/Diabetes-cuate.svg": "/static/media/Diabetes-cuate.6302bbdfbb22c2f3621d8c4b6b95db40.svg",
+    "static/media/logo-shadow.png": "/static/media/logo-shadow.3630934a8caac659f8ba.png",
     "static/media/QA engineers-bro.svg": "/static/media/QA engineers-bro.5ce4e01cbffd4882eeda86f204c019dd.svg",
     "static/media/Devices-pana.svg": "/static/media/Devices-pana.95bff362e62576ad5d4ec62b19a2bcbb.svg",
     "static/media/Site Stats-rafiki.svg": "/static/media/Site Stats-rafiki.4d5b1058b48f5452fbb5e46b85ba54b6.svg",
@@ -18,12 +19,12 @@
     "static/media/edit.svg": "/static/media/edit.ccc2f89a195c71ffb480948d388c511e.svg",
     "static/media/burger.svg": "/static/media/burger.c65108c1b283426062f54e32a9e6f22f.svg",
     "static/media/delete.svg": "/static/media/delete.d2e478af6fca979d1a541b20dad07e29.svg",
-    "main.06312305.css.map": "/static/css/main.06312305.css.map",
-    "main.47be2388.js.map": "/static/js/main.47be2388.js.map",
+    "main.7148d4c5.css.map": "/static/css/main.7148d4c5.css.map",
+    "main.2adca6c6.js.map": "/static/js/main.2adca6c6.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.06312305.css",
-    "static/js/main.47be2388.js"
+    "static/css/main.7148d4c5.css",
+    "static/js/main.2adca6c6.js"
   ]
 }

@@ -23,12 +23,7 @@ function App() {
   }, []);
 
   /*
-
   const [isLoggedIn, setIsLoggedIn] = useState('false');
-
-
-
-
 */
 
   const logInHandler = (state) => {
