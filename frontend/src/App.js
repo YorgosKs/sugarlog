@@ -22,6 +22,15 @@ function App() {
     setIsLoggedIn(localStorage.getItem('token'));
   }, []);
 
+  /*
+
+  const [isLoggedIn, setIsLoggedIn] = useState('false');
+
+
+
+
+*/
+
   const logInHandler = (state) => {
     if (state === true) setIsLoggedIn(true);
     console.log(state);

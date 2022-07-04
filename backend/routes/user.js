@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { check, validationResult, body } = require('express-validator');
 const User = require('../models/user.model');
+const Session = require('../models/session.model');
 const verifyJWT = require('../middleware/auth');
 
 // REGISTER
@@ -81,6 +82,14 @@ router.post(
               .status(200)
               .json({ message: 'Login success!' });
           }
+
+          /*
+            .cookie ('token-client, token, {
+              domain: 'sugarlog.xyz'.
+              path: '/',
+              maxAge: 7 days
+            }) 
+          */
         );
       } else {
         return res.json({

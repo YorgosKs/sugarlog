@@ -63,7 +63,7 @@
   justify-content: center;
   width: 85%;
   border-radius: 10px;
-  background-color: #ccc;
+  background-color: #eee;
   margin: 5px auto;
   box-shadow: 2px 0 5px -2px lightgray;
 }
@@ -79,6 +79,10 @@
   border-bottom: 3px solid white;
   background-color: transparent;
   transition: all 0.4s ease;
+}
+
+.set input:focus {
+  background-color: #ccc;
 }
 
 .settings-item label {

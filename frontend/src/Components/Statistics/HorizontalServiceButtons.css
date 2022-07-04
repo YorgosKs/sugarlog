@@ -69,6 +69,10 @@
   .row-item img {
     width: 40px;
   }
+
+  .horizontal-container::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 640px) {
