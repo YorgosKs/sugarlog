@@ -82,14 +82,6 @@ router.post(
               .status(200)
               .json({ message: 'Login success!' });
           }
-
-          /*
-            .cookie ('token-client, token, {
-              domain: 'sugarlog.xyz'.
-              path: '/',
-              maxAge: 7 days
-            }) 
-          */
         );
       } else {
         return res.json({

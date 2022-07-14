@@ -38,10 +38,6 @@ connection.once('open', () => {
   console.log('Mongo connected successfully!');
 });
 
-// MIDDLEWARE
-// app.use(
-//   require('prerender-node').set('prerenderToken', 'LLmStSYjTheOwaxtbpUJ')
-// );
 app.use(compression());
 app.use(helmet());
 app.use(express.json());
@@ -53,7 +49,15 @@ app.use(
     credentials: true,
   })
 );
+// app.use(
+//   cors({
+//     origin: 'http://localhost:3000/',
+//     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+//     credentials: true,
+//   })
+// );
 
+// origin: 'https://sugarlog.xyz',
 // ROUTES MIDDLEWARE
 
 app.use('/api/users', userRoute);
