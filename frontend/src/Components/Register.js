@@ -171,7 +171,7 @@ const Login = (props) => {
               8 to 24 characters.
               <br />
               Must include uppercase and lowercase letters, a number and a
-              special character (@ $ ! % * ? &).
+              special character (@ $ ! % * ? & #).
             </p>
             <p
               ref={errRef}

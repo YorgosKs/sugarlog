@@ -28,7 +28,6 @@ function App() {
 
   const logInHandler = (state) => {
     if (state === true) setIsLoggedIn(true);
-    console.log(state);
   };
 
   return (

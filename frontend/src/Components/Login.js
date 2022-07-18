@@ -52,21 +52,6 @@ const Login = (props) => {
         const state = true;
         props.loggedInState(state);
         window.localStorage.setItem('token', state);
-
-        /*
-          if (token-client) {
-            const response = await axios.post(
-              CHECK_TOKEN_URL,
-              JSON.stringify ({token-client}),
-              {
-                headers ....
-              }
-              if (response === 400) {
-                props.loggedInState (true)
-              }
-            )
-          }
-        */
       }
     } catch (err) {
       if (!err?.response) {

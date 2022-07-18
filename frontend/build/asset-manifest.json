@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.0def6400.css",
-    "main.js": "/static/js/main.2adca6c6.js",
+    "main.js": "/static/js/main.7e570f71.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/Diabetes-cuate.svg": "/static/media/Diabetes-cuate.6302bbdfbb22c2f3621d8c4b6b95db40.svg",
     "static/media/logo-shadow.png": "/static/media/logo-shadow.3630934a8caac659f8ba.png",
@@ -20,11 +20,11 @@
     "static/media/burger.svg": "/static/media/burger.c65108c1b283426062f54e32a9e6f22f.svg",
     "static/media/delete.svg": "/static/media/delete.d2e478af6fca979d1a541b20dad07e29.svg",
     "main.0def6400.css.map": "/static/css/main.0def6400.css.map",
-    "main.2adca6c6.js.map": "/static/js/main.2adca6c6.js.map",
+    "main.7e570f71.js.map": "/static/js/main.7e570f71.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0def6400.css",
-    "static/js/main.2adca6c6.js"
+    "static/js/main.7e570f71.js"
   ]
 }
