@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import edit_btn from '../../../../assets/edit.png';
-import delete_btn from '../../../../assets/delete.png';
+import edit_btn from '../../../../assets/edit.svg';
+import delete_btn from '../../../../assets/delete.svg';
 import EditSugarForm from '../../../EditForms/EditSugarForm';
 
 import './NewItem.css';
@@ -77,7 +77,6 @@ const SugarItem = (props) => {
           </p>
         </div>
       </div>
-
       <div
         className='item-container hide-mob'
         onClick={() => setIsOpen(!isOpen)}

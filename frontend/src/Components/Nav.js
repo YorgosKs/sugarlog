@@ -20,6 +20,7 @@ const Nav = (props) => {
   const [activeDash, setActiveDash] = useState(false);
   const [activeStats, setActiveStats] = useState(false);
   const [activeSettings, setActiveSettings] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -28,7 +29,9 @@ const Nav = (props) => {
         withCredentials: true,
       });
       localStorage.removeItem('token');
-      window.location.replace('/login');
+      navigate('/login');
+      // window.location.replace('/login');
+
       return false;
     } catch (err) {
       console.log(err);

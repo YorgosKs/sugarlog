@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Login from './Components/Login';
+import Login from './Components/Login2';
 import Register from './Components/Register';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Statistics from './Components/Statistics/Statistics';
@@ -9,26 +9,33 @@ import Protected from './Components/Protected';
 import { Routes, Route } from 'react-router-dom';
 import SuccessRegister from './Components/SuccessRegister';
 import NotFound from './Components/NotFound';
+import Landing from './Components/Landing';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     JSON.parse(window.localStorage.getItem('token'))
   );
 
+  const [landEmail, setLandEmail] = useState('');
+
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem('token'));
   }, []);
 
+  /*
+  const [isLoggedIn, setIsLoggedIn] = useState('false');
+*/
+
   const logInHandler = (state) => {
     if (state === true) setIsLoggedIn(true);
-    console.log(state);
   };
 
   return (
     <div className='main'>
       <Routes>
-        <Route path='/' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path='/register-completed' element={<SuccessRegister />} />
+        <Route path='/' element={<Landing setLandEmail={setLandEmail} />} />
+        <Route path='/login' element={<Login loggedInState={logInHandler} />} />
+        <Route path='/register' element={<Register landEmail={landEmail} />} />
         <Route
           path='/dashboard'
           element={
@@ -53,9 +60,6 @@ function App() {
             </Protected>
           }
         />
-
-        <Route path='/login' element={<Login loggedInState={logInHandler} />} />
-        <Route path='/register' element={<Register />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>

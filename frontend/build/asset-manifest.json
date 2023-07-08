@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0def6400.css",
+    "main.js": "/static/js/main.7e570f71.js",
+    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/Diabetes-cuate.svg": "/static/media/Diabetes-cuate.6302bbdfbb22c2f3621d8c4b6b95db40.svg",
+    "static/media/logo-shadow.png": "/static/media/logo-shadow.3630934a8caac659f8ba.png",
+    "static/media/QA engineers-bro.svg": "/static/media/QA engineers-bro.5ce4e01cbffd4882eeda86f204c019dd.svg",
+    "static/media/Devices-pana.svg": "/static/media/Devices-pana.95bff362e62576ad5d4ec62b19a2bcbb.svg",
+    "static/media/Site Stats-rafiki.svg": "/static/media/Site Stats-rafiki.4d5b1058b48f5452fbb5e46b85ba54b6.svg",
+    "static/media/logo.svg": "/static/media/logo.6c21da01deb91d883b810b8daac040f8.svg",
+    "static/media/logo-top.svg": "/static/media/logo-top.b2e17f0164b5cdcf15fdacfb87cdd32f.svg",
+    "static/media/logo-horizontal.svg": "/static/media/logo-horizontal.58726fe1532a354703f12047f87caa87.svg",
+    "static/media/settings.svg": "/static/media/settings.3eda06369ea9b035ef715bd1775dcb3a.svg",
+    "static/media/settings_focus.svg": "/static/media/settings_focus.4811e1ab2f0931f3e413e7ee476b5441.svg",
+    "static/media/logo-drop.svg": "/static/media/logo-drop.1383ba3d60fc55a0ab4e486c412045bf.svg",
+    "static/media/done.svg": "/static/media/done.e6c395770229e75977f483c3b4ab46d0.svg",
+    "index.html": "/index.html",
+    "static/media/edit.svg": "/static/media/edit.ccc2f89a195c71ffb480948d388c511e.svg",
+    "static/media/burger.svg": "/static/media/burger.c65108c1b283426062f54e32a9e6f22f.svg",
+    "static/media/delete.svg": "/static/media/delete.d2e478af6fca979d1a541b20dad07e29.svg",
+    "main.0def6400.css.map": "/static/css/main.0def6400.css.map",
+    "main.7e570f71.js.map": "/static/js/main.7e570f71.js.map",
+    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0def6400.css",
+    "static/js/main.7e570f71.js"
+  ]
+}

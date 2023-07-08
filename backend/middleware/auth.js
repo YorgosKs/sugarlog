@@ -14,7 +14,6 @@ module.exports = function (req, res, next) {
       req.user = {};
       req.user.id = jwt.decode(token)._id;
       console.log(req.user.id);
-
       next();
     });
   } else {

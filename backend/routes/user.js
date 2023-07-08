@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { check, validationResult, body } = require('express-validator');
 const User = require('../models/user.model');
-
+const Session = require('../models/session.model');
 const verifyJWT = require('../middleware/auth');
 
 // REGISTER
@@ -17,7 +17,6 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
-    console.log(req.body);
     if (!errors.isEmpty()) {
       return res.status(422).json(errors.array());
     } else {
@@ -53,7 +52,6 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
-    console.log(req.body);
     if (!errors.isEmpty()) {
       return res.status(422).json(errors.array());
     } else {
@@ -64,29 +62,22 @@ router.post(
       if (!validPass) return res.json(403);
 
       const payload = { _id: user._id };
-      const payload1 = { id: 12345 };
 
       if (user && validPass) {
         const token = jwt.sign(
           payload,
           process.env.TOKEN_SECRET,
-          { expiresIn: 86400 },
           (err, token) => {
             if (err) return res.json({ message: err });
             return res
               .cookie('token', token, {
-                path: '*/',
+                domain: 'backend2-kgr8s.ondigitalocean.app',
+                path: '/',
                 httpOnly: true,
                 sameSite: 'none',
                 secure: true,
                 maxAge: 24 * 60 * 60 * 1000,
-              })
-              .cookie('loginToken', token, {
-                path: '*/',
-                httpOnly: false,
-                // sameSite: 'none',
-                secure: true,
-                maxAge: 24 * 60 * 60 * 1000,
+                expiresIn: 86400,
               })
               .status(200)
               .json({ message: 'Login success!' });
@@ -164,13 +155,22 @@ router.post('/change-password', async (req, res) => {
 });
 
 router.get('/logout', verifyJWT, (req, res) => {
-  return res
-    .clearCookie('token', { domain: 'localhost', path: '/api/users' })
-    .clearCookie('loginToken', { domain: 'localhost', path: '/api/users' })
-
-    .status(200)
-    .json({ message: 'Logout success' })
-    .end();
+  if (req.cookies.token) {
+    try {
+      res.clearCookie('token', {
+        domain: 'backend2-kgr8s.ondigitalocean.app',
+        path: '/',
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+      });
+      res.status(200);
+      res.json({ message: 'Logout success' });
+      res.end();
+    } catch (err) {
+      console.log(err);
+    }
+  }
 });
 
 module.exports = router;

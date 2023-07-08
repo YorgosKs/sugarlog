@@ -5,6 +5,10 @@ require('dotenv').config();
 const cors = require('cors');
 const verifyJWT = require('./middleware/auth');
 
+var compression = require('compression');
+
+var helmet = require('helmet');
+
 // ROUTES
 const userRoute = require('./routes/user');
 const infoRoute = require('./routes/info');
@@ -34,17 +38,26 @@ connection.once('open', () => {
   console.log('Mongo connected successfully!');
 });
 
-// MIDDLEWARE
+app.use(compression());
+app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'http://192.168.1.6:3000'],
+    origin: 'https://sugarlog.xyz',
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     credentials: true,
   })
 );
+// app.use(
+//   cors({
+//     origin: 'http://localhost:3000/',
+//     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+//     credentials: true,
+//   })
+// );
 
+// origin: 'https://sugarlog.xyz',
 // ROUTES MIDDLEWARE
 
 app.use('/api/users', userRoute);

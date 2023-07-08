@@ -8,8 +8,12 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useEffect, useState } from 'react';
 
 const PieInRange = (props) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(0);
   const [response, setResponse] = useState(true);
+
+  useEffect(() => {
+    setData(0);
+  }, []);
 
   useEffect(() => {
     setResponse(props.response);
@@ -20,8 +24,12 @@ const PieInRange = (props) => {
   }, [props.percentage]);
 
   const percentage = (data) => {
-    if (data !== 0) setData(Math.round(data));
-    else setData(0);
+    const num = data;
+    if (num !== 0) {
+      setData(Math.round(num));
+    } else {
+      setData(Math.round(0));
+    }
   };
 
   return (

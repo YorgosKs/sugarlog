@@ -53,6 +53,8 @@
     overflow-x: scroll;
     margin: 0 auto;
     scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .service-row {
@@ -68,6 +70,10 @@
 
   .row-item img {
     width: 40px;
+  }
+
+  .horizontal-container::-webkit-scrollbar {
+    display: none;
   }
 }
 

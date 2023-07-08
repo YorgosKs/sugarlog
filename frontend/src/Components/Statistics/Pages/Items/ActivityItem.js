@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import edit_btn from '../../../../assets/edit.png';
-import delete_btn from '../../../../assets/delete.png';
+import edit_btn from '../../../../assets/edit.svg';
+import delete_btn from '../../../../assets/delete.svg';
 import EditActivityForm from '../../../EditForms/EditActivityForm';
 
 import './NewItem.css';

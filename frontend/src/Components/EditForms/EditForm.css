@@ -1,6 +1,6 @@
 .form-container {
   width: 75%;
-  height: 90%;
+  min-height: 90vh;
   margin: 5vh auto;
   display: flex;
   flex-direction: row;
@@ -29,7 +29,7 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
+  margin: 2vh auto;
 }
 
 .main-value {

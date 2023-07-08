@@ -6,4 +6,5 @@ const Protected = ({ isLoggedIn, children }) => {
   }
   return children;
 };
+
 export default Protected;

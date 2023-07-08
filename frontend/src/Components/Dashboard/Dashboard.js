@@ -2,6 +2,8 @@ import Nav from '../Nav';
 import './Dashboard.css';
 
 import logo from '../../logo-top.svg';
+import user from '../../assets/user.png';
+import logoutImg from '../../logout.png';
 
 import Chart from './Widgets/Chart';
 import PieInRange from './Widgets/PieInRange';
@@ -12,6 +14,7 @@ import axios from '../../axios/axios';
 
 import { useState, useEffect } from 'react';
 import InRange from './Widgets/InRange';
+import { useNavigate } from 'react-router-dom';
 
 const GETUSER_URL = '/';
 const GETSUGAR_URL = '/sugar/';
@@ -19,9 +22,11 @@ const GETINFO_URL = '/info/';
 
 const AVGDATA_URL = '/sugar/avg-data';
 const AVGHOUR_URL = '/sugar/avg-hours';
+const LOGOUT_URL = '/logout';
 
 const Dashboard = () => {
   const [load, setLoad] = useState(false);
+  const [logout, setLogout] = useState(false);
   const [infoModal, setInfoModal] = useState(true);
   const [data, setData] = useState([]);
   const [count, setCount] = useState();
@@ -53,12 +58,15 @@ const Dashboard = () => {
   const group4Range = [];
   const [count4, setCount4] = useState();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     handleInfoModal();
   }, []);
 
   useEffect(() => {
     setLoad(false);
+    setLogout(false);
     handleSubmit();
     handleGetInfo();
   }, []);
@@ -66,6 +74,26 @@ const Dashboard = () => {
   useEffect(() => {
     pieRange();
   });
+
+  const handleInfoModal = async () => {
+    try {
+      const response = await axios.get(GETUSER_URL, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      });
+      if (response?.data.infoComplete === false) {
+        setInfoModal(response?.data.infoComplete);
+      } else setInfoModal(true);
+    } catch (err) {
+      console.log(err);
+    }
+
+    setLoad(true);
+  };
+
+  const handleCloseInfoModal = (data) => {
+    if (data === true) setInfoModal(!infoModal);
+  };
 
   const handleGetInfo = async () => {
     try {
@@ -192,24 +220,6 @@ const Dashboard = () => {
     setCount4(group4Range.length);
   };
 
-  const handleInfoModal = async () => {
-    try {
-      const response = await axios.get(GETUSER_URL, {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      });
-      if (response?.data.infoComplete === false)
-        setInfoModal(response?.data.infoComplete);
-      else setInfoModal(true);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleCloseInfoModal = (data) => {
-    if (data === true) setInfoModal(!infoModal);
-  };
-
   const date = new Date();
   const curHr = date.getHours();
   let msg = '';
@@ -221,6 +231,21 @@ const Dashboard = () => {
   } else {
     msg = 'Good evening!';
   }
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get(LOGOUT_URL, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      });
+      localStorage.removeItem('token');
+      navigate('/login');
+
+      return false;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className='dashboard-container'>
@@ -242,9 +267,26 @@ const Dashboard = () => {
           >
             <InfoModal closeInfoModal={handleCloseInfoModal} />
           </div>
-          <h2 className='msg'>{msg}</h2>
+          <div className='top-msg'>
+            <h2 className='msg'>{msg}</h2>
+            <div className='logout-user'>
+              <img src={user} alt='user' onClick={() => setLogout(true)} />
+              <p
+                style={
+                  // !logout ? { opacity: 0 } : { opacity: 1, height: 'auto' }
+                  !logout
+                    ? { display: 'none' }
+                    : { display: 'flex', height: 'auto' }
+                }
+                onClick={handleLogout}
+              >
+                <img src={logoutImg} alt='logout' />
+                Logout
+              </p>
+            </div>
+          </div>
 
-          <div className='dashboard-wrapper'>
+          <div className='dashboard-wrapper' onClick={() => setLogout(false)}>
             <div className='left-col'>
               <Chart
                 today={today}
