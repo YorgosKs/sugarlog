@@ -44,9 +44,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    //origin: 'https://sugarlog.xyz',
-    origin: 'https://shark-app-ogbqf.ondigitalocean.app',
-
+    origin: 'https://sugarlog.xyz',
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     credentials: true,
   })

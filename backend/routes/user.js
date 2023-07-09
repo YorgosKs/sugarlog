@@ -71,7 +71,7 @@ router.post(
             if (err) return res.json({ message: err });
             return res
               .cookie('token', token, {
-                domain: 'backend2-kgr8s.ondigitalocean.app',
+                domain: 'backend-b94ud.ondigitalocean.app',
                 path: '/',
                 httpOnly: true,
                 sameSite: 'none',
